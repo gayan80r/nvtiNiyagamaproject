@@ -69,10 +69,7 @@
         </tbody>
     </table>
 <div>
-    <div class="panel" id="pages1">
 
-     Enter No pages
-    </div>
 
 <div class="panel" id="pages">
 
@@ -96,7 +93,7 @@
     });
 
     function pagination() {
-      var no_of_rows=5;
+      var no_of_rows=3;
      var $rows =$("tbody tr");
      var total_data_rows=$rows.length;
      var no_of_pages=0;
@@ -109,11 +106,47 @@
          no_of_pages=total_data_rows/no_of_rows;
          no_of_pages++;
      }
-
+        $("#pages").append("<a href='#' class='btn btn-default'>Next</a>");
      for(var i=1;i<=no_of_pages;i++){
-
-         $("#pages").append("<a href='#'>"+i+"</a>");
+         // $("#pages").append("<a href='#' class='btn btn-default'>next</a>");
+         $("#pages").append("<a href='#' class='btn btn-default'>"+i+"</a>");
+         // $("#pages").append("<a href='#' class='btn btn-default'>Previous</a>")
      }
+        $("#pages").append("<a href='#' class='btn btn-default'>Previous</a>");
+     $rows.each(function (j) {
+       $(this).hide();
+       if(j+1<=no_of_rows){
+           $rows.eq(j).show();
+       }
+     });
+        var temp=0;
+     $("#pages  a").click(function (e) {
+         e.preventDefault();
+         $rows.hide();
+         var page=$(this).text();
+
+         if(page=="Next"){
+             if(temp <no_of_pages){
+                 temp++;
+             }
+
+         }
+         else if(page=="Previous") {
+
+             if (temp >0) {
+                 temp--;
+             }
+         }else{
+               temp=page-1;
+             }
+
+
+      var start=   temp*no_of_rows;
+      for(var a=0;a<no_of_rows;a++){
+          $rows.eq(start+a).show();
+      }
+
+     });
     }
 
 </script>
