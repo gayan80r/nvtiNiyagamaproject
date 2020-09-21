@@ -105,7 +105,9 @@
      if(total_data_rows%no_of_rows>=1){
          no_of_pages=total_data_rows/no_of_rows;
          no_of_pages++;
+         no_of_pages=Math.floor(no_of_pages++)
      }
+
         $("#pages").append("<a href='#' class='btn btn-default'>Next</a>");
      for(var i=1;i<=no_of_pages;i++){
          // $("#pages").append("<a href='#' class='btn btn-default'>next</a>");
@@ -126,7 +128,7 @@
          var page=$(this).text();
 
          if(page=="Next"){
-             if(temp <no_of_pages){
+             if(temp <no_of_pages-1){
                  temp++;
              }
 
@@ -151,23 +153,4 @@
 
 </script>
 
-<%--
-<script>
-    $(document).ready( function () {
-        var table = $('#employeesTable').DataTable({
-            "sAjaxSource": "/employee",
-            "sAjaxDataProp": "",
-            "order": [[ 0, "asc" ]],
-            "aoColumns": [
 
-                { "mData": "first_name" },
-                { "mData": "last_name" },
-                { "mData": "nic" },
-                { "mData": "mobile" },
-                { "mData": "city" }
-            ]
-        })
-    });
-
-
-</script>--%>

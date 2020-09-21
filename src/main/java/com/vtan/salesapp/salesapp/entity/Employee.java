@@ -71,15 +71,7 @@ public class Employee {
     private Date dob;
 
 
-/* @Column(name="joined_date")
-    @NotNull( message = "Please enter the start date !")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date joined_date;
 
-    @Column(name="end_date")
-    @NotNull( message = "Please enter the end date !")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date end_date;*/
 
     @Column(name = "address_line1")
     private String address_line1;
@@ -189,7 +181,7 @@ public class Employee {
     }
 
 
-    public Employee(int id,String first_name, String last_name, String mobile, String home, String email, Date dob, String address_line1, String address_line2, String city, byte[] image, boolean status, Gender genderId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList) {
+    public Employee(int id,String first_name, String last_name, String mobile, String home, String email, Date dob, String address_line1, String address_line2, String city, byte[] image, boolean status, Gender genderId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList,List<EmployeeLeave> employeeLeaveList) {
         this.id=id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -212,6 +204,7 @@ public class Employee {
         this.highset_vocational_qualification_id = highset_vocational_qualification_id;
        // this.employeeTrainingDetailsList = employeeTrainingDetailsList;
         this.employeeTriningDetailsList=employeeTriningDetailsList;
+        this.employeeLeaveList=employeeLeaveList;
 
     }
 
@@ -249,29 +242,26 @@ public class Employee {
         this.instructorBatchList = instructorBatchList;
     }
 
-    /* public Date getJoined_date() {
-             return joined_date;
-         }
 
-         public void setJoined_date(Date joined_date) {
-             this.joined_date = joined_date;
-         }
-
-         public Date getEnd_date() {
-             return end_date;
-         }
-
-         public void setEnd_date(Date end_date) {
-             this.end_date = end_date;
-         }
-     */
     public Employee() {
     }
 
     @OneToMany(mappedBy = "employeid")
     private List<InstructorBatch> instructorBatchList;
 
-    public Employee(Integer id, String first_name, String last_name, String nic, String mobile, String home, Date dob, String address_line1, String address_line2, String city, byte[] image,List<InstructorBatch> instructorBatchList) {
+
+    @OneToMany(mappedBy = "empleavetypeid")
+    private List<EmployeeLeave> employeeLeaveList;
+
+    public List<EmployeeLeave> getEmployeeLeaveList() {
+        return employeeLeaveList;
+    }
+
+    public void setEmployeeLeaveList(List<EmployeeLeave> employeeLeaveList) {
+        this.employeeLeaveList = employeeLeaveList;
+    }
+
+    public Employee(Integer id, String first_name, String last_name, String nic, String mobile, String home, Date dob, String address_line1, String address_line2, String city, byte[] image, List<InstructorBatch> instructorBatchList) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;

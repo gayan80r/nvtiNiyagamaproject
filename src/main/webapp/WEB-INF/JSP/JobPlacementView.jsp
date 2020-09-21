@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 7/24/2020
-  Time: 10:13 AM
-  To change this template use File | Settings | File Templates.
---%>
 
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -32,12 +25,12 @@
 </body>
 <div class="container">
     <!--<div class="panel-heading"><span class="Lead">List of Employees</span></div> -->
-    <div class ="jumbotron"> <center><h2>List of OJT Place</h2></center></div>
+    <div class ="jumbotron"> <center><h2>List of Job Placement</h2></center></div>
     <table class="table table-dark table-striped table-hover" id="OJTPlaceTable">
         <thead class>
         <tr>
 
-            <th>ojt Place Name</th>
+            <th>JobPlacement Name</th>
             <th>Contact Person Name</th>
             <th>Email</th>
             <th>Land Line Phone</th>
@@ -51,17 +44,17 @@
 
         <tbody>
 
-        <c:forEach items="${ojtplaceList}" var="ojtp">
+        <c:forEach items="${JobPlacementList}" var="jobp">
             <tr>
-                <td>${ojtp.name}</td>
-                <td>${ojtp.contactperson}</td>
-                <td>${ojtp.email}</td>
-                <td>${ojtp.landline}</td>
-                <td>${ojtp.mobile}</td>
-                <td>${ojtp.city}</td>
+                <td>${jobp.name}</td>
+                <td>${jobp.contactperson}</td>
+                <td>${jobp.email}</td>
+                <td>${jobp.home}</td>
+                <td>${jobp.mobile}</td>
+                <td>${jobp.city}</td>
 
-                <td><a href="<c:url value='/edit-ojtPlace-${ojtp.id}'/>" class="btn btn-warning">Edit</a>
-                <td><a href="<c:url value='/delete-ojtPlace-${ojtp.id}'/>" class="btn btn-warning">Delete</a>
+                <td><a href="<c:url value='/edit-jobplace-${jobp.id}'/>" class="btn btn-warning">Edit</a>
+                <td><a href="<c:url value='/delete-jobplace-${jobp.id}'/>" class="btn btn-warning">Delete</a>
                 </td>
 
                 <td></td>
