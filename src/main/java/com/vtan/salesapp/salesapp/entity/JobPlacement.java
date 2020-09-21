@@ -12,6 +12,19 @@ public class JobPlacement {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //use to configure auto increment constrains
     @Column(name = "id")// use to configure the bellow variable
     private Integer id;
+    @Column(name = "name")
+    @NotEmpty(message = "")
+    @Size(min = 3, message = "Contact person should have minimum 3 letters!")
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Column(name = "contactperson")
     @NotEmpty(message = "")
     @Size(min = 3, message = "Contact person should have minimum 3 letters!")

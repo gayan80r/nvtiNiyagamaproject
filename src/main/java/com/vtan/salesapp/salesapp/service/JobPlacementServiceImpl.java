@@ -3,9 +3,10 @@ package com.vtan.salesapp.salesapp.service;
 import com.vtan.salesapp.salesapp.entity.JobPlacement;
 import com.vtan.salesapp.salesapp.repository.JobPlacementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class JobPlacementServiceImpl implements JobPlacementService {
 
     @Autowired
