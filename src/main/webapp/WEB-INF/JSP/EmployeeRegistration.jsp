@@ -74,7 +74,7 @@
 
     <div class="row">
         <div class="form-group col-md-12">
-            <label class="col-md-3 control-lable" for="first_name">First Name</label>
+            <label class="col-md-3 control-lable" for="first_name">Epf No</label>
             <div class="col-md-9">
                 <sform:input type="text" path="first_name" id="first_name"
                              class="form-control input-sm"></sform:input>

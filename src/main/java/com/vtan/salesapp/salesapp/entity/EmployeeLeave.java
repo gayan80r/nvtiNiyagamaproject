@@ -21,9 +21,9 @@ public class EmployeeLeave {
     @Size(min = 4, message = "EPF No should have minimum 4 letters!")
     private String epf_no;
 
-    @Column(name="namewithinitial")
+    /*@Column(name="namewithinitial")
     @NotNull(message = "Please enter the Name with initial")
-    private  String namewithinitial;
+    private  String namewithinitial;*/
 
     @Column(name = "startdate")
     @NotNull(message = "Please enter the Leave  Start Date !")
@@ -34,7 +34,7 @@ public class EmployeeLeave {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enddate;
 
-    @Column(name = "appydate")
+    @Column(name = "applydate")
     @NotNull(message = "Please enter the Apply Date !")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date applydate;
@@ -115,13 +115,13 @@ public class EmployeeLeave {
         this.id = id;
     }
 
-    public String getNamewithinitial() {
+   /* public String getNamewithinitial() {
         return namewithinitial;
     }
 
     public void setNamewithinitial(String namewithinitial) {
         this.namewithinitial = namewithinitial;
-    }
+    }*/
 
     public Date getStartdate() {
         return startdate;
@@ -147,10 +147,10 @@ public class EmployeeLeave {
         this.employeeid = employeeid;
     }
 
-    public EmployeeLeave(Integer id,String epf_no, String namewithinitial,  Date startdate,  Date enddate,Date applydate,String coveringEmployee,String approvedEmployee,Status empstatudid,LeaveType empleavetypeid, Employee employeeid) {
+    public EmployeeLeave(Integer id,String epf_no,  Date startdate,  Date enddate,Date applydate,String coveringEmployee,String approvedEmployee,Status empstatudid,LeaveType empleavetypeid, Employee employeeid) {
         this.id = id;
         this.epf_no=epf_no;
-        this.namewithinitial = namewithinitial;
+       // this.namewithinitial = namewithinitial;
         this.startdate = startdate;
         this.enddate = enddate;
         this.applydate=applydate;
