@@ -146,6 +146,16 @@ public class RegistedStudent {
         this.studentParrentList = studentParrentList;
     }
 
+    @OneToMany(mappedBy = "registedStudentId")
+    private List<StudentSemisterMarks> studentSemisterMarksList;
+
+    public List<StudentSemisterMarks> getStudentSemisterMarksList() {
+        return studentSemisterMarksList;
+    }
+
+    public void setStudentSemisterMarksList(List<StudentSemisterMarks> studentSemisterMarksList) {
+        this.studentSemisterMarksList = studentSemisterMarksList;
+    }
     /*@ManyToOne
     @JoinColumn(name = "batch_Id")
     private Batch batch_Id;*/
@@ -301,7 +311,7 @@ public class RegistedStudent {
         this.batch_Id = batch_Id;
     }*/
 
-    public RegistedStudent( String first_name,  String last_name, String name, String nic, String mobile,  String home,  String email,  Date dob, String address_line1, String address_line2, String city, byte[] image, Gender genderId, CivilStatus civilStatusId, GSDivition GSDevision_Id, DevitionalSecatary devisionalSecatary_Id,List<StudentParrent> studentParrentList,List<StudentBatch> studentBatchList){
+    public RegistedStudent( int id,String first_name,  String last_name, String name, String nic, String mobile,  String home,  String email,  Date dob, String address_line1, String address_line2, String city, byte[] image, Gender genderId, CivilStatus civilStatusId, GSDivition GSDevision_Id, DevitionalSecatary devisionalSecatary_Id,List<StudentParrent> studentParrentList,List<StudentBatch> studentBatchList,List<StudentSemisterMarks> studentSemisterMarksList){
         this.id=id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -322,6 +332,8 @@ public class RegistedStudent {
         this.studentParrentList = studentParrentList;
         this.studentBatchList=studentBatchList;
         this.ojtDetailsList = ojtDetailsList;
+        this.studentSemisterMarksList=studentSemisterMarksList;
+
 
         //this.batch_Id = batch_Id;
     }

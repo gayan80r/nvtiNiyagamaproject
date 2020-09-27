@@ -118,6 +118,9 @@ public class Module {
     @JoinColumn(name = "semester_id")
     private Semister semesterId;
 
+    @OneToMany(mappedBy = "moduleId")
+    private List<StudentSemisterMarks> studentSemisterMarksList;
+
     public void setSemesterId(Semister semesterId) {
         this.semesterId = semesterId;
     }
