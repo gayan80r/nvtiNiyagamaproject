@@ -39,13 +39,18 @@ public class EmployeeLeave {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date applydate;
 
+    /*@ManyToOne
+    @JoinColumn(name="manager_id")
+    private Employee manager;*/
+
+
     @Column(name="coveringEmployee")
     @NotNull(message = "Please enter the covering Employee name")
-    private  String coveringEmployee;
+    private  String coveringEmployeeId;
 
     @Column(name="approvedEmployee")
     @NotNull(message = "Please enter the approved Employee name")
-    private  String approvedEmployee;
+    private  String approvedEmployeeId;
 
     public String getEpf_no() {
         return epf_no;
@@ -54,6 +59,14 @@ public class EmployeeLeave {
     public void setEpf_no(String epf_no) {
         this.epf_no = epf_no;
     }
+
+   /* public String getNamewithinitial() {
+        return namewithinitial;
+    }
+
+    public void setNamewithinitial(String namewithinitial) {
+        this.namewithinitial = namewithinitial;
+    }*/
 
     public Date getApplydate() {
         return applydate;
@@ -64,19 +77,19 @@ public class EmployeeLeave {
     }
 
     public String getCoveringEmployee() {
-        return coveringEmployee;
+        return coveringEmployeeId;
     }
 
     public void setCoveringEmployee(String coveringEmployee) {
-        this.coveringEmployee = coveringEmployee;
+        this.coveringEmployeeId = coveringEmployeeId;
     }
 
     public String getApprovedEmployee() {
-        return approvedEmployee;
+        return coveringEmployeeId;
     }
 
     public void setApprovedEmployee(String approvedEmployee) {
-        this.approvedEmployee = approvedEmployee;
+        this.coveringEmployeeId = coveringEmployeeId;
     }
 
     @ManyToOne
@@ -115,13 +128,7 @@ public class EmployeeLeave {
         this.id = id;
     }
 
-   /* public String getNamewithinitial() {
-        return namewithinitial;
-    }
 
-    public void setNamewithinitial(String namewithinitial) {
-        this.namewithinitial = namewithinitial;
-    }*/
 
     public Date getStartdate() {
         return startdate;
@@ -149,13 +156,13 @@ public class EmployeeLeave {
 
     public EmployeeLeave(Integer id,String epf_no,  Date startdate,  Date enddate,Date applydate,String coveringEmployee,String approvedEmployee,Status empstatudid,LeaveType empleavetypeid, Employee employeeid) {
         this.id = id;
-        this.epf_no=epf_no;
+       this.epf_no=epf_no;
        // this.namewithinitial = namewithinitial;
         this.startdate = startdate;
         this.enddate = enddate;
         this.applydate=applydate;
-        this.coveringEmployee=coveringEmployee;
-        this.approvedEmployee=approvedEmployee;
+        this.coveringEmployeeId=coveringEmployeeId;
+        this.approvedEmployeeId=approvedEmployeeId;
         this.empstatudid = empstatudid;
         this.empleavetypeid = empleavetypeid;
         this.employeeid = employeeid;

@@ -90,13 +90,7 @@ public class Module {
     @OneToMany(mappedBy = "moduleId")
     private List <ModuleUnit> moduleUnitList;
 
-   /* public Course getSemesterId() {
-        return semesterId;
-    }*/
 
-    /*public Module(List<ModuleUnit> moduleUnitList) {
-        this.moduleUnitList = moduleUnitList;
-    }*/
 
     public List<ModuleUnit> getModuleUnitList() {
         return moduleUnitList;
