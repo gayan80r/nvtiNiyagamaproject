@@ -1,5 +1,3 @@
-
-
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -14,6 +12,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+
 
 
     <style>
@@ -52,7 +59,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="epf_no">EPF No</label>
                 <div class="col-md-9">
-                    <sform:input type="text" path="epf_no" id="first_name"
+                    <sform:input type="text" path="epf_no" id="epf_no"
                                  class="form-control input-sm"></sform:input>
                     <div class="has-error">
                         <sform:errors path="epf_no" class="help-inline"/>
@@ -67,9 +74,10 @@
 
                 <label class="col-md-3 control-lable" for="employeeid"> Name with initial</label>
                 <div class="col-md-9">
-                    <sform:select path="employeeid" items="${employeeList}" multiple="false" itemValue="id"
 
-                                  itemLabel="name" class="form-control input-sm" />
+                    <sform:select path="employeeid" items="${ employeelist}" multiple="false" itemValue="id"
+
+                                  itemLabel="name_with_initial" class="form-control input-sm" />
                     <div class="has-error">
                         <sform:errors path="employeeid" class="help-inline"/>
                     </div>
@@ -84,7 +92,7 @@
                 <label class="col-md-3 control-lable" for="empleavetypeid">Leave Type</label>
                 <div class="col-md-9">
 
-                    <sform:select path="empleavetypeid" items="${leaveTyperList}" multiple="false" itemValue="id"
+                    <sform:select path="empleavetypeid" items="${leavetypelist}" multiple="false" itemValue="id"
 
                                   itemLabel="name" class="form-control input-sm" />
 
@@ -136,6 +144,37 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="form-group col-md-12">
+
+                <label class="col-md-3 control-lable" for="coveringEmployeeId"> Covering Employee</label>
+                <div class="col-md-9">
+                    <sform:select path="coveringEmployeeId" items="${ employeelist}" multiple="false" itemValue="id"
+
+                                  itemLabel="name_with_initial" class="form-control input-sm" />
+                    <div class="has-error">
+                        <sform:errors path="coveringEmployeeId" class="help-inline"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+
+                <label class="col-md-3 control-lable" for="approvedEmployeeId"> Approved Employee</label>
+                <div class="col-md-9">
+                    <sform:select path="approvedEmployeeId" items="${ employeelist}" multiple="false" itemValue="id"
+
+                                  itemLabel="name_with_initial" class="form-control input-sm" />
+                    <div class="has-error">
+                        <sform:errors path="approvedEmployeeId" class="help-inline"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 
 
@@ -188,7 +227,7 @@
             }
         });
 
-        $("#nic").focusout(function (event) {
+       /* $("#nic").focusout(function (event) {
 
             var nic         = $('#nic').val();
             if(nic.length > 0){
@@ -201,101 +240,25 @@
                 }
             }
 
-        });
+        });*/
 
         function validateEmployee(){
 
-            var firstName   = $('#first_name').val();
-            var lastName    = $('#last_name').val();
-            var epf_no         =$('#epf_no').val();
-            var nic         = $('#nic').val();
-            var mobile      = $('#mobile').val();
-            var home        = $('#home').val();
-            var email       = $('#email').val();
 
-            var dob         = $('#dob').val();
-            var joined_date = $('#joined_date').val();
-            var end_date = $('#end_date').val();
-            var addressLine1 = $('#addressLine1').val();
-            var city        = $('#city').val();
+            var epf_no    =$('#epf_no').val();
+
 
             var status = true;
 
 
-            if(firstName.length < 3){
 
-                $('#first_name').after("<Span>Please enter a valid name from jquery</Span>");
-                status = false;
-            }
-
-
-            if(lastName.length < 3){
-
-                $('#last_name').after("<Span>Please enter a valid name from jquery</Span>");
-                status = false;
-            }
-
-            if(nic.length > 0){
-
-                var nicRegex = /^([0-9]{9}[V|v|x|X])|([0-9]{12})^/;
-                var valNic = nicRegex.test(nic);
-                if(!valNic) {
-                    $('#nic').after("<Span>Please enter a valid nic from jquery</Span>");
-                    status = false;
-                }
-            }
 
             if(epf_no.length < 4){
 
-                $('#last_name').after("<Span>Please enter a valid epf  for jquery</Span>");
-                status = false;
-            }
-            if(mobile.length > 0) {
-
-                var mobileRegex = /^((07)(0|1|2|5|6|7|8|9)[0-9]{7})$/;
-                var valMobile = mobileRegex.test(mobile);
-
-                if (!valMobile) {
-                    $('#mobile').after("<Span>Please enter a valid mobile number from jquery</Span>");
-                    status = false;
-                }
-            }
-
-            if(home.length > 0) {
-
-                //var homeRegex = /^([0-9]{10})^/;
-                var homeRegex = /^\d{10}$/;
-                var valhome = homeRegex.test(home);
-
-                if (!valhome) {
-                    $('#home').after("<Span>Please enter a valid home number from jquery</Span>");
-                    status = false;
-                }
-            }
-
-            /* if(email.length > 0) {
-
-                 var emailregex = /^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                 var valemail = emailregex .test(email);
-
-                 if (!valemail) {
-                     $('#email').after("<Span>Please enter a valid Email Name from jquery</Span>");
-                     status = false;
-                 }
-             }*/
-
-            if(addressLine1.length <= 0){
-
-                $('#addressLine1').after("<Span>Please enter the address</Span>");
+                $('#epf_no').after("<Span>Please enter a valid epf  for jquery</Span>");
                 status = false;
             }
 
-
-            if(city.length <= 0){
-
-                $('#city').after("<Span>Please enter the city</Span>");
-                status = false;
-            }
 
 
             return status;

@@ -4,6 +4,7 @@ import com.vtan.salesapp.salesapp.entity.EmployeeLeave;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,6 +24,14 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
     @Override
     public void delete(EmployeeLeave el) {
         employeeLeaveService.delete(el);
+    }
+
+    @Override
+    public EmployeeLeave findById(int id) {
+        return employeeLeaveService.findById(id);
+        //return  employeeLeaveService.findById(id).g
+
+       // employeeRepository.findById(id).get()
     }
 
    /* @Override
@@ -46,7 +55,7 @@ public class EmployeeLeaveServiceImpl implements EmployeeLeaveService {
     }
 
     @Override
-    public List<EmployeeLeave> finByEmployeeStartEndDate(EmployeeLeave epf_no, EmployeeLeave startdate, EmployeeLeave enddate) {
+    public List<EmployeeLeave> finByEmployeeStartEndDate(String epf_no, Date startdate, Date enddate) {
         return employeeLeaveService.finByEmployeeStartEndDate(epf_no, startdate, enddate);
     }
 }

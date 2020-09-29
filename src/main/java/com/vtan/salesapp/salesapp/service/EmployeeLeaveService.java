@@ -2,6 +2,7 @@ package com.vtan.salesapp.salesapp.service;
 
 import com.vtan.salesapp.salesapp.entity.EmployeeLeave;
 
+import java.util.Date;
 import java.util.List;
 
 public interface EmployeeLeaveService {
@@ -9,7 +10,7 @@ public interface EmployeeLeaveService {
     public void update (EmployeeLeave el);
     public void delete (EmployeeLeave el);
 
-   // public EmployeeLeave findById(int id);
+    public EmployeeLeave findById(int id);
 
 
 
@@ -17,6 +18,6 @@ public interface EmployeeLeaveService {
 
     public List<EmployeeLeave > findAll();
     public List<EmployeeLeave> findByStatus(boolean status);
-    public List<EmployeeLeave> finByEmployeeStartEndDate(EmployeeLeave epf_no, EmployeeLeave startdate, EmployeeLeave enddate);
+    public List<EmployeeLeave> finByEmployeeStartEndDate(String epf_no, Date startdate, Date enddate);
 
 }

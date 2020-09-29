@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
@@ -28,11 +29,12 @@ public class EmployeeLeave {
     @Column(name = "startdate")
     @NotNull(message = "Please enter the Leave  Start Date !")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startdate;
+    private Time startdate;
     @Column(name = "enddate")
     @NotNull(message = "Please enter the Leave  End Date !")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date enddate;
+    //private Date enddate;
+    private Time enddate;
 
     @Column(name = "applydate")
     @NotNull(message = "Please enter the Apply Date !")
@@ -42,7 +44,16 @@ public class EmployeeLeave {
     /*@ManyToOne
     @JoinColumn(name="manager_id")
     private Employee manager;*/
+    @Column(name = "status")
+    private boolean status;
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     @Column(name="coveringEmployee")
     @NotNull(message = "Please enter the covering Employee name")
@@ -96,17 +107,17 @@ public class EmployeeLeave {
     @JoinColumn(name = "empid")
     private Employee employeeid;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "empoyeestatusid")
-    private Status empstatudid;
+    private Status empstatudid;*/
 
-    public Status getEmpstatudid() {
+   /* public Status getEmpstatudid() {
         return empstatudid;
     }
 
     public void setEmpstatudid(Status empstatudid) {
         this.empstatudid = empstatudid;
-    }
+    }*/
 
     public LeaveType getEmpleavetypeid() {
         return empleavetypeid;
@@ -128,9 +139,23 @@ public class EmployeeLeave {
         this.id = id;
     }
 
+    public String getCoveringEmployeeId() {
+        return coveringEmployeeId;
+    }
 
+    public void setCoveringEmployeeId(String coveringEmployeeId) {
+        this.coveringEmployeeId = coveringEmployeeId;
+    }
 
-    public Date getStartdate() {
+    public String getApprovedEmployeeId() {
+        return approvedEmployeeId;
+    }
+
+    public void setApprovedEmployeeId(String approvedEmployeeId) {
+        this.approvedEmployeeId = approvedEmployeeId;
+    }
+
+   /* public Date getStartdate() {
         return startdate;
     }
 
@@ -144,6 +169,22 @@ public class EmployeeLeave {
 
     public void setEnddate(Date enddate) {
         this.enddate = enddate;
+    }*/
+
+    public Time getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(Time startdate) {
+        this.startdate = startdate;
+    }
+
+    public Time getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(Time enddate) {
+        this.enddate = enddate;
     }
 
     public Employee getEmployeeid() {
@@ -154,7 +195,7 @@ public class EmployeeLeave {
         this.employeeid = employeeid;
     }
 
-    public EmployeeLeave(Integer id,String epf_no,  Date startdate,  Date enddate,Date applydate,String coveringEmployee,String approvedEmployee,Status empstatudid,LeaveType empleavetypeid, Employee employeeid) {
+    public EmployeeLeave(Integer id,String epf_no,  Time startdate,  Time enddate,Date applydate,String coveringEmployee,String approvedEmployee,LeaveType empleavetypeid, Employee employeeid,boolean status) {
         this.id = id;
        this.epf_no=epf_no;
        // this.namewithinitial = namewithinitial;
@@ -163,14 +204,16 @@ public class EmployeeLeave {
         this.applydate=applydate;
         this.coveringEmployeeId=coveringEmployeeId;
         this.approvedEmployeeId=approvedEmployeeId;
-        this.empstatudid = empstatudid;
+       // this.empstatudid = empstatudid;
         this.empleavetypeid = empleavetypeid;
         this.employeeid = employeeid;
+        this.status=status;
 
     }
 
     public EmployeeLeave() {
 
     }
+
 
 }
