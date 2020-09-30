@@ -45,18 +45,30 @@ public class Semister {
         this.moduleList = moduleList;
     }
 
-    public Semister(Integer id,  String name, List<Module> moduleList) {
+    public Semister(Integer id,  String name, List<Module> moduleList,List<CourseSemister> courseSemisterList) {
         this.id = id;
         this.name = name;
         this.moduleList = moduleList;
+        this.courseSemisterList = courseSemisterList;
     }
 
     public Semister() {
 
     }
 
+    public List<CourseSemister> getCourseSemisterList() {
+        return courseSemisterList;
+    }
+
+    public void setCourseSemisterList(List<CourseSemister> courseSemisterList) {
+        this.courseSemisterList = courseSemisterList;
+    }
+
     @Override
     public String toString() {
         return name;
     }
+
+    @OneToMany(mappedBy = "semisterId")
+    private List<CourseSemister> courseSemisterList;
 }
