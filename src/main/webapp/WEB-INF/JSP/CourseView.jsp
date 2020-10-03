@@ -3,12 +3,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel ="stylesheet"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <title>List of course</title>
+<%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>--%>
 
 </head>
 <body>
@@ -17,7 +17,7 @@
 <div class="container">
     <!--<div class="panel-heading"><span class="Lead">List of Employees</span></div> -->
     <div class ="jumbotron"> <center><h2>List of course</h2></center></div>
-    <table class="table table-dark table-striped table-hover">
+    <table class="table table-dark table-striped table-hover" id="coursetable">
         <thead class>
         <tr>
 
@@ -61,3 +61,8 @@
 
 </div>
 </html>
+<%--<script>$(document).ready(function() {
+    $('#coursetable').DataTable();
+} );
+</script>--%>
+
