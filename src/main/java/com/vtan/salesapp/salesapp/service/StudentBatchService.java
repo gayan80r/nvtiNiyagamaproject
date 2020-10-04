@@ -15,5 +15,6 @@ public interface StudentBatchService {
    public List<StudentBatch > findByStatus(boolean status);
     public List<StudentBatch > findAll();
     public List<StudentBatch>  finByStundentBatchId(Batch batchid, RegistedStudent studentid);
-    //public List<StudentBatch> finByStundBatchId(Integer batchid, Integer studentid);
+    public List<StudentBatch> finByStundent(Batch batchid);
+
 }

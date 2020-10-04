@@ -47,4 +47,9 @@ public class StudentBatchServiceImpl implements StudentBatchService {
         //return studentBatchRepository.finByStundBatchId(batchid,studentid);
         return studentBatchRepository.finByStundentBatchId(batchid,studentid);
     }
+
+    @Override
+    public List<StudentBatch> finByStundent(Batch batchid) {
+        return studentBatchRepository.finByStundent(batchid);
+    }
 }

@@ -24,6 +24,17 @@ public class Year {
         this.studentSemisterMarksList = studentSemisterMarksList;
     }
 
+    @OneToMany( mappedBy = "yearId")
+    private List<Batch> batchList;
+
+    public List<Batch> getBatchList() {
+        return batchList;
+    }
+
+    public void setBatchList(List<Batch> batchList) {
+        this.batchList = batchList;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -40,10 +51,11 @@ public class Year {
         this.name = name;
     }
 
-    public Year(int id,String name,List<StudentSemisterMarks> studentSemisterMarksList) {
+    public Year(int id,String name,List<StudentSemisterMarks> studentSemisterMarksList,List<Batch> batchList) {
         this.id=id;
         this.name = name;
         this.studentSemisterMarksList=studentSemisterMarksList;
+        this.batchList = batchList;
     }
 
     public Year() {

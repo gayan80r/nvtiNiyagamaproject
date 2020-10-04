@@ -137,30 +137,36 @@
             }
 
         })
-       /* function validatestudentBatch(){
 
-
-
-            var studentid  = $('#studentId').val();
-            var status = true;
-
-            if(studentid.length< 3){
-
-                $('#studentId').after("<Span>Please enter a student id from jquery</Span>");
-                status = false;
-            }
-
-
-
-
-
-
-
-
-            return status;
-        }});
-*/
 </script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#batchid").change(function () {
+            var value = $("#batchid").val();
+            //key value key name is batchname
+            var contents = [batchname = value];
+            var jsonData = {json: JSON.stringify(contents)};
+            $.ajax({
+                type: 'GET',
+                url: '/retrivestudent',
+                data: jsonData,
+                dataType: "json",
+                success: function (data) {
+
+                    $.each(data, function (key, value)  {
+
+                    });
+
+                }
+            });
+
+        });
+
+    });
+</script>
+
 
 
 </html>

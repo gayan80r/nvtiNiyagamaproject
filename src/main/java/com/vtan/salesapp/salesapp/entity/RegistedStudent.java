@@ -70,6 +70,12 @@ public class RegistedStudent {
     @Column(name = "image")
     private byte[] image;
 
+    @Column(name = "Register_Year")
+    @NotEmpty(message = "")
+    private String Register_Year;
+
+
+
     public boolean isStatus() {
         return status;
     }
@@ -199,6 +205,14 @@ public class RegistedStudent {
         this.name_with_initial = name_with_initial;
     }*/
 
+    public String getRegister_Year() {
+        return Register_Year;
+    }
+
+    public void setRegister_Year(String register_Year) {
+        Register_Year = register_Year;
+    }
+
     public String getNic() {
         return nic;
     }
@@ -311,7 +325,7 @@ public class RegistedStudent {
         this.batch_Id = batch_Id;
     }*/
 
-    public RegistedStudent( int id,String first_name,  String last_name, String name, String nic, String mobile,  String home,  String email,  Date dob, String address_line1, String address_line2, String city, byte[] image, Gender genderId, CivilStatus civilStatusId, GSDivition GSDevision_Id, DevitionalSecatary devisionalSecatary_Id,List<StudentParrent> studentParrentList,List<StudentBatch> studentBatchList,List<StudentSemisterMarks> studentSemisterMarksList){
+    public RegistedStudent( int id,String first_name,  String last_name, String name, String nic, String mobile,  String home,  String email,  Date dob, String address_line1, String address_line2, String city, byte[] image, Gender genderId, CivilStatus civilStatusId, GSDivition GSDevision_Id, DevitionalSecatary devisionalSecatary_Id,List<StudentParrent> studentParrentList,List<StudentBatch> studentBatchList,List<StudentSemisterMarks> studentSemisterMarksList,String Register_Year){
         this.id=id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -333,6 +347,7 @@ public class RegistedStudent {
         this.studentBatchList=studentBatchList;
         this.ojtDetailsList = ojtDetailsList;
         this.studentSemisterMarksList=studentSemisterMarksList;
+        this.Register_Year = Register_Year;
 
 
         //this.batch_Id = batch_Id;

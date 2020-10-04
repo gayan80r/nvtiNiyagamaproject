@@ -13,6 +13,6 @@ public class Status {
     private  Integer id;
     @Column(name="name")
     private  String name;
-    @OneToMany( mappedBy = "empstatudid")
-    private List<EmployeeLeave> employeeLeaveList;
+   /* @OneToMany( mappedBy = "empstatudid")
+    private List<EmployeeLeave> employeeLeaveList;*/
 }

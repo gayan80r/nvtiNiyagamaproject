@@ -181,7 +181,7 @@ public class Employee {
     }
 
 
-    public Employee(int id,String first_name, String last_name, String mobile, String home, String email, Date dob, String address_line1, String address_line2, String city, byte[] image, boolean status, Gender genderId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList,List<EmployeeLeave> employeeLeaveList) {
+    public Employee(int id,String first_name, String last_name, String mobile, String home, String email, Date dob, String address_line1, String address_line2, String city, byte[] image, boolean status, Gender genderId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList) {
         this.id=id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -204,7 +204,7 @@ public class Employee {
         this.highset_vocational_qualification_id = highset_vocational_qualification_id;
        // this.employeeTrainingDetailsList = employeeTrainingDetailsList;
         this.employeeTriningDetailsList=employeeTriningDetailsList;
-        this.employeeLeaveList=employeeLeaveList;
+        //this.employeeLeaveList=employeeLeaveList;
 
     }
 
@@ -250,7 +250,7 @@ public class Employee {
     private List<InstructorBatch> instructorBatchList;
 
 
-    @OneToMany(mappedBy = "empleavetypeid")
+    /*@OneToMany(mappedBy = "empleavetypeid")
     private List<EmployeeLeave> employeeLeaveList;
 
     public List<EmployeeLeave> getEmployeeLeaveList() {
@@ -259,7 +259,7 @@ public class Employee {
 
     public void setEmployeeLeaveList(List<EmployeeLeave> employeeLeaveList) {
         this.employeeLeaveList = employeeLeaveList;
-    }
+    }*/
 
     public Employee(Integer id, String first_name, String last_name, String nic, String mobile, String home, Date dob, String address_line1, String address_line2, String city, byte[] image, List<InstructorBatch> instructorBatchList) {
         this.id = id;

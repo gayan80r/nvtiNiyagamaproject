@@ -52,7 +52,7 @@ public class CourseController {
         return "CourseRegistration";
 
     }
-
+//this controller to the ui
     @RequestMapping(value = {"/course"}, method = RequestMethod.GET)
     public String LoadCourseForm(ModelMap model) {
 

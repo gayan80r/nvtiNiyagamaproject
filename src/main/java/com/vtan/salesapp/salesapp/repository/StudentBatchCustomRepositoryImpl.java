@@ -53,4 +53,23 @@ public class StudentBatchCustomRepositoryImpl implements StudentBatchCustomRepos
         return sbList;
 
     }
+@Override
+    public List<StudentBatch> finByStundent(Batch batchid) {
+        Query query =
+                entityManager.createNativeQuery("SELECT * FROM StudentBatch WHERE batchid=? ", StudentBatch.class);
+
+        query.setParameter(1, batchid);
+        //query.setParameter(2, studentid);
+
+        List<StudentBatch> studentbList = new ArrayList();
+        try {
+            if (query.getResultList() != null)
+                studentbList = query.getResultList();
+        } catch (NoResultException e) {
+
+        }
+        //return (StudentBatch) sbList;
+        return studentbList;
+
+    }
 }

@@ -48,7 +48,7 @@ public class Course {
         this.status = status;
     }
 
-    public Course(Integer id, String name, String description, boolean status, Trade tradeId, CourseType coursetypeId, CourseDuration coursedurationId, NvqLevel nvqlevelId,List<Module> moduleList) {
+    public Course(Integer id, String name, String description, boolean status, Trade tradeId, CourseType coursetypeId, CourseDuration coursedurationId, NvqLevel nvqlevelId,List<Module> moduleList,List<CourseSemister> courseSemisterList) {
         this.id=id;
         this.name = name;
         this.description = description;
@@ -58,6 +58,7 @@ public class Course {
         this.coursedurationId = coursedurationId;
         this.nvqlevelId = nvqlevelId;
         this.moduleList = moduleList;
+        this.courseSemisterList = courseSemisterList;
     }
 
 
@@ -109,6 +110,9 @@ public class Course {
     @OneToMany(mappedBy = "courseid")
     private List<Batch> batchList;
 
+    @OneToMany(mappedBy = "courseId")
+    private List<CourseSemister> courseSemisterList;
+
     public List<Batch> getBatchList() {
         return batchList;
     }
@@ -134,8 +138,13 @@ public class Course {
     }
 
 
+    public List<CourseSemister> getCourseSemisterList() {
+        return courseSemisterList;
+    }
 
-
+    public void setCourseSemisterList(List<CourseSemister> courseSemisterList) {
+        this.courseSemisterList = courseSemisterList;
+    }
 
     public String getDescription() {
         return description;
