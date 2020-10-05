@@ -25,6 +25,8 @@ public class RegisterStudentController {
     private GSDivitionService gsDivitionService;
     @Autowired
     private DevitionalSecataryService devitionalSecataryService;
+    @Autowired
+    private YearService yearService;
    /* @Autowired
     private BatchService batchService;*/
 
@@ -42,8 +44,8 @@ public class RegisterStudentController {
         List<DevitionalSecatary> devitionalSecataryListivitionList = devitionalSecataryService.findAll();
         model.addAttribute("devitionalSecataryListivitionList", devitionalSecataryListivitionList);
 
-        /*List<Batch> batchListList = batchService.findAll();
-        model.addAttribute("batchListList", batchListList);*/
+        List<Year> yearList = yearService.findAll();
+        model.addAttribute("yearList", yearList);
 
         return "StudentRegistration";
 
@@ -83,10 +85,10 @@ public class RegisterStudentController {
             return "StudentRegistration";
         }
 
-        registedStudent.setStatus(true);
+        registedStudent.setStatus(1);
         registerStudentService.save(registedStudent);
 
-        List<RegistedStudent> stuList = registerStudentService.findByStatus(true);
+        List<RegistedStudent> stuList = registerStudentService.findByStatus(1);
         model.addAttribute("studentList", stuList);
         return "StudentView";
     }
@@ -122,7 +124,7 @@ public class RegisterStudentController {
         //System.out.println(employee);
         //(Employee) convert the model object
         //Employee empobj=(Employee)model.getAttribute("employee");
-        registedStudent.setStatus(true);
+        registedStudent.setStatus(1);
 
         registerStudentService.save(registedStudent);
         // After saving the employee object into the data base we want
@@ -131,7 +133,7 @@ public class RegisterStudentController {
         //it return the employee list
         //we  create the list emplist and assign the value of employeeService.findAll() into emplist
         //List<Employee> emplist=employeeService.findAll();
-        List<RegistedStudent> stuList = registerStudentService.findByStatus(true);
+        List<RegistedStudent> stuList = registerStudentService.findByStatus(1);
         model.addAttribute("studentList", stuList);
         return "StudentView";
 
@@ -144,13 +146,13 @@ public class RegisterStudentController {
         int stuId = Integer.parseInt(id);
 
        RegistedStudent stuObj = registerStudentService.findById(stuId);
-        stuObj.setStatus(false);
+        stuObj.setStatus(0);
 
         registerStudentService.update(stuObj);
 
         //employeeService.delete(empObj);
         //List<Employee> empList = employeeService.findAll();
-        List<RegistedStudent> stuList = registerStudentService.findByStatus(true);
+        List<RegistedStudent> stuList = registerStudentService.findByStatus(1);
         model.addAttribute("studentList", stuList);
         return "StudentView";
 
@@ -158,7 +160,7 @@ public class RegisterStudentController {
     @RequestMapping(value = {"/student"}, method = RequestMethod.GET)
     public String ListStudentForm(ModelMap model) {
         //we use the java generic List<Employee>
-        List<RegistedStudent> stuList = registerStudentService.findByStatus(true);
+        List<RegistedStudent> stuList = registerStudentService.findByStatus(1);
         model.addAttribute("studentList", stuList);
         return "StudentView";
     }

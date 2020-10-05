@@ -1,15 +1,21 @@
 package com.vtan.salesapp.salesapp.service;
 
 import com.vtan.salesapp.salesapp.entity.Batch;
+import com.vtan.salesapp.salesapp.entity.RegistedStudent;
 import com.vtan.salesapp.salesapp.repository.BatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+
 public class BatchServiceImpl implements BatchService {
     @Autowired
     private BatchRepository batchRepository;
+    @Autowired
+    private  YearService yearService;
+    @Autowired
+    private RegisterStudentService registerStudentService;
     @Override
     public void save(Batch b) {
         batchRepository.save(b);
@@ -41,7 +47,29 @@ public class BatchServiceImpl implements BatchService {
     }
 
     @Override
-    public List<Batch> findByStatus(boolean status) {
+    public List<Batch> findByStatus(int status) {
         return batchRepository.findByStatus(status);
     }
+
+    @Override
+    public List<Batch> findByStatusAndyearId(int status, int yearid) {
+        //yearService.findByYearId(yearid);
+        //System.out.println("restapi");
+        List<Batch> list= batchRepository.findByStatusAndYearId(status,yearService.findByYearId(yearid)) ;
+        //List<Batch> list= batchRepository.findAll() ;
+       // System.out.println(list.size());
+        return list;
+    }
+
+   /* @Override
+    public List<RegistedStudent> findByStatusStudent(int status) {
+        List<RegistedStudent> list=batchRepository.findByStatus(status);
+        return list;
+    }*/
+
+    /*@Override
+    public List<RegistedStudent> findByStudentId(int status) {
+        List<RegistedStudent> list=batchRepository.findByStatusStudent(status);
+        return null;
+    }*/
 }

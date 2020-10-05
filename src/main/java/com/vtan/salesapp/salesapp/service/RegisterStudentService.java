@@ -14,5 +14,5 @@ public interface RegisterStudentService {
     public RegistedStudent findByemail(String email);
 
     public List<RegistedStudent > findAll();
-    public List<RegistedStudent> findByStatus(boolean status);
+    public List<RegistedStudent> findByStatus(int status);
 }

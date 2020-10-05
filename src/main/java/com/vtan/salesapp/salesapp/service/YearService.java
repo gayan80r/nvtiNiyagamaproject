@@ -9,6 +9,8 @@ public interface YearService {
     public void save (Year y);
     public void update (Year y);
     public void delete (Year y);
+    public Year findByYearId (int yearid);
+
 
 
     public List<Year> findAll();

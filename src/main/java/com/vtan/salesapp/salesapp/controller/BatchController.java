@@ -49,7 +49,7 @@ public class BatchController {
     @RequestMapping(value = {"/batch"}, method = RequestMethod.GET)
     public String LoadBatchForm(ModelMap model) {
 
-        List<Batch> batchList = batchService.findByStatus(true);
+        List<Batch> batchList = batchService.findByStatus(1);
         model.addAttribute("batchList", batchList);
         return "BatchView";
     }
@@ -62,7 +62,7 @@ public class BatchController {
         Batch batObj = batchService.findById(batId);
         model.addAttribute("batch", batObj);
         InitialLoad(model);
-        model.addAttribute("edit", true);
+        model.addAttribute("edit", 1);
         return "BatchRegistration";
     }
 
@@ -74,7 +74,7 @@ public class BatchController {
             return "BatchRegistration";
         }
 
-        batch.setStatus(true);
+        batch.setStatus(1);
         batchService.save(batch);
         // List<Employee> empList = employeeService.findAll();
         LoadBatchForm(model);
@@ -87,9 +87,9 @@ public class BatchController {
         int batId = Integer.parseInt(id);
 
         Batch batObj = batchService.findById(batId);
-        batObj.setStatus(false);
+        batObj.setStatus(0);
         batchService.update(batObj);
-        List<Batch> batchList = batchService.findByStatus(true);
+        List<Batch> batchList = batchService.findByStatus(1);
         model.addAttribute("batchList", batchList);
         return "BatchView";
     }
@@ -111,10 +111,10 @@ public class BatchController {
             return "BatchRegistration";
         }
 
-        batch.setStatus(true);
+        batch.setStatus(1);
         batchService.save(batch);
 
-        List<Batch> batchList = batchService.findByStatus(true);
+        List<Batch> batchList = batchService.findByStatus(1);
         model.addAttribute("batchList", batchList);
         return "BatchView";
 

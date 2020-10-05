@@ -1,5 +1,7 @@
 package com.vtan.salesapp.salesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -45,11 +47,12 @@ public class GSDivition {
     public GSDivition() {
 
     }
+
     @Override
     public String toString() {
         return name;
     }
-
+    @JsonIgnore
     @OneToMany(mappedBy = "GSDevision_Id")
     private List<RegistedStudent> registedStudentList;
 }

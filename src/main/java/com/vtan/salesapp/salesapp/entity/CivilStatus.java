@@ -1,5 +1,7 @@
 package com.vtan.salesapp.salesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,8 +14,13 @@ public class CivilStatus {
     private  Integer id;
     @Column(name="name")
     private  String name;
+    @JsonIgnore
     @OneToMany( mappedBy = "civilStatusId")
     private List<Employee> employeeList;
+    @JsonIgnore
+    @OneToMany( mappedBy = "civilStatusId")
+    private List<RegistedStudent> registedStudentList;
+
     public List<Employee> getEmployeeList() {
         return employeeList;
     }
@@ -22,6 +29,13 @@ public class CivilStatus {
         this.employeeList = employeeList;
     }
 
+    public List<RegistedStudent> getRegistedStudentList() {
+        return registedStudentList;
+    }
+
+    public void setRegistedStudentList(List<RegistedStudent> registedStudentList) {
+        this.registedStudentList = registedStudentList;
+    }
 
     public Integer getId() {
         return id;
@@ -37,10 +51,12 @@ public class CivilStatus {
     {
 
     }
-    public CivilStatus(Integer id,String name)
+    public CivilStatus(Integer id,String name,List<Employee> employeeList,List<RegistedStudent> registedStudentList)
     {
         this.id = id;
         this.name = name;
+        this.employeeList = employeeList;
+        this.registedStudentList = registedStudentList;
     }
 
     public String getName() {

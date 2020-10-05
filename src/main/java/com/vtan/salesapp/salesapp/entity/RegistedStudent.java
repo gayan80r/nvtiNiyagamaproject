@@ -1,5 +1,6 @@
 package com.vtan.salesapp.salesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -70,22 +71,22 @@ public class RegistedStudent {
     @Column(name = "image")
     private byte[] image;
 
-    @Column(name = "Register_Year")
+   /* @Column(name = "Register_Year")
     @NotEmpty(message = "")
-    private String Register_Year;
+    private String Register_Year;*/
 
 
 
-    public boolean isStatus() {
+    public int isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
     @Column(name = "status")
-    private boolean status;
+    private int status;
 
     @ManyToOne
     @JoinColumn(name = "gender_id")
@@ -95,6 +96,14 @@ public class RegistedStudent {
     @JoinColumn(name = "CivilStatus_Id")
     private CivilStatus civilStatusId;
 
+   /* public int getStatus() {
+        return status;
+    }*/
+
+    public int getStatus() {
+        return status;
+    }
+
     @ManyToOne
     @JoinColumn(name = "GSDevision_Id")
     private GSDivition GSDevision_Id;
@@ -103,11 +112,27 @@ public class RegistedStudent {
     @JoinColumn(name = "DevisionalSecatary_Id")
     private DevitionalSecatary DevisionalSecatary_Id;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "studentId")
     private List<StudentParrent> studentParrentList;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "studentid")
     private List<StudentBatch> studentBatchList;
+
+    @ManyToOne
+    @JoinColumn(name = "year_id")
+    private Year yearId;
+
+    public Year getYearId() {
+        return yearId;
+    }
+
+    public void setYearId(Year yearId) {
+        this.yearId = yearId;
+    }
 
     public List<OjtDetails> getOjtDetailsList() {
         return ojtDetailsList;
@@ -116,7 +141,7 @@ public class RegistedStudent {
     public void setOjtDetailsList(List<OjtDetails> ojtDetailsList) {
         this.ojtDetailsList = ojtDetailsList;
     }
-
+    @JsonIgnore
     @OneToMany(mappedBy = "studentid")
     private List<OjtDetails> ojtDetailsList;
 
@@ -151,7 +176,7 @@ public class RegistedStudent {
     public void setStudentParrentList(List<StudentParrent> studentParrentList) {
         this.studentParrentList = studentParrentList;
     }
-
+    @JsonIgnore
     @OneToMany(mappedBy = "registedStudentId")
     private List<StudentSemisterMarks> studentSemisterMarksList;
 
@@ -205,13 +230,13 @@ public class RegistedStudent {
         this.name_with_initial = name_with_initial;
     }*/
 
-    public String getRegister_Year() {
+   /* public String getRegister_Year() {
         return Register_Year;
     }
 
     public void setRegister_Year(String register_Year) {
         Register_Year = register_Year;
-    }
+    }*/
 
     public String getNic() {
         return nic;
@@ -325,7 +350,7 @@ public class RegistedStudent {
         this.batch_Id = batch_Id;
     }*/
 
-    public RegistedStudent( int id,String first_name,  String last_name, String name, String nic, String mobile,  String home,  String email,  Date dob, String address_line1, String address_line2, String city, byte[] image, Gender genderId, CivilStatus civilStatusId, GSDivition GSDevision_Id, DevitionalSecatary devisionalSecatary_Id,List<StudentParrent> studentParrentList,List<StudentBatch> studentBatchList,List<StudentSemisterMarks> studentSemisterMarksList,String Register_Year){
+    public RegistedStudent( int id,String first_name,  String last_name, String name, String nic, String mobile,  String home,  String email,  Date dob, String address_line1, String address_line2, String city, byte[] image, Gender genderId, CivilStatus civilStatusId, GSDivition GSDevision_Id, DevitionalSecatary devisionalSecatary_Id,List<StudentParrent> studentParrentList,List<StudentBatch> studentBatchList,List<StudentSemisterMarks> studentSemisterMarksList,Year yearId,int status){
         this.id=id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -347,7 +372,9 @@ public class RegistedStudent {
         this.studentBatchList=studentBatchList;
         this.ojtDetailsList = ojtDetailsList;
         this.studentSemisterMarksList=studentSemisterMarksList;
-        this.Register_Year = Register_Year;
+        //this.Register_Year = Register_Year;
+        this.yearId = yearId;
+        this.status=status;
 
 
         //this.batch_Id = batch_Id;

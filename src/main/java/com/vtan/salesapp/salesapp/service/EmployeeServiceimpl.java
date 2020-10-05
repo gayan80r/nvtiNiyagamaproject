@@ -50,7 +50,7 @@ public class EmployeeServiceimpl implements EmployeeService {
 
     @Override
     public Employee findByemail(String email) {
-        return employeeRepository.findByemail(email);
+        return employeeRepository.findByEmail(email);
     }
 
     /*@Override

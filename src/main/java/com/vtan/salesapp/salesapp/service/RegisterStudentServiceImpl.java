@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
+
 public class RegisterStudentServiceImpl implements RegisterStudentService {
     @Autowired
     private RegisterStudentRepository registerStudentRepository;
@@ -46,7 +47,12 @@ public class RegisterStudentServiceImpl implements RegisterStudentService {
     }
 
     @Override
-    public List<RegistedStudent> findByStatus(boolean status) {
+    public List<RegistedStudent> findByStatus(int status) {
         return registerStudentRepository.findByStatus(status);
     }
+
+   /* @Override
+    public List<RegistedStudent> findByStatusStudent(int status) {
+        return registerStudentRepository.findByStatusStudent(status);
+    }*/
 }

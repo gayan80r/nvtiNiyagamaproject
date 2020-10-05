@@ -14,7 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <style>
         body{
             margin: 0;
@@ -45,14 +46,30 @@
     <div class ="jumbotron"> <center><h1>Student Batch Registration Form</h1></center></div>
     <!- we used the modelAttribute pass value view to controler->
     <sform:form method="post" id="studentbatchform" modelAttribute="studentBatch">
+        <div class="row">
+            <div class="form-group col-md-12">
 
+                <label class="col-md-3 control-lable" for="id" >Year</label>
+                <div class="col-md-9">
+                    <sform:select path="id" items="${yearList}" multiple="false" itemValue="id" id="yearIdSeleter"
+
+                                  itemLabel="name" class="form-control input-sm" >
+                        <sform:option value="" label="--Please Select"/>
+                    </sform:select>
+                    <div class="has-error">
+                        <sform:errors path="id" class="help-inline"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="form-group col-md-12">
 
                 <label class="col-md-3 control-lable" for="batchid">Batch Name</label>
                 <div class="col-md-9">
-                    <sform:select path="batchid" items="${batchList}" multiple="false" itemValue="id"
+                    <sform:select path="batchid"  multiple="false"  id="batchIdSelecter"
 
                                   itemLabel="name" class="form-control input-sm" />
                     <div class="has-error">
@@ -63,14 +80,16 @@
             </div>
         </div>
 
+
+
         <div class="row">
             <div class="form-group col-md-12">
 
                 <label class="col-md-3 control-lable" for="studentid">Student Name</label>
                 <div class="col-md-9">
-                    <sform:select path="studentid" items="${studentList}" multiple="false" itemValue="id"
+                    <sform:select path="studentid"  multiple="false" id="studentIdSelecter"
 
-                                  itemLabel="name" class="form-control input-sm" />
+                                  itemLabel="name" class="js-example-basic-single form-control input-sm" />
                     <div class="has-error">
                         <sform:errors path="studentid" class="help-inline"/>
                     </div>
@@ -92,6 +111,8 @@
                 </div>
             </div>
         </div>
+
+
 
         <div class="row">
             <div class="form-group col-md-12">
@@ -143,24 +164,54 @@
 <script>
 
     $(document).ready(function () {
-        $("#batchid").change(function () {
-            var value = $("#batchid").val();
-            //key value key name is batchname
-            var contents = [batchname = value];
-            var jsonData = {json: JSON.stringify(contents)};
+        $('.js-example-basic-single').select2();
+
+
+        //$("#batchIdSelecter").change(function () {
+            //var value = $("#yearIdSeleter").val();
+
             $.ajax({
                 type: 'GET',
-                url: '/retrivestudent',
-                data: jsonData,
+                //url: '/api/retrivestudent/'+value,
+                url: '/api/retrivestudent',
+                data: '',
                 dataType: "json",
                 success: function (data) {
 
+                    $("#studentIdSelecter").html('');
+                    var itrms='<option value="0"></option>';
                     $.each(data, function (key, value)  {
-
+                        itrms=itrms+'<option value="'+value.id+'">'+value.name+'</option>';
                     });
-
+                    $("#studentIdSelecter").html(itrms);
                 }
             });
+
+
+
+        //});
+
+
+        $("#yearIdSeleter").change(function () {
+            var value = $("#yearIdSeleter").val();
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/retrivebatch/'+value,
+                data: '',
+                dataType: "json",
+                success: function (data) {
+
+                    $("#batchIdSelecter").html('');
+                    var itrms='<option value="0"></option>';
+                    $.each(data, function (key, value)  {
+                        itrms=itrms+'<option value="'+value.id+'">'+value.name+'</option>';
+                    });
+                    $("#batchIdSelecter").html(itrms);
+                }
+            });
+
+
 
         });
 

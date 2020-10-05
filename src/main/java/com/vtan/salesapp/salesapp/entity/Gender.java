@@ -1,4 +1,6 @@
 package com.vtan.salesapp.salesapp.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,12 +14,23 @@ public class Gender {
     @Column(name="name")
     private  String name;
 
-
+    @JsonIgnore
     @OneToMany( mappedBy = "genderId")
     private List<Employee> employeeList;
-
+    @JsonIgnore
     @OneToMany( mappedBy = "genderid")
     private List<Accessor> accessorListList;
+    @JsonIgnore
+    @OneToMany( mappedBy = "genderId")
+    private List<RegistedStudent> registedStudentList;
+
+    public List<RegistedStudent> getRegistedStudentList() {
+        return registedStudentList;
+    }
+
+    public void setRegistedStudentList(List<RegistedStudent> registedStudentList) {
+        this.registedStudentList = registedStudentList;
+    }
 
     public List<Accessor> getAccessorListList() {
         return accessorListList;
@@ -39,10 +52,13 @@ public class Gender {
     {
 
     }
-    public Gender(Integer id,String name)
+    public Gender(Integer id,String name,List<Employee> employeeList,List<Accessor> accessorListList,List<RegistedStudent> registedStudentList)
     {
         this.id = id;
         this.name = name;
+        this.registedStudentList = registedStudentList;
+        this.employeeList = employeeList;
+        this.accessorListList = accessorListList;
     }
 
     public Integer getId() {

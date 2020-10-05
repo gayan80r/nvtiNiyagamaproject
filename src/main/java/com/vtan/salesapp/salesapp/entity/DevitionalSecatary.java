@@ -1,5 +1,7 @@
 package com.vtan.salesapp.salesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 @Entity
@@ -51,7 +53,7 @@ public class DevitionalSecatary {
     public String toString() {
         return name;
     }
-
+    @JsonIgnore
     @OneToMany(mappedBy = "DevisionalSecatary_Id")
     private List<RegistedStudent> registedStudentList;
 }

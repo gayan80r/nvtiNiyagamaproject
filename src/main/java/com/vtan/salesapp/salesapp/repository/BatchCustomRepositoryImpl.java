@@ -2,6 +2,7 @@ package com.vtan.salesapp.salesapp.repository;
 
 import com.vtan.salesapp.salesapp.entity.Batch;
 import com.vtan.salesapp.salesapp.entity.Course;
+import com.vtan.salesapp.salesapp.entity.Year;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -10,8 +11,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
-@Service
-public class BatchCustomRepositoryImpl implements BatchCustomRepository {
+//@Service
+/*public class BatchCustomRepositoryImpl implements BatchCustomRepository {
     @PersistenceContext
     EntityManager entityManager;
 
@@ -39,7 +40,7 @@ public class BatchCustomRepositoryImpl implements BatchCustomRepository {
 
 
     @Override
-    public List<Batch> findByStatus(boolean status) {
+    public List<Batch> findByStatus(int status) {
         Query query =
                 entityManager.createNativeQuery("SELECT * FROM Batch WHERE status = ?", Batch.class);
 
@@ -54,5 +55,10 @@ public class BatchCustomRepositoryImpl implements BatchCustomRepository {
         }
         return batList;
     }
-    }
+
+   *//* @Override
+    public List<Batch> findByStatusAndyearId(boolean status, Year year) {
+        return null;
+    }*/
+//}
 

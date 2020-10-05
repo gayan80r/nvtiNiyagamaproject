@@ -3,6 +3,7 @@ package com.vtan.salesapp.salesapp.repository;
 import com.vtan.salesapp.salesapp.entity.Batch;
 import com.vtan.salesapp.salesapp.entity.RegistedStudent;
 import com.vtan.salesapp.salesapp.entity.StudentBatch;
+import com.vtan.salesapp.salesapp.entity.Year;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+
 public class StudentBatchCustomRepositoryImpl implements StudentBatchCustomRepository {
     @PersistenceContext
     EntityManager entityManager;
@@ -53,7 +55,30 @@ public class StudentBatchCustomRepositoryImpl implements StudentBatchCustomRepos
         return sbList;
 
     }
-@Override
+
+    @Override
+    public List<StudentBatch> findByBatch(Year yearid) {
+
+        /*Query query =
+                entityManager.createNativeQuery("SELECT * FROM StudentBatch WHERE batchid=? ", StudentBatch.class);
+
+        query.setParameter(1, batchid);
+        //query.setParameter(2, studentid);
+
+        List<StudentBatch> studentbList = new ArrayList();
+        try {
+            if (query.getResultList() != null)
+                studentbList = query.getResultList();
+        } catch (NoResultException e) {
+
+        }
+        //return (StudentBatch) sbList;*/
+        return null;
+
+
+    }
+
+    @Override
     public List<StudentBatch> finByStundent(Batch batchid) {
         Query query =
                 entityManager.createNativeQuery("SELECT * FROM StudentBatch WHERE batchid=? ", StudentBatch.class);

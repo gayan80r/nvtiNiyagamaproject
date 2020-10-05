@@ -26,6 +26,11 @@ public class YearServiceImpl implements YearService {
     }
 
     @Override
+    public Year findByYearId(int yearid) {
+        return yearRepository.findById(yearid).get();
+    }
+
+    @Override
     public List<Year> findAll() {
         return yearRepository.findAll();
     }

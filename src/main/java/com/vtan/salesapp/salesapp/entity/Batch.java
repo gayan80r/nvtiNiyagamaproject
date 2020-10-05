@@ -1,5 +1,6 @@
 package com.vtan.salesapp.salesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="batch")
+@Table(name = "batch")
 public class Batch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,52 +34,65 @@ public class Batch {
     private Date end_date;
 
     @Column(name = "status")
-    private boolean status;
+    private int status;
 
-    public boolean isStatus() {
+    @JsonIgnore
+    @OneToMany(mappedBy = "batchid")
+    private List<StudentBatch> studentBatchList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "batchid")
+    private List<InstructorBatch> instructorBatchList;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "year_id")
+    private Year yearId;
+    //privte int y
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "courseid")
+    private Course courseid;
+
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
+
 
     public List<StudentBatch> getStudentBatchList() {
         return studentBatchList;
     }
-
     public void setStudentBatchList(List<StudentBatch> studentBatchList) {
         this.studentBatchList = studentBatchList;
     }
 
-    @OneToMany(mappedBy = "batchid")
-    private List<StudentBatch> studentBatchList;
-
     public List<InstructorBatch> getInstructorBatchList() {
         return instructorBatchList;
     }
-
-   /* public void setInstructorBatchList(List<InstructorBatch> instructorBatchList) {
-        this.instructorBatchList = instructorBatchList;
-    }*/
-   @ManyToOne
-   @JoinColumn(name = "year_id")
-   private Year yearId;
-
-    public Year getYearId() {
-        return yearId;
-    }
-
-    public void setYearId(Year yearId) {
-        this.yearId = yearId;
-    }
-
     public void setInstructorBatchList(List<InstructorBatch> instructorBatchList) {
         this.instructorBatchList = instructorBatchList;
     }
 
-    @OneToMany(mappedBy = "batchid")
-    private List<InstructorBatch> instructorBatchList;
+
+    public Year getYearId() {
+        return yearId;
+    }
+    public void setYearId(Year yearId) {
+        this.yearId = yearId;
+    }
+
+
+    public Course getCourseid() {
+        return courseid;
+    }
+    public void setCourseid(Course courseid) {
+        this.courseid = courseid;
+    }
 
     public Integer getId() {
         return id;
@@ -112,57 +126,16 @@ public class Batch {
         this.end_date = end_date;
     }
 
-   /* public Batch getCourse_Id() {
-        return course_Id;
-    }
-
-    public void setCourse_Id(Batch course_Id) {
-        this.course_Id = course_Id;
-    }*/
-
-    public Course getCourse_Id() {
-        return courseid;
-    }
-
-    public void setCourse_Id(Course course_Id) {
-        this.courseid = courseid;
-    }
-
-   /* public List<RegistedStudent> getRegistedStudentList() {
-        return registedStudentList;
-    }
-
-    public void setRegistedStudentList(List<RegistedStudent> registedStudentList) {
-        this.registedStudentList = registedStudentList;
-    }*/
-
-    public Batch(List<StudentBatch> studentBatchList) {
-        this.studentBatchList = studentBatchList;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "courseid")
-    private Course courseid;
-
-    public Course getCourseid() {
-        return courseid;
-    }
-
-    public void setCourseid(Course courseid) {
-        this.courseid = courseid;
-    }
-/* @OneToMany(mappedBy = "batch_Id")
-    private List<RegistedStudent> registedStudentList;*/
-
-    public Batch(Integer id, String name, Date start_date, Date end_date, Course courseid,List<StudentBatch> studentBatchList,Boolean status,List<InstructorBatch> instructorBatchList,Year yearId) {
-        this.id=id;
+    public Batch(Integer id, String name, Date start_date, Date end_date, Course courseid, List<StudentBatch> studentBatchList, int status, List<InstructorBatch> instructorBatchList, Year yearId) {
+        this.id = id;
         this.name = name;
         this.start_date = start_date;
         this.end_date = end_date;
         this.courseid = courseid;
-        this.studentBatchList=studentBatchList;
+        this.studentBatchList = studentBatchList;
         this.instructorBatchList = instructorBatchList;
         this.yearId = yearId;
+        this.status = status;
     }
 
     public Batch() {
@@ -173,4 +146,6 @@ public class Batch {
     public String toString() {
         return name;
     }
+
+
 }

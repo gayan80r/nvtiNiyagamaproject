@@ -1,4 +1,5 @@
 package com.vtan.salesapp.salesapp.repository;
+/*
 
 import com.vtan.salesapp.salesapp.entity.Employee;
 import com.vtan.salesapp.salesapp.entity.RegistedStudent;
@@ -83,7 +84,8 @@ public class RegisterStudentCustomRepositoryImpl implements RegisterStudentCusto
         return restuList;
     }
 
-    /*@Override
+    */
+/*@Override
     public RegistedStudent findByNameWithInitial(String namewithinitial) {
         Query query =
                 entityManager.createNativeQuery("SELECT * FROM RegistedStudent WHERE name_with_initial = ?", RegistedStudent.class);
@@ -102,6 +104,8 @@ public class RegisterStudentCustomRepositoryImpl implements RegisterStudentCusto
         }
         return restuList;
     }
-*/
+*//*
+
 }
 
+*/
