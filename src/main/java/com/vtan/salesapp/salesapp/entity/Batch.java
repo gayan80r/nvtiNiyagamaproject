@@ -55,6 +55,8 @@ public class Batch {
     @JoinColumn(name = "courseid")
     private Course courseid;
 
+
+
     public int getStatus() {
         return status;
     }

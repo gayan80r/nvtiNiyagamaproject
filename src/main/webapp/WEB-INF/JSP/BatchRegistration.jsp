@@ -77,7 +77,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="end_date">End Date</label>
                 <div class="col-md-9">
-                    <sform:input type="date" path="end_date" id="start_date"
+                    <sform:input type="date" path="end_date" id="EndDateSeleter"
                                  class="form-control input-sm"></sform:input>
                     <div class="has-error">
                         <sform:errors path="end_date" class="help-inline"/>
@@ -92,7 +92,7 @@
                 <label class="col-md-3 control-lable" for="courseid">Course</label>
                 <div class="col-md-9">
 
-                    <sform:select path="courseid" items="${courselList}" multiple="false" itemValue="id"
+                    <sform:select path="courseid"  multiple="false"  id="coursedSelecter"
 
                                   itemLabel="name" class="form-control input-sm" />
 
@@ -146,6 +146,45 @@
             }
         });
 
+       /* $.ajax({
+            type: 'GET',
+            //url: '/api/retrivestudent/'+value,
+            url: '/api/retrivecourse',
+            data: '',
+            dataType: "json",
+            success: function (data) {
+
+                $("#coursedSelecter").html('');
+                var itrms='<option value="0"></option>';
+                $.each(data, function (key, value)  {
+                    itrms=itrms+'<option value="'+value.id+'">'+value.name+'</option>';
+                });
+                $("#coursedSelecter").html(itrms);
+            }
+        });*/
+        $("#EndDateSeleter").change(function () {
+            //var value = $("#EndDateSeleter").val();
+
+            $.ajax({
+                type: 'GET',
+                //url: '/api/retrivestudent/'+value,
+                url: '/api/retrivecourse',
+                data: '',
+                dataType: "json",
+                success: function (data) {
+
+                    $("#coursedSelecter").html('');
+                    var itrms='<option value="0"></option>';
+                    $.each(data, function (key, value)  {
+                        itrms=itrms+'<option value="'+value.id+'">'+value.name+'</option>';
+                    });
+                    $("#coursedSelecter").html(itrms);
+                }
+            });
+
+
+
+        });
         function validateCourse(){
 
             var Name   =    $('#name').val();

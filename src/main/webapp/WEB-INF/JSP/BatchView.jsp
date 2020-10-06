@@ -39,7 +39,7 @@
                 <td>${bat.name}</td>
                 <td>${bat.end_date}</td>
                 <td>${bat.start_date}</td>
-                <td>${bat.course_Id}</td>
+                <td>${bat.courseid}</td>
 
                 <td><a href="<c:url value='/edit-batch-${bat.id}'/>" class="btn btn-warning">Edit</a>
                 <td><a href="<c:url value='/delete-batch-${bat.id}'/>" class="btn btn-warning">Delete</a>

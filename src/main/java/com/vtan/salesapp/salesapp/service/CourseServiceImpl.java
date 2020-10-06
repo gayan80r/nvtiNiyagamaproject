@@ -43,7 +43,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> findByStatus(boolean status) {
+    public List<Course> findByStatus(int status) {
         return courseRepository.findByStatus(status);
     }
 }

@@ -1,5 +1,7 @@
 package com.vtan.salesapp.salesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -16,6 +18,7 @@ public class CourseDuration {
     @Size(min = 3, message = "Name  minimum 3 letters!")
     @NotEmpty(message = "")
     private String name;
+    @JsonIgnore
     @OneToMany(mappedBy = "coursedurationId")
     private List<Course> courseList;
 

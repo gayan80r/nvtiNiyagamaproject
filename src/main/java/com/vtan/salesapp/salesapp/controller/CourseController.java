@@ -56,7 +56,7 @@ public class CourseController {
     @RequestMapping(value = {"/course"}, method = RequestMethod.GET)
     public String LoadCourseForm(ModelMap model) {
 
-        List<Course> couList = courseService.findByStatus(true);
+        List<Course> couList = courseService.findByStatus(1);
         model.addAttribute("courseList", couList);
         return "CourseView";
     }
@@ -80,7 +80,7 @@ public class CourseController {
             return "CourseRegistration";
         }
 
-        course.setStatus(true);
+        course.setStatus(1);
         courseService.save(course);
         // List<Employee> empList = employeeService.findAll();
         LoadCourseForm(model);
@@ -95,9 +95,9 @@ public class CourseController {
 
         int couId = Integer.parseInt(id);
         Course couObj = courseService.findById(couId);
-        couObj.setStatus(false);
+        couObj.setStatus(0);
         courseService.update(couObj);
-        List<Course> couList = courseService.findByStatus(true);
+        List<Course> couList = courseService.findByStatus(1);
         model.addAttribute("courseList", couList);
         return "CourseView";
     }
@@ -121,10 +121,10 @@ public class CourseController {
             return "CourseRegistration";
         }
 
-                course.setStatus(true);
+                course.setStatus(1);
         courseService.save(course);
 
-        List<Course> couList = courseService.findByStatus(true);
+        List<Course> couList = courseService.findByStatus(1);
          model.addAttribute("courseList", couList);
 
         return "CourseView";

@@ -1,5 +1,7 @@
 package com.vtan.salesapp.salesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -52,7 +54,7 @@ public class Trade {
     public void setCourseList(List<Course> courseList) {
         this.courseList = courseList;
     }
-
+    @JsonIgnore
     @OneToMany(mappedBy = "tradeId")
     private List<Course> courseList;
 

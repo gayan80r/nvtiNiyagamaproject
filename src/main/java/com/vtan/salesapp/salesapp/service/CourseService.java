@@ -11,5 +11,5 @@ public interface CourseService {
     public Course findById(int id);
     public Course findByName(String name);
     public List<Course> findAll();
-    public List<Course> findByStatus(boolean status);
+    public List<Course> findByStatus(int status);
 }

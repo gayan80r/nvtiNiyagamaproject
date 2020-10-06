@@ -1,5 +1,6 @@
 package com.vtan.salesapp.salesapp.repository;
 
+/*
 import com.vtan.salesapp.salesapp.entity.Course;
 
 import org.springframework.stereotype.Service;
@@ -55,3 +56,4 @@ public class CourseCustomRepositoryImpl implements CourseCustomRepository {
         return couList;
     }
 }
+*/

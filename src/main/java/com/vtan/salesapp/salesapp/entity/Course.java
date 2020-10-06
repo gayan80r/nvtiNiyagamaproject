@@ -1,5 +1,7 @@
 package com.vtan.salesapp.salesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -24,12 +26,12 @@ public class Course {
     private String description;
 
     @Column(name = "status")
-    private boolean status;
+    private int status;
 
     /*public Course(List<Module> moduleList) {
         this.moduleList = moduleList;
     }*/
-
+   @JsonIgnore
     @OneToMany(mappedBy = "courseId")
     private List<Module> moduleList;
 
@@ -40,15 +42,15 @@ public class Course {
         this.moduleList = moduleList;
     }
 
-    public boolean isStatus() {
+    public int isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public Course(Integer id, String name, String description, boolean status, Trade tradeId, CourseType coursetypeId, CourseDuration coursedurationId, NvqLevel nvqlevelId,List<Module> moduleList,List<CourseSemister> courseSemisterList) {
+    public Course(Integer id, String name, String description, int status, Trade tradeId, CourseType coursetypeId, CourseDuration coursedurationId, NvqLevel nvqlevelId,List<Module> moduleList,List<CourseSemister> courseSemisterList) {
         this.id=id;
         this.name = name;
         this.description = description;
@@ -106,10 +108,10 @@ public class Course {
     public Integer getId() {
         return id;
     }
-
+    @JsonIgnore
     @OneToMany(mappedBy = "courseid")
     private List<Batch> batchList;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "courseId")
     private List<CourseSemister> courseSemisterList;
 
