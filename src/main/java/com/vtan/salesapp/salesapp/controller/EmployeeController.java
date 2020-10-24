@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -83,7 +81,7 @@ public class EmployeeController {
 
 
         //we  call  the EmployeeRegistration.jsp but we don not add jsp with surfiix of the application property
-        return "EmployeeRegistration";
+        return "modules/employee/EmployeeRegistration";
     }
 
     @RequestMapping(value = {"edit-employee-{id}"}, method = RequestMethod.GET)
@@ -95,7 +93,7 @@ public class EmployeeController {
         model.addAttribute("employee", empObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "EmployeeRegistration";
+        return "modules/employee/EmployeeRegistration";
 
 
     }
@@ -124,7 +122,7 @@ public class EmployeeController {
         // validation
         if (bindingResult.hasErrors()) {
 
-            return "EmployeeRegistration";
+            return "modules/employee/EmployeeRegistration";
         }
 
         employee.setStatus(true);
@@ -132,7 +130,7 @@ public class EmployeeController {
         // List<Employee> empList = employeeService.findAll();
         List<Employee> empList = employeeService.findByStatus(true);
         model.addAttribute("employeeList", empList);
-        return "EmployeeView";
+        return "modules/employee/EmployeeView";
     }
 
     @RequestMapping(value = {"delete-employee-{id}"}, method = RequestMethod.GET)
@@ -150,7 +148,7 @@ public class EmployeeController {
         //List<Employee> empList = employeeService.findAll();
         List<Employee> empList = employeeService.findByStatus(true);
         model.addAttribute("employeeList", empList);
-        return "EmployeeView";
+        return "modules/employee/EmployeeView";
     }
 
     //    When use request newemployee with POST METHORD it passes the saveEmployee method
@@ -181,7 +179,7 @@ public class EmployeeController {
         }
         // validation
         if (bindingResult.hasErrors()) {
-            return "EmployeeRegistration";
+            return "modules/employee/EmployeeRegistration";
         }
 
         //System.out.println(employee);
@@ -203,7 +201,7 @@ public class EmployeeController {
 
         model.addAttribute("employeeList", empList);
         // we call EmployeeView.jsp  add the jsp file by the application property file
-        return "EmployeeView";
+        return "modules/employee/EmployeeView";
         //return "EmployeeRegistration";
 
     }
@@ -216,7 +214,7 @@ public class EmployeeController {
 //List<Employee> emplist=employeeService.findAll();
         //we used the employeeList passed the value controller to EmployeeView.jsp
         model.addAttribute("employeeList", empList);
-        return "EmployeeView";
+        return "modules/employee/EmployeeView";
     }
 }
 

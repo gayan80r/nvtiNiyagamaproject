@@ -49,7 +49,7 @@ public class CourseController {
         Course cou = new Course();
         model.addAttribute("course", cou);
         InitialLoad(model);
-        return "CourseRegistration";
+        return "modules/course/CourseRegistration";
 
     }
 //this controller to the ui
@@ -58,7 +58,7 @@ public class CourseController {
 
         List<Course> couList = courseService.findByStatus(1);
         model.addAttribute("courseList", couList);
-        return "CourseView";
+        return "modules/course/CourseView";
     }
     @RequestMapping(value = {"edit-course-{id}"}, method = RequestMethod.GET)
     public String loadUpdateForm(ModelMap model, @PathVariable String id) {
@@ -69,7 +69,7 @@ public class CourseController {
         model.addAttribute("course", couObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "CourseRegistration";
+        return "modules/course/CourseRegistration";
     }
 
     @RequestMapping(value = {"edit-course-{id}"}, method = RequestMethod.POST)
@@ -77,7 +77,7 @@ public class CourseController {
 
         if (bindingResult.hasErrors()) {
 
-            return "CourseRegistration";
+            return "modules/course/CourseRegistration";
         }
 
         course.setStatus(1);
@@ -87,7 +87,7 @@ public class CourseController {
         /*List<Course> couList = courseService.findByStatus(true);
         model.addAttribute("courseList", couList);
         return "CourseView";*/
-        return "CourseView";
+        return "modules/course/CourseView";
     }
 
     @RequestMapping(value = {"delete-course-{id}"}, method = RequestMethod.GET)
@@ -99,7 +99,7 @@ public class CourseController {
         courseService.update(couObj);
         List<Course> couList = courseService.findByStatus(1);
         model.addAttribute("courseList", couList);
-        return "CourseView";
+        return "modules/course/CourseView";
     }
 
     @RequestMapping(value = {"/newcourse"}, method = RequestMethod.POST)
@@ -118,7 +118,7 @@ public class CourseController {
         }
 
         if (bindingResult.hasErrors()) {
-            return "CourseRegistration";
+            return "modules/course/CourseRegistration";
         }
 
                 course.setStatus(1);
@@ -127,7 +127,7 @@ public class CourseController {
         List<Course> couList = courseService.findByStatus(1);
          model.addAttribute("courseList", couList);
 
-        return "CourseView";
+        return "modules/course/CourseView";
 
 
             }

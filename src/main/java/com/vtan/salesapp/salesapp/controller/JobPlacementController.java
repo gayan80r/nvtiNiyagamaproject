@@ -1,9 +1,7 @@
 package com.vtan.salesapp.salesapp.controller;
 
 import com.vtan.salesapp.salesapp.entity.JobPlacement;
-import com.vtan.salesapp.salesapp.entity.OJTPlace;
 import com.vtan.salesapp.salesapp.service.JobPlacementService;
-import com.vtan.salesapp.salesapp.service.OJTPlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,7 +25,7 @@ public class JobPlacementController {
         JobPlacement ojtp = new JobPlacement();
         model.addAttribute("jobplace", ojtp);
         //InitialLoad(model);
-        return "JobPlacementRegistrtion";
+        return "modules/jobplacement/JobPlacementRegistrtion";
 
     }
 
@@ -42,7 +40,7 @@ public class JobPlacementController {
         model.addAttribute("jobplace", jobppObj);
         //InitialLoad(model);
         model.addAttribute("edit", true);
-        return "JobPlacementRegistrtion";
+        return "modules/jobplacement/JobPlacementRegistrtion";
     }
 
     @RequestMapping(value = {"edit-jobplace-{id}"}, method = RequestMethod.POST)
@@ -50,7 +48,7 @@ public class JobPlacementController {
 
         if (bindingResult.hasErrors()) {
 
-            return "JobPlacementRegistrtion";
+            return "modules/jobplacement/JobPlacementRegistrtion";
         }
 
         jobplace.setStatus(true);
@@ -60,7 +58,7 @@ public class JobPlacementController {
         LoadOJTPlaceForm(model);
         List<JobPlacement> jobPList = jobPlacementService.findByStatus(true);
         model.addAttribute("JobPlacementList", jobPList);
-        return "JobPlacementView";
+        return "modules/jobplacement/JobPlacementView";
     }
 
     @RequestMapping(value = {"delete-jobplace-{id}"}, method = RequestMethod.GET)
@@ -72,7 +70,7 @@ public class JobPlacementController {
        jobPlacementService.update(jobppObj);
         List<JobPlacement> jobPList = jobPlacementService.findByStatus(true);
         model.addAttribute("JobPlacementList", jobPList);
-        return "JobPlacementView";
+        return "modules/jobplacement/JobPlacementView";
     }
 
     @RequestMapping(value = {"/newjobplacement"}, method = RequestMethod.POST)
@@ -101,7 +99,7 @@ public class JobPlacementController {
         }
         // validation
         if (bindingResult.hasErrors()) {
-            return "JobPlacementRegistrtion";
+            return "modules/jobplacement/JobPlacementRegistrtion";
         }
 
 
@@ -111,7 +109,7 @@ public class JobPlacementController {
 
         List<JobPlacement> jobPList = jobPlacementService.findByStatus(true);
         model.addAttribute("JobPlacementList", jobPList);
-        return "JobPlacementView";
+        return "modules/jobplacement/JobPlacementView";
 
     }
 
@@ -120,7 +118,7 @@ public class JobPlacementController {
 
         List<JobPlacement> jobPList = jobPlacementService.findByStatus(true);
         model.addAttribute("JobPlacementList", jobPList);
-        return "JobPlacementView";
+        return "modules/jobplacement/JobPlacementView";
     }
 
 }

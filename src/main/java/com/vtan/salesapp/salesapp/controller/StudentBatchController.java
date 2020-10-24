@@ -48,7 +48,7 @@ public class StudentBatchController {
         StudentBatch sb = new StudentBatch();
         model.addAttribute("studentBatch", sb);
         InitialLoad(model);
-        return "StudentBatchRegistration";
+        return "modules/student/StudentBatchRegistration";
 
     }
 
@@ -67,7 +67,7 @@ public class StudentBatchController {
         if (bindingResult.hasErrors()) {
 
             InitialLoad(model);
-            return "StudentBatchRegistration";
+            return "modules/student/StudentBatchRegistration";
         }
 
         studentbatch.setStatus(true);
@@ -77,17 +77,19 @@ public class StudentBatchController {
        // model.addAttribute("studentBatch", studentBatchList);
         model.addAttribute("studentBatchList", sBatchList);
 
-        return "StudentBatchView";
+        return "modules/student/StudentBatchView";
 
 
     }
 
     @RequestMapping(value = {"/batchstudent"}, method = RequestMethod.GET)
     public String LoadBatchStudentform(ModelMap model) {
-
+        StudentBatch sb = new StudentBatch();
         List<StudentBatch> sBatchList = studentBatchService.findByStatus(true);
         model.addAttribute("studentBatchList", sBatchList);
-        return "StudentBatchView";
+        model.addAttribute("studentBatch", sb);
+        InitialLoad(model);
+        return "modules/student/StudentBatchView";
     }
 
     @RequestMapping(value = {"edit-studentbatch-{id}"}, method = RequestMethod.GET)
@@ -99,7 +101,7 @@ public class StudentBatchController {
         model.addAttribute("studentBatch", stubatObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "StudentBatchRegistration";
+        return "modules/student/StudentBatchRegistration";
     }
 
     @RequestMapping(value = {"edit-studentbatch-{id}"}, method = RequestMethod.POST)
@@ -107,7 +109,7 @@ public class StudentBatchController {
 
         if (bindingResult.hasErrors()) {
 
-            return "StudentBatchRegistration";
+            return "modules/student/StudentBatchRegistration";
         }
 
         studentbatch.setStatus(true);
@@ -118,7 +120,7 @@ public class StudentBatchController {
         model.addAttribute("courseList", couList);
         return "CourseView";*/
 
-        return "StudentBatchView";
+        return "modules/student/StudentBatchView";
     }
 
 }

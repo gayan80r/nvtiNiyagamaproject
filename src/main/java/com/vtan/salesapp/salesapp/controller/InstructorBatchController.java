@@ -39,7 +39,7 @@ public class InstructorBatchController {
         InstructorBatch ib = new InstructorBatch();
         model.addAttribute("instructorBatch", ib);
         InitialLoad(model);
-        return "InstructorBatchRegistration";
+        return "modules/batch/InstructorBatchRegistration";
 
     }
 
@@ -59,7 +59,7 @@ public class InstructorBatchController {
         if (bindingResult.hasErrors()) {
 
             InitialLoad(model);
-            return "InstructorBatchRegistration";
+            return "modules/batch/InstructorBatchRegistration";
         }
         //instructorBatch.
         instructorBatch.setStatus(true);
@@ -68,7 +68,7 @@ public class InstructorBatchController {
         // model.addAttribute("studentBatch", studentBatchList);
         model.addAttribute("instructorBatchList",iBatchList);
 
-        return "InstructorBatchView";
+        return "modules/batch/InstructorBatchView";
 
 
     }
@@ -78,7 +78,7 @@ public class InstructorBatchController {
 
         List<InstructorBatch> iBatchList = instructorBatchService.findByStatus(true);
         model.addAttribute("instructorBatchList", iBatchList);
-        return "InstructorBatchView";
+        return "modules/batch/InstructorBatchView";
     }
 
     @RequestMapping(value = {"edit-instructorbatch-{id}"}, method = RequestMethod.GET)
@@ -90,7 +90,7 @@ public class InstructorBatchController {
         model.addAttribute("instructorBatch", insbatObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "InstructorBatchRegistration";
+        return "modules/batch/InstructorBatchRegistration";
     }
 
     @RequestMapping(value = {"edit-instructorBatch-{id}"}, method = RequestMethod.POST)
@@ -98,7 +98,7 @@ public class InstructorBatchController {
 
         if (bindingResult.hasErrors()) {
 
-            return "InstructorBatchRegistration";
+            return "modules/batch/InstructorBatchRegistration";
         }
 
         instructorBatch.setStatus(true);
@@ -107,6 +107,6 @@ public class InstructorBatchController {
         // model.addAttribute("studentBatch", studentBatchList);
         model.addAttribute("instructorBatchList",iBatchList);
 
-        return "InstructorBatchView";
+        return "modules/batch/InstructorBatchView";
     }
 }

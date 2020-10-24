@@ -42,7 +42,7 @@ public class StudentParrentController {
         StudentParrent sp = new StudentParrent();
         model.addAttribute("studentParrent", sp);
         InitialLoad(model);
-        return "StudentParrentRegistration";
+        return "modules/student/StudentParrentRegistration";
 
     }
 
@@ -61,7 +61,7 @@ public class StudentParrentController {
         if (bindingResult.hasErrors()) {
 
             InitialLoad(model);
-            return "StudentParrentRegistration";
+            return "modules/student/StudentParrentRegistration";
         }
 
         studentParrent.setStatus(true);
@@ -71,7 +71,7 @@ public class StudentParrentController {
         // model.addAttribute("studentBatch", studentBatchList);
         model.addAttribute("studentParrentList", sParrentList);
 
-        return "StudentParrentView";
+        return "modules/student/StudentParrentView";
 
 
     }
@@ -82,7 +82,7 @@ public class StudentParrentController {
         List<StudentParrent> sParrentList = studentParrentService.findByStatus(true);
         model.addAttribute("studentParrentList", sParrentList);
 
-        return "StudentParrentView";
+        return "modules/student/StudentParrentView";
     }
 
     @RequestMapping(value = {"edit-studentParrent-{id}"}, method = RequestMethod.GET)
@@ -94,7 +94,7 @@ public class StudentParrentController {
         model.addAttribute("studentParrent", stubatObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "StudentParrentRegistration";
+        return "modules/student/StudentParrentRegistration";
     }
 
     @RequestMapping(value = {"edit-studentParrent-{id}"}, method = RequestMethod.POST)
@@ -102,7 +102,7 @@ public class StudentParrentController {
 
         if (bindingResult.hasErrors()) {
 
-            return "StudentBatchRegistration";
+            return "modules/student/StudentBatchRegistration";
         }
 
         studentParrent.setStatus(true);
@@ -113,7 +113,7 @@ public class StudentParrentController {
         model.addAttribute("courseList", couList);
         return "CourseView";*/
 
-        return "StudentParrentView";
+        return "modules/student/StudentParrentView";
     }
 
 

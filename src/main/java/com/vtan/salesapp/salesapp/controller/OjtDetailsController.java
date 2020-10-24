@@ -42,7 +42,7 @@ public class OjtDetailsController {
         OjtDetails od = new OjtDetails();
         model.addAttribute("ojtDetails", od);
         InitialLoad(model);
-        return "OjtDetailsRegstration";
+        return "modules/ojt/OjtDetailsRegstration";
 
     }
 
@@ -64,7 +64,7 @@ public class OjtDetailsController {
         if (bindingResult.hasErrors()) {
 
             InitialLoad(model);
-            return "OjtDetailsRegstration";
+            return "modules/ojt/OjtDetailsRegstration";
         }
 
         ojtDetails.setStatus(true);
@@ -74,7 +74,7 @@ public class OjtDetailsController {
         // model.addAttribute("studentBatch", studentBatchList);
         model.addAttribute("ojtPlaceList", ojtchList);
 
-        return "OjtDetailsView";
+        return "modules/ojt/OjtDetailsView";
 
 
     }
@@ -85,7 +85,7 @@ public class OjtDetailsController {
         List<OjtDetails> ojtchList = ojtDetailsService.findByStatus(true);
         model.addAttribute("ojtPlaceList", ojtchList);
 
-        return "OjtDetailsView";
+        return "modules/ojt/OjtDetailsView";
     }
 
     @RequestMapping(value = {"edit-ojtstudent-{id}"}, method = RequestMethod.GET)
@@ -97,7 +97,7 @@ public class OjtDetailsController {
         model.addAttribute("ojtDetails", stubatObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "OjtDetailsRegstration";
+        return "modules/ojt/OjtDetailsRegstration";
     }
 
     @RequestMapping(value = {"edit-ojtstudent-{id}"}, method = RequestMethod.POST)
@@ -105,7 +105,7 @@ public class OjtDetailsController {
 
         if (bindingResult.hasErrors()) {
 
-            return "OjtDetailsRegstration";
+            return "modules/ojt/OjtDetailsRegstration";
         }
 
         ojtDetails.setStatus(true);
@@ -116,6 +116,6 @@ public class OjtDetailsController {
         model.addAttribute("courseList", couList);
         return "CourseView";*/
 
-        return "OjtDetailsView";
+        return "modules/ojt/OjtDetailsView";
     }
 }

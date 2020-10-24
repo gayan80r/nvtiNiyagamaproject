@@ -21,7 +21,12 @@ public class User {
 
     @JoinColumn(name="role_id")
     private Role role;
-//user have only one role
+
+   // private Transient String confirmPassword;
+
+
+
+    //user have only one role
     public Integer getId() {
         return id;
     }

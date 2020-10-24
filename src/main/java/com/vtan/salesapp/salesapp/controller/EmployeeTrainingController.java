@@ -40,7 +40,7 @@ public class EmployeeTrainingController {
         EmployeeTrainingDetails etd = new EmployeeTrainingDetails();
         model.addAttribute("employeeTrainingDetails", etd);
         InitialLoad(model);
-        return "EmployeeTrainingRegistration";
+        return "modules/employee/employeetraning/EmployeeTrainingRegistration";
 
     }
 
@@ -59,7 +59,7 @@ public class EmployeeTrainingController {
         if (bindingResult.hasErrors()) {
 
             InitialLoad(model);
-            return "EmployeeTrainingRegistration";
+            return "modules/employee/employeetraning/EmployeeTrainingRegistration";
         }
         //employeeTriningDetails
         employeeTrainingDetails.setStatus(true);
@@ -68,7 +68,7 @@ public class EmployeeTrainingController {
         List<EmployeeTrainingDetails> insTrainigList = employeeTrainingDetailsService.findByStatus(true);
          model.addAttribute("employeeTrainningList", insTrainigList);
 
-        return "EmployeeTrainingView";
+        return "modules/employee/employeetraning/EmployeeTrainingView";
 
 
     }
@@ -80,7 +80,7 @@ public class EmployeeTrainingController {
         List<EmployeeTrainingDetails> insTrainigList = employeeTrainingDetailsService.findByStatus(true);
         model.addAttribute("employeeTrainningList", insTrainigList);
 
-        return "EmployeeTrainingView";
+        return "modules/employee/employeetraning/EmployeeTrainingView";
     }
 
     @RequestMapping(value = {"edit-employeetrainning-{id}"}, method = RequestMethod.GET)
@@ -93,7 +93,7 @@ public class EmployeeTrainingController {
         model.addAttribute("employeeTrainingDetails", insTrainObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "EmployeeTrainingRegistration";
+        return "modules/employee/employeetraning/EmployeeTrainingRegistration";
     }
 
     @RequestMapping(value = {"edit-employeetrainning-{id}"}, method = RequestMethod.POST)
@@ -101,7 +101,7 @@ public class EmployeeTrainingController {
 
         if (bindingResult.hasErrors()) {
 
-            return "EmployeeTrainingRegistration";
+            return "modules/employee/employeetraning/EmployeeTrainingRegistration";
         }
 
         employeeTrainingDetails.setStatus(true);
@@ -110,6 +110,6 @@ public class EmployeeTrainingController {
         LoadEmployeeTrainningform(model);
 
 
-        return "EmployeeTrainingView";
+        return "modules/employee/employeetraning/EmployeeTrainingView";
     }
 }

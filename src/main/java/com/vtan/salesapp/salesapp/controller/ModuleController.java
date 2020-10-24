@@ -41,7 +41,7 @@ public class ModuleController {
         Module mod = new Module();
         model.addAttribute("module", mod);
         InitialLoad(model);
-        return "ModuleRegistration";
+        return "modules/course/modules/ModuleRegistration";
 
     }
     @RequestMapping(value = {"/module"}, method = RequestMethod.GET)
@@ -49,7 +49,7 @@ public class ModuleController {
 
         List<Module> mouList = moduleSevice.findAll();
         model.addAttribute("moduleList", mouList);
-        return "ModuleView";
+        return "modules/course/modules/ModuleView";
     }
 
     @RequestMapping(value = {"edit-module-{id}"}, method = RequestMethod.GET)
@@ -59,7 +59,7 @@ public class ModuleController {
         model.addAttribute("module", modObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "ModuleRegistration";
+        return "modules/course/modules/ModuleRegistration";
     }
 
     @RequestMapping(value = {"edit-module-{id}"}, method = RequestMethod.POST)
@@ -67,7 +67,7 @@ public class ModuleController {
 
         if (bindingResult.hasErrors()) {
 
-            return "ModuleRegistration";
+            return "modules/course/modules/ModuleRegistration";
         }
 
         //course.setStatus(true);
@@ -75,7 +75,7 @@ public class ModuleController {
         // List<Employee> empList = employeeService.findAll();
         LoadModule(model);
 
-        return "ModuleView";
+        return "modules/course/modules/ModuleView";
     }
 
     @RequestMapping(value = {"delete-module-{id}"}, method = RequestMethod.GET)
@@ -88,7 +88,7 @@ public class ModuleController {
         //List<Module> modList = moduleSevice.findByStatus(true);
         List<Module> modList = moduleSevice.findAll();
         model.addAttribute("moduleList", modList);
-        return "ModuleView";
+        return "modules/course/modules/ModuleView";
     }
     @RequestMapping(value = {"/newmodule"}, method = RequestMethod.POST)
     //when save bind data view to controller we need the special bindingResult object
@@ -106,7 +106,7 @@ public class ModuleController {
         }
 
         if (bindingResult.hasErrors()) {
-            return "ModuleRegistration";
+            return "modules/course/modules/ModuleRegistration";
         }
 
         //course.setStatus(true);
@@ -116,7 +116,7 @@ public class ModuleController {
         List<Module> modList = moduleSevice.findAll();
         model.addAttribute("moduleList", modList);
 
-        return "ModuleView";
+        return "modules/course/modules/ModuleView";
 
 
     }

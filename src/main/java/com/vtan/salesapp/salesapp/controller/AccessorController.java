@@ -54,7 +54,7 @@ public class AccessorController {
 
 
         //we  call  the EmployeeRegistration.jsp but we don not add jsp with surfiix of the application property
-        return "AccessorRegistration";
+        return "modules/assessor/AccessorRegistration";
     }
     @RequestMapping(value = {"edit-accessor-{id}"}, method = RequestMethod.GET)
     public String loadUpdateForm(ModelMap model, @PathVariable String id) {
@@ -65,7 +65,7 @@ public class AccessorController {
         model.addAttribute("accessor", accObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "AccessorRegistration";
+        return "modules/assessor/AccessorRegistration";
 
     }
 
@@ -74,7 +74,7 @@ public class AccessorController {
 
         if (bindingResult.hasErrors()) {
 
-            return "AccessorRegistration";
+            return "modules/assessor/AccessorRegistration";
         }
 
         accessor.setStatus(true);
@@ -82,7 +82,7 @@ public class AccessorController {
         // List<Employee> empList = employeeService.findAll();
         List<Accessor> accList = accessorService.findByStatus(true);
         model.addAttribute("accessorList", accList);
-        return "AccessorView";
+        return "modules/assessor/AccessorView";
     }
 
     @RequestMapping(value = {"delete-accessor-{id}"}, method = RequestMethod.GET)
@@ -100,7 +100,7 @@ public class AccessorController {
         //List<Employee> empList = employeeService.findAll();
         List<Accessor> accList = accessorService.findByStatus(true);
         model.addAttribute("accessorList", accList);
-        return "AccessorView";
+        return "modules/assessor/AccessorView";
 
     }
 
@@ -130,7 +130,7 @@ public class AccessorController {
         }
         // validation
         if (bindingResult.hasErrors()) {
-            return "AccessorRegistration";
+            return "modules/assessor/AccessorRegistration";
         }
 
 
@@ -141,7 +141,7 @@ public class AccessorController {
 
         List<Accessor> accList = accessorService.findByStatus(true);
         model.addAttribute("accessorList", accList);
-        return "AccessorView";
+        return "modules/assessor/AccessorView";
         //return "EmployeeRegistration";
     }
 
@@ -150,7 +150,7 @@ public class AccessorController {
         //we use the java generic List<Employee>
         List<Accessor> accList = accessorService.findByStatus(true);
         model.addAttribute("accessorList", accList);
-        return "AccessorView";
+        return "modules/assessor/AccessorView";
     }
 
     }

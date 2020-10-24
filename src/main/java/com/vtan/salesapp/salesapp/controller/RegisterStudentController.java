@@ -62,7 +62,7 @@ public class RegisterStudentController {
         model.addAttribute("Student", stuobj);
         InitialLoad(model);
 
-        return "StudentRegistration";
+        return "modules/student/StudentRegistration";
     }
         @RequestMapping(value = {"edit-registedStudent-{id}"}, method = RequestMethod.GET)
         public String loadUpdateForm(ModelMap model, @PathVariable String id) {
@@ -73,7 +73,7 @@ public class RegisterStudentController {
             model.addAttribute("Student", stuObj);
             InitialLoad(model);
             model.addAttribute("edit", true);
-            return "StudentRegistration";
+            return "modules/student/StudentRegistration";
         }
     @RequestMapping(value = {"edit-registedStudent-{id}"}, method = RequestMethod.POST)
     public String updateStudent(@Valid RegistedStudent registedStudent, ModelMap model, BindingResult bindingResult, @PathVariable String id) {
@@ -82,7 +82,7 @@ public class RegisterStudentController {
         // validation
         if (bindingResult.hasErrors()) {
 
-            return "StudentRegistration";
+            return "modules/student/StudentRegistration";
         }
 
         registedStudent.setStatus(1);
@@ -90,7 +90,7 @@ public class RegisterStudentController {
 
         List<RegistedStudent> stuList = registerStudentService.findByStatus(1);
         model.addAttribute("studentList", stuList);
-        return "StudentView";
+        return "modules/student/StudentView";
     }
     @RequestMapping(value = {"/newstudent"}, method = RequestMethod.POST)
     //when save bind data view to controller we need the special bindingResult object
@@ -118,7 +118,7 @@ public class RegisterStudentController {
         }
         // validation
         if (bindingResult.hasErrors()) {
-            return "StudentRegistration";
+            return "modules/student/StudentRegistration";
         }
 
         //System.out.println(employee);
@@ -135,7 +135,7 @@ public class RegisterStudentController {
         //List<Employee> emplist=employeeService.findAll();
         List<RegistedStudent> stuList = registerStudentService.findByStatus(1);
         model.addAttribute("studentList", stuList);
-        return "StudentView";
+        return "modules/student/StudentView";
 
     }
 
@@ -154,7 +154,7 @@ public class RegisterStudentController {
         //List<Employee> empList = employeeService.findAll();
         List<RegistedStudent> stuList = registerStudentService.findByStatus(1);
         model.addAttribute("studentList", stuList);
-        return "StudentView";
+        return "modules/student/StudentView";
 
     }
     @RequestMapping(value = {"/student"}, method = RequestMethod.GET)
@@ -162,7 +162,7 @@ public class RegisterStudentController {
         //we use the java generic List<Employee>
         List<RegistedStudent> stuList = registerStudentService.findByStatus(1);
         model.addAttribute("studentList", stuList);
-        return "StudentView";
+        return "modules/student/StudentView";
     }
 }
 

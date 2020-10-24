@@ -30,7 +30,7 @@ public class ParrentController {
         Parrent par = new Parrent();
         model.addAttribute("parrent", par);
         InitialLoad(model);
-        return "ParrentRegistration";
+        return "modules/parents/ParrentRegistration";
 
     }
 
@@ -40,7 +40,7 @@ public class ParrentController {
         model.addAttribute("parrent",newparrent);
         List<Parrent> parList = parrentService.findByStatus(true);
         model.addAttribute("parrentList", parList);
-        return "ParrentView";
+        return "modules/parents/ParrentView";
     }
 
 
@@ -55,7 +55,7 @@ public class ParrentController {
         model.addAttribute("parrent", parObj);
         InitialLoad(model);
         model.addAttribute("edit", true);
-        return "ParrentRegistration";
+        return "modules/parents/ParrentRegistration";
     }
 
     @RequestMapping(value = {"edit-parrent-{id}"}, method = RequestMethod.POST)
@@ -63,7 +63,7 @@ public class ParrentController {
 
         if (bindingResult.hasErrors()) {
 
-            return "ParrentRegistration";
+            return "modules/parents/ParrentRegistration";
     }
 
         parrent.setStatus(true);
@@ -71,7 +71,7 @@ public class ParrentController {
         // List<Employee> empList = employeeService.findAll();
         LoadParrentForm(model);
 
-        return "ParrentView";
+        return "modules/parents/ParrentView";
     }
 
     @RequestMapping(value = {"delete-parrent-{id}"}, method = RequestMethod.GET)
@@ -83,7 +83,7 @@ public class ParrentController {
         parrentService.update(parObj);
         List<Parrent> parList = parrentService.findByStatus(true);
         model.addAttribute("parrentList", parList);
-        return "ParrentView";
+        return "modules/parents/ParrentView";
     }
     @RequestMapping(value = {"/newparrent"}, method = RequestMethod.POST)
     //when save bind data view to controller we need the special bindingResult object
@@ -119,7 +119,7 @@ public class ParrentController {
         }
 
         if (bindingResult.hasErrors()) {
-            return "ParrentRegistration";
+            return "modules/parents/ParrentRegistration";
         }
 
         parrent.setStatus(true);
@@ -128,7 +128,7 @@ public class ParrentController {
         List<Parrent> parList = parrentService.findByStatus(true);
         model.addAttribute("parrentList", parList);
 
-        return "ParrentView";
+        return "modules/parents/ParrentView";
 
 
     }

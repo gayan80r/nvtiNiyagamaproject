@@ -30,7 +30,7 @@ public class OJTPlaceController {
         OJTPlace ojtp = new OJTPlace();
         model.addAttribute("ojtPlace", ojtp);
         //InitialLoad(model);
-        return "OJTPlaceRegistration";
+        return "modules/ojt/OJTPlaceRegistration";
 
     }
 
@@ -45,7 +45,7 @@ public class OJTPlaceController {
         model.addAttribute("ojtPlace", ojtpObj);
         //InitialLoad(model);
         model.addAttribute("edit", true);
-        return "OJTPlaceRegistration";
+        return "modules/ojt/OJTPlaceRegistration";
     }
 
     @RequestMapping(value = {"edit-ojtPlace-{id}"}, method = RequestMethod.POST)
@@ -53,7 +53,7 @@ public class OJTPlaceController {
 
         if (bindingResult.hasErrors()) {
 
-            return "OJTPlaceRegistration";
+            return "modules/ojt/OJTPlaceRegistration";
         }
 
         ojtplace.setStatus(true);
@@ -62,7 +62,7 @@ public class OJTPlaceController {
         LoadOJTPlaceForm(model);
         List<OJTPlace> ojtPList = ojtPlaceService.findByStatus(true);
         model.addAttribute("ojtplaceList", ojtPList);
-        return "OJTPlaceView";
+        return "modules/ojt/OJTPlaceView";
     }
 
     @RequestMapping(value = {"delete-ojtplace-{id}"}, method = RequestMethod.GET)
@@ -75,7 +75,7 @@ public class OJTPlaceController {
         ojtPlaceService.update(ojtpObj);
         List<OJTPlace> ojtPList = ojtPlaceService.findByStatus(true);
         model.addAttribute("ojtplaceList", ojtPList);
-        return "OJTPlaceView";
+        return "modules/ojt/OJTPlaceView";
     }
 
     @RequestMapping(value = {"/newojtplace"}, method = RequestMethod.POST)
@@ -104,7 +104,7 @@ public class OJTPlaceController {
         }
         // validation
         if (bindingResult.hasErrors()) {
-            return "OJTPlaceRegistration";
+            return "modules/ojt/OJTPlaceRegistration";
         }
 
 
@@ -114,7 +114,7 @@ public class OJTPlaceController {
 
         List<OJTPlace> ojtPList = ojtPlaceService.findByStatus(true);
         model.addAttribute("ojtplaceList", ojtPList);
-        return "OJTPlaceView";
+        return "modules/ojt/OJTPlaceView";
 
     }
 
@@ -123,7 +123,7 @@ public class OJTPlaceController {
 
         List<OJTPlace> ojtPList = ojtPlaceService.findByStatus(true);
         model.addAttribute("ojtplaceList", ojtPList);
-        return "OJTPlaceView";
+        return "modules/ojt/OJTPlaceView";
     }
 
 }
