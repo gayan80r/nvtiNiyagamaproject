@@ -27,12 +27,6 @@ public class RestDataController {
     @Autowired
     private CourseService courseService;
 
-
-
-
-
-
-
     @RequestMapping(value={"/retrivebatch/{batchid}"},method = RequestMethod.GET)
     public List<Batch> getBatch(@PathVariable("batchid") int batchid){
         //System.out.println("restapi");
