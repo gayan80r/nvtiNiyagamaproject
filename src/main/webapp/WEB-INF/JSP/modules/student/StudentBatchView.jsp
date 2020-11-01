@@ -23,7 +23,12 @@
     <div class="jumbotron">
         <center><h2>List of Batchstudent </h2></center>
     </div>
-
+  <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="name">Select Course</label>
+                 
+            </div>
+        </div>
     <div class="row">
     <table id="myTable" class="table table-dark table-striped table-hover">
         <thead class>
