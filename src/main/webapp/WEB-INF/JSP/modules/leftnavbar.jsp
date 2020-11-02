@@ -2,7 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
  <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<style type="text/css">
+  #Pages1 {
+  }
+</style>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
@@ -60,6 +64,31 @@
         </div>
       </li>
 
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Course & Batch
+  </div>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecourse" aria-expanded="true" aria-controls="collapsePages">
+      <i class="fas fa-fw fa-folder"></i>
+      <span>Course & Batch Management</span>
+    </a>
+    <div id="collapsecourse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Course:</h6>
+        <a class="collapse-item" href="#">Course Details</a>
+
+        <div class="collapse-divider"></div>
+        <h6 class="collapse-header"> Batch:</h6>
+        <a class="collapse-item" href="#">Batch Details</a>
+
+      </div>
+    </div>
+  </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -82,6 +111,7 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Student Batch:</h6>
             <a class="collapse-item" href="newbatchstudent">Student Batch Registration</a>
+            <a class="collapse-item" href="batchstudent">Student Batch List</a>
             <a class="collapse-item" href="studentparrent">Assign Parent For Batch</a>
           </div>
         </div>
@@ -93,6 +123,71 @@
       <div class="sidebar-heading">
         Exam
       </div>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Exam Management</span>
+        </a>
+        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Exam:</h6>
+            <a class="collapse-item" href="#">Task Assignment</a>
+            <a class="collapse-item" href="#">Semister Exam</a>
+            <a class="collapse-item" href="#">Viver Exam</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Asign Assersor  for Exam:</h6>
+            <a class="collapse-item" href="#">Asigning Assersor</a>
+
+          </div>
+        </div>
+      </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+  <div class="sidebar-heading">
+    On the job Training
+  </div>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseojt" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-folder"></i>
+      <span>OJT Management</span>
+    </a>
+    <div id="collapseojt" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">OJT :</h6>
+        <a class="collapse-item" href="#">OJT Details</a>
+        <a class="collapse-item" href="#">Student OJT Details</a>
+
+      </div>
+    </div>
+  </li>
+
+
+  <div class="sidebar-heading">
+    Job Placement
+  </div>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsejob" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-folder"></i>
+      <span>Job Placement Management</span>
+    </a>
+    <div id="collapsejob" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">OJT :</h6>
+        <a class="collapse-item" href="#">Job Placement Details</a>
+        <a class="collapse-item" href="#">Student Job placement Details</a>
+
+      </div>
+    </div>
+  </li>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider">
       <!-- Nav Item - Charts -->
       <li class="nav-item">
         <a class="nav-link" href="charts.html">
