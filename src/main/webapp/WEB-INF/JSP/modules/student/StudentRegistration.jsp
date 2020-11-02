@@ -44,6 +44,8 @@
 </head>
 <body>
 
+
+
 <div class="container">
     <div class ="jumbotron"> <center><h1>Student Registration Form</h1></center></div>
     <!- we used the modelAttribute pass value view to controler->

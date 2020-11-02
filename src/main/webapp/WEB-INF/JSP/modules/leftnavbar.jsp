@@ -6,6 +6,14 @@
   #Pages1 {
   }
 </style>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
@@ -212,3 +220,5 @@
 
     </ul>
     <!-- End of Sidebar -->
+</div>
+</body>
