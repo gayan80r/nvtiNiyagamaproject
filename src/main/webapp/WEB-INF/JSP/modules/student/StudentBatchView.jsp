@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="form-group col-md-12">
 
-                    <label class="col-md-3 control-lable" for="id" >Year</label>
+                    <label class="col-md-3 control-lable" for="id" >Select The Year</label>
                     <div class="col-md-9">
                         <sform:select path="id" items="${yearList}" multiple="false" itemValue="id" id="yearIdSeleter"
 
@@ -83,22 +83,24 @@
 
 
 
-            <div class="row">
+           <%-- <div class="row">
                 <div class="form-group col-md-12">
 
-                    <label class="col-md-3 control-lable" for="studentid">Student Name</label>
+                    <label class="col-md-3 control-lable" for="id" >Select The Course</label>
                     <div class="col-md-9">
-                        <sform:select path="studentid"  multiple="false" id="studentIdSelecter"
+                        <sform:select path="id" items="${courselist}" multiple="false" itemValue="id" id="courseIdSeleter"
 
-                                      itemLabel="name" class="js-example-basic-single form-control input-sm" />
+                                      itemLabel="name" class="form-control input-sm" >
+                            <sform:option value="" label="--Please Select"/>
+                        </sform:select>
                         <div class="has-error">
-                            <sform:errors path="studentid" class="help-inline"/>
+                            <sform:errors path="id" class="help-inline"/>
                         </div>
 
                     </div>
                 </div>
             </div>
-
+--%>
 
 
 
@@ -124,10 +126,10 @@
     <table id="myTable" class="table table-dark table-striped table-hover">
         <thead class>
         <tr>
-
-            <th>Date Joint</th>
-            <th>Batch Name</th>
             <th>Student Name</th>
+            <th>Date Joint</th>
+            <th>Status</th>
+
 
 
         </tr>
