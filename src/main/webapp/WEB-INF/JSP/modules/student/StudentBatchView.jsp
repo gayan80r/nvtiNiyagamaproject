@@ -50,13 +50,28 @@
             <div class="row">
                 <div class="form-group col-md-12">
 
-                    <label class="col-md-3 control-lable" for="id" >Year</label>
+                    <label class="col-md-3 control-lable" for="id" >Select The Year</label>
                     <div class="col-md-9">
                         <sform:select path="id" items="${yearList}" multiple="false" itemValue="id" id="yearIdSeleter"
 
                                       itemLabel="name" class="form-control input-sm" >
                             <sform:option value="" label="--Please Select"/>
                         </sform:select>
+                        <div class="has-error">
+                            <sform:errors path="id" class="help-inline"/>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+
+                    <label class="col-md-3 control-lable" for="batchid">Select The Course</label>
+                    <div class="col-md-9">
+                        <select  id="courseIdSelecter" class="form-control input-sm">
+                        </select>
                         <div class="has-error">
                             <sform:errors path="id" class="help-inline"/>
                         </div>
@@ -83,32 +98,13 @@
 
 
 
-            <div class="row">
-                <div class="form-group col-md-12">
-
-                    <label class="col-md-3 control-lable" for="studentid">Student Name</label>
-                    <div class="col-md-9">
-                        <sform:select path="studentid"  multiple="false" id="studentIdSelecter"
-
-                                      itemLabel="name" class="js-example-basic-single form-control input-sm" />
-                        <div class="has-error">
-                            <sform:errors path="studentid" class="help-inline"/>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-
-
 
             <div class="row">
                 <div class="form-group col-md-12">
 
                     <div class="col-md-9">
 
-                        <input type="submit" value="Search" id="submitbutton" class="btn btn-primary btn-lg"/>
+                        <input type="button" value="Search" id="submitbutton" class="btn btn-primary btn-lg"/>
                     </div>
                 </div>
             </div>
@@ -120,31 +116,16 @@
         <center><h2>List of Batch student </h2></center>
     </div>
 
-    <div class="row">
-    <table id="myTable" class="table table-dark table-striped table-hover">
+    <div class="row table-responsive">
+    <table id="myTable" class="w-100 table table-striped table-bordered display" >
         <thead class>
         <tr>
-
-            <th>Date Joint</th>
-            <th>Batch Name</th>
             <th>Student Name</th>
-
-
+            <th>Date Joint</th>
+            <th>Status</th>
         </tr>
         </thead>
-
         <tbody>
-            <tr>
-<%--                <td>${batstu.datejoint}</td>--%>
-<%--                <td>${batstu.batchid}</td>--%>
-<%--                <td>${batstu.studentid}</td>--%>
-
-<%--                <td><a href="<c:url value='/edit-studentbatch-${batstu.id}'/>" class="btn btn-warning">Edit</a>--%>
-<%--                <td><a href="<c:url value='/delete-batch-${batstu.id}'/>" class="btn btn-warning">Delete</a>--%>
-<%--                </td>--%>
-<%--                <td></td>--%>
-            </tr>
-
         </tbody>
     </table>
     </div>
@@ -156,17 +137,27 @@
 
 </div>
 </html>
-<script>
-    $(document).ready( function () {
-        $('#myTable').DataTable();
-    } );
-</script>
 
 <script>
 
     $(document).ready(function () {
-        $('.js-example-basic-single').select2();
+        var studentsTable=$('#myTable').DataTable();
+        $('.js-example-basic-single').select();
 
+        $('#submitbutton').click(function (){
+            $.ajax({
+                type: 'GET',
+                url: '/api/retrivebcstudent/'+$("#batchIdSelecter").val()+'/'+$("#courseIdSelecter").val(),
+                data: '',
+                dataType: "json",
+                success: function (data) {
+                    studentsTable.clear().draw();
+                    $.each(data, function (key, value)  {
+                        studentsTable.row.add([value.name, value.join, value.status]).draw( false );
+                    });
+                }
+            });
+        });
 
         //$("#batchIdSelecter").change(function () {
         //var value = $("#yearIdSeleter").val();
@@ -214,6 +205,22 @@
 
 
 
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: '/api/retrivecourse',
+            data: '',
+            dataType: "json",
+            success: function (data) {
+
+                $("#courseIdSelecter").html('');
+                var itrms='<option value="0"></option>';
+                $.each(data, function (key, value)  {
+                    itrms=itrms+'<option value="'+value.id+'">'+value.name+'</option>';
+                });
+                $("#courseIdSelecter").html(itrms);
+            }
         });
 
     });

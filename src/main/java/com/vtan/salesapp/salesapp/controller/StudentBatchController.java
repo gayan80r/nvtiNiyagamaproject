@@ -1,10 +1,7 @@
 package com.vtan.salesapp.salesapp.controller;
 
 import com.vtan.salesapp.salesapp.entity.*;
-import com.vtan.salesapp.salesapp.service.BatchService;
-import com.vtan.salesapp.salesapp.service.RegisterStudentService;
-import com.vtan.salesapp.salesapp.service.StudentBatchService;
-import com.vtan.salesapp.salesapp.service.YearService;
+import com.vtan.salesapp.salesapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,12 +23,17 @@ public class StudentBatchController {
     private RegisterStudentService registerStudentService;
     @Autowired
     private YearService yearService;
+    @Autowired
+    private CourseService courseService;
    /* @Autowired
     private StudentBatch studentBatch;*/
 
     public String InitialLoad(ModelMap model) {
         List<Year> yearlist=yearService.findAll();
         model.addAttribute("yearList",yearlist);
+
+        List<Course> courselist=courseService.findAll();
+        model.addAttribute("courselist",courselist);
 
         List<Batch> batchList = batchService.findAll();
         model.addAttribute("batchList", batchList);
