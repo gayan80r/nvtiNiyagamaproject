@@ -1,8 +1,6 @@
 package com.vtan.salesapp.salesapp.service;
 
-import com.vtan.salesapp.salesapp.entity.Batch;
-import com.vtan.salesapp.salesapp.entity.RegistedStudent;
-import com.vtan.salesapp.salesapp.entity.StudentBatch;
+import com.vtan.salesapp.salesapp.entity.*;
 
 import java.util.List;
 
@@ -15,6 +13,6 @@ public interface StudentBatchService {
    public List<StudentBatch > findByStatus(boolean status);
     public List<StudentBatch > findAll();
     public List<StudentBatch>  finByStundentBatchId(Batch batchid, RegistedStudent studentid);
+    public List<StudentBatchCourse>  finByStundentBatchIdCourseId(Batch batchid, Course courseId);
     public List<StudentBatch> finByStundent(Batch batchid);
-
 }

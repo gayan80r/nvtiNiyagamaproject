@@ -1,8 +1,6 @@
 package com.vtan.salesapp.salesapp.service;
 
-import com.vtan.salesapp.salesapp.entity.Batch;
-import com.vtan.salesapp.salesapp.entity.RegistedStudent;
-import com.vtan.salesapp.salesapp.entity.StudentBatch;
+import com.vtan.salesapp.salesapp.entity.*;
 import com.vtan.salesapp.salesapp.repository.StudentBatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +44,11 @@ public class StudentBatchServiceImpl implements StudentBatchService {
     public List<StudentBatch> finByStundentBatchId(Batch batchid, RegistedStudent studentid) {
         //return studentBatchRepository.finByStundBatchId(batchid,studentid);
         return studentBatchRepository.finByStundentBatchId(batchid,studentid);
+    }
+
+    @Override
+    public List<StudentBatchCourse> finByStundentBatchIdCourseId(Batch batchid, Course courseId) {
+        return studentBatchRepository.finByStundentBatchIdCourseId(batchid, courseId);
     }
 
     @Override

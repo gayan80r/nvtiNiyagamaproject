@@ -153,7 +153,7 @@
                 success: function (data) {
                     studentsTable.clear().draw();
                     $.each(data, function (key, value)  {
-                        studentsTable.row.add([value.name, value.join, value.status]).draw( false );
+                        studentsTable.row.add([value.firstName+" "+value.lastName, dateFormate(value.date), value.status]).draw( false );
                     });
                 }
             });
@@ -222,6 +222,12 @@
                 $("#courseIdSelecter").html(itrms);
             }
         });
+
+        var months=["January", "February", "March", "April", "May", "June", "July", "August", "November", "September", "November", "December"];
+        function dateFormate(date){
+            date = new Date(date);
+            return months[date.getMonth()] +' '+String(date.getDate()).padStart(2, '0')+', '+date.getFullYear();
+        }
 
     });
 </script>

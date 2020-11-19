@@ -1,16 +1,11 @@
 package com.vtan.salesapp.salesapp.repository;
 
-import com.vtan.salesapp.salesapp.entity.Batch;
-import com.vtan.salesapp.salesapp.entity.RegistedStudent;
-import com.vtan.salesapp.salesapp.entity.StudentBatch;
-import com.vtan.salesapp.salesapp.entity.Year;
+import com.vtan.salesapp.salesapp.entity.*;
+import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +49,29 @@ public class StudentBatchCustomRepositoryImpl implements StudentBatchCustomRepos
         //return (StudentBatch) sbList;
         return sbList;
 
+    }
+
+    @Override
+    public List<StudentBatchCourse> finByStundentBatchIdCourseId(Batch batchid, Course courseId) {
+        TypedQuery<StudentBatchCourse> query = entityManager.createQuery("SELECT NEW com.vtan.salesapp.salesapp.entity.StudentBatchCourse(s.first_name, s.last_name, s.status, b.datejoint) " +
+                        "FROM RegistedStudent s " +
+                        "INNER JOIN s.studentBatchList b " +
+                        "INNER JOIN b.batchid bt  " +
+                        "WHERE b.batchid=?1 AND bt.courseid = ?2", StudentBatchCourse.class);
+
+        query.setParameter(1, batchid);
+        query.setParameter(2, courseId);
+
+        List<StudentBatchCourse> sbList = new ArrayList();
+        try {
+            if (query.getResultList() != null)
+                sbList = query.getResultList();
+        } catch (NoResultException e) {
+
+        }
+
+        //return (StudentBatch) sbList;
+        return sbList;
     }
 
     @Override
