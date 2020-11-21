@@ -53,11 +53,11 @@ public class StudentBatchCustomRepositoryImpl implements StudentBatchCustomRepos
 
     @Override
     public List<StudentBatchCourse> finByStundentBatchIdCourseId(Batch batchid, Course courseId) {
-        TypedQuery<StudentBatchCourse> query = entityManager.createQuery("SELECT NEW com.vtan.salesapp.salesapp.entity.StudentBatchCourse(s.first_name, s.last_name, s.status, b.datejoint) " +
+        TypedQuery<StudentBatchCourse> query = entityManager.createQuery("SELECT NEW com.vtan.salesapp.salesapp.entity.StudentBatchCourse(b.id, s.first_name, s.last_name, s.status, b.datejoint) " +
                         "FROM RegistedStudent s " +
                         "INNER JOIN s.studentBatchList b " +
                         "INNER JOIN b.batchid bt  " +
-                        "WHERE b.batchid=?1 AND bt.courseid = ?2", StudentBatchCourse.class);
+                        "WHERE b.status=true AND b.batchid=?1 AND bt.courseid = ?2", StudentBatchCourse.class);
 
         query.setParameter(1, batchid);
         query.setParameter(2, courseId);

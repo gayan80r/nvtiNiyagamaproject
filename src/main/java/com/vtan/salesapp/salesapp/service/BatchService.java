@@ -15,6 +15,7 @@ public interface BatchService {
     public Batch findById(int id);
     public List<Batch> findByStatus(int status);
     public List<Batch> findByStatusAndyearId(int status,int yearid);
+    public List<Batch> findByYearAndCourseId(int yearid,int corseid);
     //public List<Batch> findByStatusAndStudentId(int status,int yearid);
     //public List<RegistedStudent> findByStatus(int status);
 

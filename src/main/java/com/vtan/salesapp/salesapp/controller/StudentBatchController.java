@@ -73,7 +73,6 @@ public class StudentBatchController {
         }
 
         studentbatch.setStatus(true);
-
         studentBatchService.save(studentbatch);
        List<StudentBatch> sBatchList = studentBatchService.findByStatus(true);
        // model.addAttribute("studentBatch", studentBatchList);
@@ -96,32 +95,40 @@ public class StudentBatchController {
 
     @RequestMapping(value = {"edit-studentbatch-{id}"}, method = RequestMethod.GET)
     public String loadUpdateForm(ModelMap model, @PathVariable String id) {
-
         int stubatId = Integer.parseInt(id);
 
         StudentBatch stubatObj = studentBatchService.findById(stubatId);
         model.addAttribute("studentBatch", stubatObj);
-        InitialLoad(model);
         model.addAttribute("edit", true);
+        InitialLoad(model);
         return "modules/student/StudentBatchRegistration";
     }
 
     @RequestMapping(value = {"edit-studentbatch-{id}"}, method = RequestMethod.POST)
     public String updateCourse(@Valid StudentBatch studentbatch, ModelMap model, BindingResult bindingResult, @PathVariable String id) {
-
         if (bindingResult.hasErrors()) {
 
             return "modules/student/StudentBatchRegistration";
         }
 
-        studentbatch.setStatus(true);
-        studentBatchService.save(studentbatch);
-        // List<Employee> empList = employeeService.findAll();
+        StudentBatch stubatObj = studentBatchService.findById(Integer.parseInt(id));
+        stubatObj.setBatchid(studentbatch.getBatchid());
+        stubatObj.setStatus(true);
+        studentBatchService.update(stubatObj);
         LoadBatchStudentform(model);
-        /*List<Course> couList = courseService.findByStatus(true);
-        model.addAttribute("courseList", couList);
-        return "CourseView";*/
 
+        return "modules/student/StudentBatchView";
+    }
+
+    @RequestMapping(value = {"detele-studentbatch-{id}"}, method = RequestMethod.GET)
+    public String deleteStudentBatch(ModelMap model, @PathVariable String id){
+
+        int stubatId = Integer.parseInt(id);
+
+        StudentBatch stubatObj = studentBatchService.findById(stubatId);
+        stubatObj.setStatus(false);
+        studentBatchService.update(stubatObj);
+        LoadBatchStudentform(model);
         return "modules/student/StudentBatchView";
     }
 

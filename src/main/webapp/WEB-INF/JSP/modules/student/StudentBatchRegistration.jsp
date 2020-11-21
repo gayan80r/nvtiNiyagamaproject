@@ -1,5 +1,4 @@
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -8,7 +7,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <html lang="en">
 
-
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -254,27 +253,22 @@
   <script src="<c:url value="js/demo/chart-pie-demo.js"/>"></script>--%>
 
 </body>
-<script>
-
-    $( document ).ready(function() {
-
-        $("#submitbutton,#updatesubmit").click(function(event){
-
-            event.preventDefault();
-            //var status = validatestudentBatch();
-
-            if(status){
-
-                $("#studentbatchform").unbind('submit').submit();
-            }
-
-        })
-
-</script>
 
 <script>
 
     $(document).ready(function () {
+
+        $("#submitbutton,#updatesubmit").click(function (event) {
+            event.preventDefault();
+            //var status = validatestudentBatch();
+            console.log(status);
+            // if (status) {
+                console.log(status);
+                $("#studentbatchform").unbind('submit').submit();
+            // }
+
+        })
+
         $('.js-example-basic-single').select2();
 
 

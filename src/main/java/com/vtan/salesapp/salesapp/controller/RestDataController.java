@@ -31,13 +31,23 @@ public class RestDataController {
 
     private final SimpleDateFormat SDFormat= new SimpleDateFormat("MMMM dd, yyyy");
 
-    @RequestMapping(value={"/retrivebatch/{batchid}"},method = RequestMethod.GET)
-    public List<Batch> getBatch(@PathVariable("batchid") int batchid){
+    @RequestMapping(value={"/retrivebatch/{yearid}"},method = RequestMethod.GET)
+    public List<Batch> getBatch(@PathVariable("yearid") int yearid){
         //System.out.println("restapi");
-        return  batchService.findByStatusAndyearId(1,batchid);
+        return  batchService.findByStatusAndyearId(1, yearid);
     }
 
-    @RequestMapping(value={"/retrivestudent/{batchid}"},method = RequestMethod.GET)
+    @RequestMapping(value={"/retriveyearandcoursebatch/{yearid}/{courseid}"},method = RequestMethod.GET)
+    public List<Batch> getYearAndCourseBatch(@PathVariable("yearid") int yearid, @PathVariable("courseid") int courseid){
+        //System.out.println("restapi");
+        if(yearid!=0 && courseid!=0) {
+            return batchService.findByYearAndCourseId(yearid, courseid);
+        }else{
+            return null;
+        }
+    }
+
+    @RequestMapping(value={"/retrivestudent"},method = RequestMethod.GET)
     public List<RegistedStudent> getStudent( ){
         //System.out.println("restapi");
         return registerStudentService.findByStatus(1);

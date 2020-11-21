@@ -10,22 +10,23 @@ public class StudentBatchCourse {
     private String lastName;
     private int status;
     private Date date;
-    private String id;
+    private Integer id;
 
     public StudentBatchCourse() {
 
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     @Id
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public StudentBatchCourse(String firstName, String lastName,int status, Date date) {
+    public StudentBatchCourse(int id, String firstName, String lastName,int status, Date date) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.date = date;

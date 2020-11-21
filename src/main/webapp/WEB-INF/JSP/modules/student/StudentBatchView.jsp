@@ -44,72 +44,72 @@
 
 
 
-        <div class ="jumbotron"> <center><h1>Student Batch List Form</h1></center></div>
-        <!- we used the modelAttribute pass value view to controler->
-        <sform:form method="post" id="studentbatchListform" modelAttribute="studentBatch">
-            <div class="row">
-                <div class="form-group col-md-12">
+    <div class ="jumbotron"> <center><h1>Student Batch List Form</h1></center></div>
+    <!- we used the modelAttribute pass value view to controler->
+    <sform:form method="post" id="studentbatchListform" modelAttribute="studentBatch">
+        <div class="row">
+            <div class="form-group col-md-12">
 
-                    <label class="col-md-3 control-lable" for="id" >Select The Year</label>
-                    <div class="col-md-9">
-                        <sform:select path="id" items="${yearList}" multiple="false" itemValue="id" id="yearIdSeleter"
+                <label class="col-md-3 control-lable" for="id" >Select The Year</label>
+                <div class="col-md-9">
+                    <sform:select path="id" items="${yearList}" multiple="false" itemValue="id" id="yearIdSeleter"
 
-                                      itemLabel="name" class="form-control input-sm" >
-                            <sform:option value="" label="--Please Select"/>
-                        </sform:select>
-                        <div class="has-error">
-                            <sform:errors path="id" class="help-inline"/>
-                        </div>
-
+                                  itemLabel="name" class="form-control input-sm" >
+                        <sform:option value="" label="--Please Select"/>
+                    </sform:select>
+                    <div class="has-error">
+                        <sform:errors path="id" class="help-inline"/>
                     </div>
+
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="form-group col-md-12">
+        <div class="row">
+            <div class="form-group col-md-12">
 
-                    <label class="col-md-3 control-lable" for="batchid">Select The Course</label>
-                    <div class="col-md-9">
-                        <select  id="courseIdSelecter" class="form-control input-sm">
-                        </select>
-                        <div class="has-error">
-                            <sform:errors path="id" class="help-inline"/>
-                        </div>
-
+                <label class="col-md-3 control-lable" for="batchid">Select The Course</label>
+                <div class="col-md-9">
+                    <select  id="courseIdSelecter" class="form-control input-sm">
+                    </select>
+                    <div class="has-error">
+                        <sform:errors path="id" class="help-inline"/>
                     </div>
+
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="form-group col-md-12">
+        <div class="row">
+            <div class="form-group col-md-12">
 
-                    <label class="col-md-3 control-lable" for="batchid">Batch Name</label>
-                    <div class="col-md-9">
-                        <sform:select path="batchid"  multiple="false"  id="batchIdSelecter"
+                <label class="col-md-3 control-lable" for="batchid">Batch Name</label>
+                <div class="col-md-9">
+                    <sform:select path="batchid"  multiple="false"  id="batchIdSelecter"
 
-                                      itemLabel="name" class="form-control input-sm" />
-                        <div class="has-error">
-                            <sform:errors path="batchid" class="help-inline"/>
-                        </div>
-
+                                  itemLabel="name" class="form-control input-sm" />
+                    <div class="has-error">
+                        <sform:errors path="batchid" class="help-inline"/>
                     </div>
+
                 </div>
             </div>
+        </div>
 
 
 
 
-            <div class="row">
-                <div class="form-group col-md-12">
+        <div class="row">
+            <div class="form-group col-md-12">
 
-                    <div class="col-md-9">
+                <div class="col-md-9">
 
-                        <input type="button" value="Search" id="submitbutton" class="btn btn-primary btn-lg"/>
-                    </div>
+                    <input type="button" value="Search" id="submitbutton" class="btn btn-primary btn-lg"/>
                 </div>
             </div>
+        </div>
 
-        </sform:form>
+    </sform:form>
 
     <!--<div class="panel-heading"><span class="Lead">List of Employees</span></div> -->
     <div class="jumbotron">
@@ -117,17 +117,19 @@
     </div>
 
     <div class="row table-responsive">
-    <table id="myTable" class="w-100 table table-striped table-bordered display" >
-        <thead class>
-        <tr>
-            <th>Student Name</th>
-            <th>Date Joint</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+        <table id="myTable" class="w-100 table table-striped table-bordered display" >
+            <thead class>
+            <tr>
+                <th>Student Name</th>
+                <th>Date Joint</th>
+                <th>Status</th>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
     <div>
 
@@ -153,7 +155,7 @@
                 success: function (data) {
                     studentsTable.clear().draw();
                     $.each(data, function (key, value)  {
-                        studentsTable.row.add([value.firstName+" "+value.lastName, dateFormate(value.date), value.status]).draw( false );
+                        studentsTable.row.add([value.firstName+" "+value.lastName, dateFormate(value.date), value.status, "<a href='/edit-studentbatch-"+value.id+"' class='btn btn-warning'>Edit</a>", "<a href='/detele-studentbatch-"+value.id+"' class='btn btn-warning'>Delete</a>"]).draw( false );
                     });
                 }
             });
@@ -184,12 +186,16 @@
         //});
 
 
-        $("#yearIdSeleter").change(function () {
-            var value = $("#yearIdSeleter").val();
+        $("#courseIdSelecter").change(getYearAndCourseBatch);
+        $("#yearIdSeleter").change(getYearAndCourseBatch);
+
+        function getYearAndCourseBatch(){
+            var year = $("#yearIdSeleter").val();
+            var course = $("#courseIdSelecter").val();
 
             $.ajax({
                 type: 'GET',
-                url: '/api/retrivebatch/'+value,
+                url: '/api/retriveyearandcoursebatch/'+year+"/"+course,
                 data: '',
                 dataType: "json",
                 success: function (data) {
@@ -202,10 +208,7 @@
                     $("#batchIdSelecter").html(itrms);
                 }
             });
-
-
-
-        });
+        }
 
         $.ajax({
             type: 'GET',
