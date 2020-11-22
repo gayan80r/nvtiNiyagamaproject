@@ -99,8 +99,9 @@ public class StudentBatchController {
 
         StudentBatch stubatObj = studentBatchService.findById(stubatId);
         model.addAttribute("studentBatch", stubatObj);
-        model.addAttribute("edit", true);
         InitialLoad(model);
+        model.addAttribute("edit", true);
+        model.addAttribute("batchID", stubatObj.getBatchid().getId());
         return "modules/student/StudentBatchRegistration";
     }
 

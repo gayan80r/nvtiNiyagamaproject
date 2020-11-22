@@ -99,9 +99,9 @@
         <div class="row">
             <div class="form-group col-md-12">
 
-                <label class="col-md-3 control-lable" for="id" >Year</label>
+                <label class="col-md-3 control-lable" for="batchid.yearId" >Year</label>
                 <div class="col-md-9">
-                    <sform:select path="id" items="${yearList}" multiple="false" itemValue="id" id="yearIdSeleter"
+                    <sform:select path="batchid.yearId" items="${yearList}" multiple="false" itemValue="id" id="yearIdSeleter"
 
                                   itemLabel="name" class="form-control input-sm" >
                         <sform:option value="" label="--Please Select"/>
@@ -119,7 +119,7 @@
 
                 <label class="col-md-3 control-lable" for="batchid">Batch Name</label>
                 <div class="col-md-9">
-                    <sform:select path="batchid"  multiple="false"  id="batchIdSelecter"
+                    <sform:select path="batchid"  multiple="false"  id="batchIdSelecter" itemValue="id"
 
                                   itemLabel="name" class="form-control input-sm" />
                     <div class="has-error">
@@ -137,7 +137,7 @@
 
                 <label class="col-md-3 control-lable" for="studentid">Student Name</label>
                 <div class="col-md-9">
-                    <sform:select path="studentid"  multiple="false" id="studentIdSelecter"
+                    <sform:select path="studentid" items="${studentList}"  multiple="false" id="studentIdSelecter" itemValue="id"
 
                                   itemLabel="name" class="js-example-basic-single form-control input-sm" />
                     <div class="has-error">
@@ -188,7 +188,6 @@
                 </div>
             </div>
         </div>
-
     </sform:form>
 </div>
 
@@ -252,9 +251,9 @@
   <script src="<c:url value="js/demo/chart-area-demo.js"/>"></script>
   <script src="<c:url value="js/demo/chart-pie-demo.js"/>"></script>--%>
 
-</body>
 
-<script>
+
+<script th:inline="javascript">
 
     $(document).ready(function () {
 
@@ -274,29 +273,31 @@
 
 
 
-            $.ajax({
-                type: 'GET',
-                //url: '/api/retrivestudent/'+value,
-                url: '/api/retrivestudent',
-                data: '',
-                dataType: "json",
-                success: function (data) {
-
-                    $("#studentIdSelecter").html('');
-                    var itrms='<option value="0"></option>';
-                    $.each(data, function (key, value)  {
-                        itrms=itrms+'<option value="'+value.id+'">'+value.name+'</option>';
-                    });
-                    $("#studentIdSelecter").html(itrms);
-                }
-            });
+            // $.ajax({
+            //     type: 'GET',
+            //     //url: '/api/retrivestudent/'+value,
+            //     url: '/api/retrivestudent',
+            //     data: '',
+            //     dataType: "json",
+            //     success: function (data) {
+            //
+            //         $("#studentIdSelecter").html('');
+            //         var itrms='<option value="0"></option>';
+            //         $.each(data, function (key, value)  {
+            //             itrms=itrms+'<option value="'+value.id+'">'+value.name+'</option>';
+            //         });
+            //         $("#studentIdSelecter").html(itrms);
+            //     }
+            // });
 
 
 
         //});
 
 
-        $("#yearIdSeleter").change(function () {
+        $("#yearIdSeleter").change(batchLoad);
+        batchLoad();
+        function batchLoad(){
             var value = $("#yearIdSeleter").val();
 
             $.ajax({
@@ -312,13 +313,12 @@
                         itrms=itrms+'<option value="'+value.id+'">'+value.name+'</option>';
                     });
                     $("#batchIdSelecter").html(itrms);
+                    $("#batchIdSelecter").val(${batchID});
                 }
             });
-
-
-
-        });
+        }
 
     });
 </script>
+</body>
 </html>
