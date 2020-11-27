@@ -71,7 +71,13 @@ public class Employee {
     private Date dob;
 
 
+    public EmployeeType getEmployeeTypeId() {
+        return employeeTypeId;
+    }
 
+    public void setEmployeeTypeId(EmployeeType employeeTypeId) {
+        this.employeeTypeId = employeeTypeId;
+    }
 
     @Column(name = "address_line1")
     private String address_line1;
@@ -91,6 +97,10 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "gender_id")
     private Gender genderId;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_type_id")
+    private EmployeeType employeeTypeId;
 
 
     @ManyToOne
@@ -181,7 +191,7 @@ public class Employee {
     }
 
 
-    public Employee(int id,String first_name, String last_name, String mobile, String home, String email, Date dob, String address_line1, String address_line2, String city, byte[] image, boolean status, Gender genderId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList) {
+    public Employee(int id,String first_name, String last_name, String mobile, String home, String email, Date dob, String address_line1, String address_line2, String city, byte[] image, boolean status, Gender genderId,EmployeeType employeeTypeId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList) {
         this.id=id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -197,6 +207,7 @@ public class Employee {
         this.image = image;
         this.status = status;
         this.genderId = genderId;
+        this.employeeTypeId=employeeTypeId;
         this.designationId = designationId;
         this.departmentId = departmentId;
         this.civilStatusId = civilStatusId;

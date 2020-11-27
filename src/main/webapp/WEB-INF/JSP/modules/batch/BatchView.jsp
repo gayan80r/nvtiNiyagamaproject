@@ -13,7 +13,7 @@
 </head>
 <body>
 
-</body>
+
 <div class="container">
     <!--<div class="panel-heading"><span class="Lead">List of Employees</span></div> -->
     <div class="jumbotron">
@@ -61,4 +61,5 @@
 
 
 </div>
+</body>
 </html>

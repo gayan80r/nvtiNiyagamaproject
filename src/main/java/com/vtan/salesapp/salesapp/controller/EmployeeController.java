@@ -30,6 +30,9 @@ public class EmployeeController {
     private DepartmentService departmentService;
 
     @Autowired
+    private  EmployeeTypeService employeeTypeService;
+
+    @Autowired
     private HighestEducationalQualificationService highestEducationalQualificationService;
 
     @Autowired
@@ -51,6 +54,9 @@ public class EmployeeController {
 
         List<Department> departmentList = departmentService.findAll();
         model.addAttribute("departmentList", departmentList);
+
+        List<EmployeeType> employeeTypeList = employeeTypeService.findAll();
+        model.addAttribute("employeeTypeList", employeeTypeList);
 
         List<highestEducationalQualification> highesteducationalqualificationList = highestEducationalQualificationService.findAll();
         model.addAttribute("highesteducationalqualificationList", highesteducationalqualificationList);
