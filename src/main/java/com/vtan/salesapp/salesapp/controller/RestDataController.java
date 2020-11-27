@@ -1,7 +1,10 @@
 package com.vtan.salesapp.salesapp.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vtan.salesapp.salesapp.entity.*;
+import com.vtan.salesapp.salesapp.entity.Batch;
+import com.vtan.salesapp.salesapp.entity.Course;
+import com.vtan.salesapp.salesapp.entity.RegistedStudent;
+import com.vtan.salesapp.salesapp.entity.StudentBatch;
 import com.vtan.salesapp.salesapp.service.BatchService;
 import com.vtan.salesapp.salesapp.service.CourseService;
 import com.vtan.salesapp.salesapp.service.RegisterStudentService;
@@ -15,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(value={"/api"},method = RequestMethod.GET)
@@ -31,31 +33,38 @@ public class RestDataController {
 
     private final SimpleDateFormat SDFormat= new SimpleDateFormat("MMMM dd, yyyy");
 
-    @RequestMapping(value={"/retrivebatch/{yearid}"},method = RequestMethod.GET)
-    public List<Batch> getBatch(@PathVariable("yearid") int yearid){
+    @RequestMapping(value={"/retrivebatch/{batchid}"},method = RequestMethod.GET)
+    public List<Batch> getBatch(@PathVariable("batchid") int batchid){
         //System.out.println("restapi");
-        return  batchService.findByStatusAndyearId(1, yearid);
+        return  batchService.findByStatusAndyearId(1,batchid);
     }
 
-    @RequestMapping(value={"/retriveyearandcoursebatch/{yearid}/{courseid}"},method = RequestMethod.GET)
-    public List<Batch> getYearAndCourseBatch(@PathVariable("yearid") int yearid, @PathVariable("courseid") int courseid){
-        //System.out.println("restapi");
-        if(yearid!=0 && courseid!=0) {
-            return batchService.findByYearAndCourseId(yearid, courseid);
-        }else{
-            return null;
-        }
-    }
-
-    @RequestMapping(value={"/retrivestudent"},method = RequestMethod.GET)
+    @RequestMapping(value={"/retrivestudent/{batchid}"},method = RequestMethod.GET)
     public List<RegistedStudent> getStudent( ){
         //System.out.println("restapi");
         return registerStudentService.findByStatus(1);
     }
 
     @RequestMapping(value={"/retrivebcstudent/{batchid}/{courseid}"},method = RequestMethod.GET)
-    public List<StudentBatchCourse> getBCStudent(@PathVariable("batchid") int batchid, @PathVariable("courseid") int courseid){
-        return studentBatchService.finByStundentBatchIdCourseId(batchService.findById(batchid), courseService.findById(courseid));
+    public List<Object> getBCStudent(@PathVariable("batchid") int batchid, @PathVariable("courseid") int courseid){
+        List<RegistedStudent> students = registerStudentService.findByStatus(1).stream()
+                .filter(student ->
+                        student.getStudentBatchList().stream().
+                                filter(batch -> batch.getBatchid().getId() == batchid && batch.getBatchid().getCourseid().getId() == courseid) != null).collect(Collectors.toList());
+
+        JSONArray array=new JSONArray();
+        students.forEach(student->{
+            StudentBatch studentBatch = student.getStudentBatchList().stream().filter(batch -> batch.getBatchid().getId() == batchid && batch.getBatchid().getCourseid().getId() == courseid).findAny().orElse(null);
+            if(studentBatch!=null) {
+                JSONObject object = new JSONObject();
+                object.put("name", student.getFirst_name() + " " + student.getLast_name());
+                object.put("join", SDFormat.format(studentBatch.getDatejoint()));
+                object.put("status", studentBatch.getBatchid().getStatus());
+                array.put(object);
+            }
+        });
+
+        return array.toList();
     }
 
     @RequestMapping(value={"/retrivecourse"},method = RequestMethod.GET)
