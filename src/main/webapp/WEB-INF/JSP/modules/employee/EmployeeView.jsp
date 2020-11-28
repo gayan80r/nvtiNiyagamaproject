@@ -53,8 +53,8 @@
 
         <c:forEach items="${employeeList}" var="emp">
         <tr>
-            <td>${emp.first_name}</td>
-            <td>${emp.last_name}</td>
+            <td>${emp.full_name}</td>
+            <td>${emp.name_with_initial}</td>
             <td>${emp.nic}</td>
             <td>${emp.mobile}</td>
             <td>${emp.city}</td>

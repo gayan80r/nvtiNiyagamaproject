@@ -1,475 +1,644 @@
-
-
 <%@ taglib prefix="sform" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel ="stylesheet"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Employee Registration</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-
-    <style>
-        body{
-            margin: 0;
-            font-size: medium;
-            font-weight: 400;
-            line-height: 1.6;
-            color: #212529;
-            text-align: left;
-            background-color: #f5f8fa;
-        }
-
-        input[type=text], [type=date] {
-            width: 100%;
-            padding: 15px;
-            margin: 5px 0 22px 0;
-            display: inline-block;
-            border: none;
-            font-size: medium;
-            background:lightblue ;
-        }
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css"
+          rel="stylesheet" type="text/css"/>
 
 
-
-
-
-    </style>
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/Semantic/semantic.min.css" rel="stylesheet">
 </head>
-<body>
 
-<div class="container">
-    <div class ="jumbotron"> <center><h1>Employee Registration Form</h1></center></div>
-    <!- we used the modelAttribute pass value view to controler->
-    <sform:form method="post" id="employeeform" modelAttribute="employee">
+<body id="page-top">
 
-    <div class="row">
-        <div class="form-group col-md-12">
-            <label class="col-md-3 control-lable" for="first_name">Epf No</label>
-            <div class="col-md-9">
-                <sform:input type="text" path="first_name" id="first_name"
-                             class="form-control input-sm"></sform:input>
-                <div class="has-error">
-                    <sform:errors path="first_name" class="help-inline"/>
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- ============================================================== -->
+    <!-- 						Navigation Start 						-->
+    <!-- ============================================================== -->
+    <jsp:include page="/leftmenu"></jsp:include>
+    <!-- ============================================================== -->
+    <!-- 						Navigation End	 						-->
+    <!-- ============================================================== -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+            <div class="bg-white topbar mb-4 static-top shadow text-uppercase d-flex align-items-center p-l-15"><h4>
+                Employee Registration Form</h4></div>
+
+            <!-- Component Panel -->
+            <div class="container-fluid">
+
+                <!-- Step Component -->
+                <div class="ui three top attached mini steps">
+                    <div class="active step" id="step1">
+                        <i class="user icon"></i>
+                        <div class="content">
+                            <div class="title">Personal</div>
+                            <div class="description">Enter Employee personal details.</div>
+                        </div>
+                    </div>
+                    <div class="step" id="step2">
+                        <i class="map marker alternate icon"></i>
+                        <div class="content">
+                            <div class="title">Contact</div>
+                            <div class="description">Enter Contact details.</div>
+                        </div>
+                    </div>
+                    <div class="step" id="step3">
+                        <i class="info icon"></i>
+                        <div class="content">
+                            <div class="title">Extra</div>
+                            <div class="description">Enter Employment and Educational details.</div>
+                        </div>
+                    </div>
                 </div>
+                <div class="ui attached segment">
+                    <sform:form method="post" id="employeeform" modelAttribute="employee" cssClass="ui form">
+                        <div id="personal-details">
+
+                            <div class="field">
+
+                                <div class="two fields">
+
+                                    <div class="field required">
+                                        <label>Full Name</label>
+                                        <sform:input type="text" path="full_name" id="full_name"
+                                                     class="only-letters first-capital"
+                                                     placeholder="Jhone Swizer"></sform:input>
+                                        <div class="ui warning mini message">
+                                            <div>Please enter Full Name.</div>
+                                        </div>
+                                        <div class="has-error">
+                                            <sform:errors path="full_name" class="help-inline"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="field required">
+                                        <label>Name with initial</label>
+                                        <sform:input type="text" path="name_with_initial" id="name_with_initial"
+                                                     class="only-letters first-capital"
+                                                     placeholder="J. Swizer"></sform:input>
+                                        <div class="ui warning mini message">
+                                            <div>Please enter Name with initial.</div>
+                                        </div>
+                                        <div class="has-error">
+                                            <sform:errors path="name_with_initial" class="help-inline"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="two fields">
+
+                                    <div class="field">
+                                        <label>Civil Status</label>
+                                        <sform:select path="civilStatusId" items="${civilStatusList}" multiple="false"
+                                                      itemValue="id" itemLabel="name" class="ui dropdown"/>
+                                    </div>
+
+                                    <div class="field required">
+                                        <label>National Identity Number</label>
+                                        <sform:input type="text" path="nic" id="nic" class="text-uppercase"
+                                                     placeholder="000000000000"></sform:input>
+                                        <div class="ui warning mini message">
+                                            <div>Please enter National Identity Number.</div>
+                                        </div>
+                                        <div class="has-error">
+                                            <sform:errors path="nic" class="help-inline"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="two fields">
+
+                                    <div class="field">
+                                        <label>Gender</label>
+                                        <sform:select path="genderId" items="${genderList}" multiple="false"
+                                                      itemValue="id" itemLabel="name" class="ui dropdown" id="gender"/>
+                                    </div>
+
+                                    <div class="field required ui calendar">
+                                        <label>Date of Birth</label>
+                                        <sform:input type="text" path="dob" id="dob" autocomplete="off"
+                                                     placeholder="January 1, 2020"></sform:input>
+                                        <div class="ui warning mini message">
+                                            <div>Please select Date of Birth.</div>
+                                        </div>
+                                        <div class="has-error">
+                                            <sform:errors path="dob" class="help-inline"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="transition hidden" id="contact-details">
+
+                            <div class="field">
+                                <div class="two fields">
+
+                                    <div class="field required">
+                                        <label>Mobile Number</label>
+                                        <sform:input type="text" path="mobile" id="mobile" class="contact"
+                                                     placeholder="000 000 0000"></sform:input>
+                                        <div class="ui warning mini message">
+                                            <div>Please enter Mobile Number.</div>
+                                        </div>
+                                        <div class="has-error">
+                                            <sform:errors path="mobile" class="help-inline"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <label>Home Number</label>
+                                        <sform:input type="text" path="home" id="home" class="contact"
+                                                     placeholder="000 000 0000"></sform:input>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="two fields">
+
+                                    <div class="field required">
+                                        <label>Address Line 1</label>
+                                        <sform:input type="text" path="address_line1" id="addressLine1"
+                                                     cssClass="first-capital" placeholder="01 Hill Lane"></sform:input>
+                                        <div class="ui warning mini message">
+                                            <div>Please enter Address.</div>
+                                        </div>
+                                        <div class="has-error">
+                                            <sform:errors path="address_line1" class="help-inline"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <label>Address Line 2</label>
+                                        <sform:input type="text" path="address_line2" id="addressLine2"
+                                                     cssClass="first-capital" placeholder="Hill Stree"></sform:input>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="two fields">
+
+                                    <div class="field required">
+                                        <label>City</label>
+                                        <sform:input type="text" path="city" id="city"
+                                                     class="only-letters first-capital"
+                                                     placeholder="City"></sform:input>
+                                        <div class="ui warning mini message">
+                                            <div>Please enter City.</div>
+                                        </div>
+                                        <div class="has-error">
+                                            <sform:errors path="city" class="help-inline"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="field required">
+                                        <label>Email Address</label>
+                                        <sform:input type="text" path="email" id="email" placeholder="example@example.com"></sform:input>
+                                        <div class="ui warning mini message">
+                                            <div>Please enter Email.</div>
+                                        </div>
+                                        <div class="has-error">
+                                            <sform:errors path="email" class="help-inline"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="transition hidden" id="extra-details">
+
+                            <div class="ui horizontal divider text-secondary">Educational and Vocational details.</div>
+
+                            <div class="field">
+                                <div class="two fields">
+
+                                    <div class="field">
+                                        <label>Highest Educational Qualification</label>
+                                        <sform:select path="highset_educational_qualification_id"
+                                                      items="${highesteducationalqualificationList}" multiple="false"
+                                                      itemValue="id" itemLabel="name" class="ui dropdown"/>
+                                    </div>
+
+                                    <div class="field">
+                                        <label>Highest Vocational Qualification</label>
+                                        <sform:select path="highset_vocational_qualification_id"
+                                                      items="${highestvocationalqualificationList}" multiple="false"
+                                                      itemValue="id" itemLabel="name"
+                                                      class="form-control input-sm ui dropdown"/>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="ui horizontal divider text-secondary">Employment details.</div>
+
+                            <div class="field">
+                                <div class="two fields">
+
+                                    <div class="field">
+                                        <label>Employee Type</label>
+                                        <sform:select path="employeeTypeId" items="${employeeTypeList}" multiple="false"
+                                                      itemValue="id" itemLabel="name" class="ui dropdown"/>
+                                    </div>
+
+                                    <div class="field">
+                                        <label>EPF NO</label>
+                                        <sform:input type="text" path="epf_no" id="epf_no"
+                                                     placeholder="000000"></sform:input>
+                                        <div class="ui warning mini message">
+                                            <div>Please enter EPF NO.</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="two fields">
+
+                                    <div class="field">
+                                        <label>Department</label>
+                                        <sform:select path="departmentId" items="${departmentList}" multiple="false"
+                                                      itemValue="id" itemLabel="name" class="ui dropdown"/>
+                                    </div>
+
+                                    <div class="field">
+                                        <label>Designation</label>
+                                        <sform:select path="designationId" items="${designationList}" multiple="false"
+                                                      itemValue="id" itemLabel="name" class="ui dropdown"/>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="ui divider"></div>
+                        <div class="w-100 d-flex justify-content-end">
+                            <div class="ui buttons">
+                                <button type="button" class="ui disabled button previous"><i
+                                        class="left arrow icon"></i></button>
+                                <div class="or"></div>
+                                <button type="button" class="ui button next"><i class="right arrow icon"></i></button>
+                            </div>
+                        </div>
+                    </sform:form>
+                </div>
+                <!-- End Step Component -->
+
+            </div>
+            <!-- End Component Panel -->
+
+        </div>
+        <!-- End Main Content -->
+
+    </div>
+    <!-- End Content Wrapper -->
+
+</div>
+<!-- End Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
             </div>
         </div>
     </div>
-
-
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="last_name">Last Name</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="last_name" id="last_name"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="last_name" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="name_with_initial">Name with initial</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="name_with_initial" id="name_with_initial"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="name_with_initial" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="nic">NIC</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="nic" id="nic"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="nic" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="epf_no">EPF NO</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="epf_no" id="epf_no"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="epf_no" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-
-                <label class="col-md-3 control-lable" for="genderId">Gender</label>
-                <div class="col-md-9">
-
-                    <sform:select path="genderId" items="${genderList}" multiple="false" itemValue="id"
-
-                                  itemLabel="name" class="form-control input-sm" />
-
-                    <div class="has-error">
-                        <sform:errors path="genderId" class="help-inline"/>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-
-                <label class="col-md-3 control-lable" for="civilStatusId">Civil Status</label>
-                <div class="col-md-9">
-                    <sform:select path="civilStatusId" items="${civilStatusList}" multiple="false" itemValue="id"
-
-                                  itemLabel="name" class="form-control input-sm" />
-                    <div class="has-error">
-                        <sform:errors path="civilStatusId" class="help-inline"/>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="form-group col-md-12">
-
-                <label class="col-md-3 control-lable" for="designationId">Designation</label>
-                <div class="col-md-9">
-                    <sform:select path="designationId" items="${designationList}" multiple="false" itemValue="id"
-
-                                  itemLabel="name" class="form-control input-sm" />
-                    <div class="has-error">
-                        <sform:errors path="designationId" class="help-inline"/>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="form-group col-md-12">
-
-                <label class="col-md-3 control-lable" for="departmentId">Department</label>
-                <div class="col-md-9">
-                    <sform:select path="departmentId" items="${departmentList}" multiple="false" itemValue="id"
-
-                                  itemLabel="name" class="form-control input-sm" />
-                    <div class="has-error">
-                        <sform:errors path="departmentId" class="help-inline"/>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-
-                <label class="col-md-3 control-lable" for="highset_educational_qualification_id">Highest Educational
-                    Qualification</label>
-                <div class="col-md-9">
-                    <sform:select path="highset_educational_qualification_id" items="${highesteducationalqualificationList}" multiple="false" itemValue="id"
-
-                                  itemLabel="name" class="form-control input-sm" />
-                    <div class="has-error">
-                        <sform:errors path="departmentId" class="help-inline"/>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="form-group col-md-12">
-
-                <label class="col-md-3 control-lable" for="highset_vocational_qualification_id">Highest Vocational
-                    Qualification</label>
-                <div class="col-md-9">
-                    <sform:select path="highset_vocational_qualification_id" items="${highestvocationalqualificationList}" multiple="false" itemValue="id"
-
-                                  itemLabel="name" class="form-control input-sm" />
-                    <div class="has-error">
-                        <sform:errors path="departmentId" class="help-inline"/>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="mobile">Mobile Number</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="mobile" id="mobile"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="mobile" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="home">Home Number</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="home" id="home"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="home" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="email">Email Address</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="email" id="email"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="email" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="dob">Date of Birth</label>
-                <div class="col-md-9">
-                    <sform:input type="date" path="dob" id="dob"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="dob" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="address_line1">Address Line 1</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="address_line1" id="addressLine1"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="address_line1" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="address_line2">Address Line 2</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="address_line2" id="addressLine2"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="address_line2" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="city">City</label>
-                <div class="col-md-9">
-                    <sform:input type="text" path="city" id="city"
-                                 class="form-control input-sm"></sform:input>
-                    <div class="has-error">
-                        <sform:errors path="city" class="help-inline"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-12">
-
-                <div class="col-md-9">
-
-
-                    <c:choose>
-
-
-                        <c:when test="${edit}">
-                            <input type="submit" value="Update" id="updatesubmit" class="btn btn-primary btn-lg"/>
-                            <!--<a href="<c:url value='/' />">Cancel</a> -->
-                            <input type="submit" value="cancel" class="btn btn-primary btn-lg"/>
-
-                        </c:when>
-                        <c:otherwise>
-                            <input type="submit" value="Save" id="submitbutton" class="btn btn-primary btn-lg"/>
-                            <input type="submit" value="cancel" class="btn btn-primary btn-lg"/>
-
-                               <!-- <a href="<c:url value='/' />">Cancel</a> -->
-                        </c:otherwise>
-                    </c:choose>
-
-                </div>
-            </div>
-        </div>
-
-    </sform:form>
 </div>
-</body>
+
+<!-- Bootstrap core JavaScript-->
+<script src="<c:url value="/vendor/jquery/jquery.min.js"/>"></script>
+<script src="<c:url value="/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="<c:url value="/vendor/jquery-easing/jquery.easing.min.js"/>"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="<c:url value="/js/sb-admin-2.min.js"/>"></script>
+<script src="<c:url value="/Semantic/semantic.min.js"/>"></script>
+<script src="<c:url value="/js/validation.js"/>"></script>
+<script src="<c:url value="/js/mobile-number.js"/>"></script>
+<script src="<c:url value="/js/nic-retrive.js"/>"></script>
+
+<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
 
 <script>
+    $(document).ready(function () {
 
-    $( document ).ready(function() {
+        initializeNIC("#nic", "#gender", "#dob");
+        $('.only-letters').keypress(isCharacter);
+        $('.first-capital').keyup(firstCapitalLetter);
+        $('.contact').keydown(enforceFormat);
+        $('.contact').keyup(formatToPhone);
 
-        $("#submitbutton,#updatesubmit").click(function(event){
+        $('.field.ui.calendar').calendar({
+            type: 'date'
+        });
 
+        $('.ui.dropdown').dropdown({selectOnKeydown: true});
+
+        var CURRENT_PAGE = 0;
+
+        function paginate() {
+            if (CURRENT_PAGE > 0) {
+                $('.previous').removeClass('disabled');
+            } else {
+                $('.previous').addClass('disabled');
+            }
+
+            if (CURRENT_PAGE == 2) {
+                $('.next').addClass('positive');
+                $('.next').find('i').removeClass('left arrow');
+                $('.next').find('i').addClass('check');
+            } else {
+                $('.next').removeClass('positive');
+                $('.next').find('i').removeClass('check');
+                $('.next').find('i').addClass('left arrow');
+            }
+
+            $('#step1').removeClass('active');
+            $('#step2').removeClass('active');
+            $('#step3').removeClass('active');
+
+            if (CURRENT_PAGE === 0) {
+                $('#step1').addClass('active');
+            } else if (CURRENT_PAGE === 1) {
+                $('#step2').addClass('active');
+            }
+            if (CURRENT_PAGE === 2) {
+                $('#step3').addClass('active');
+            }
+        }
+
+        function isValidPersonalDetails() {
+            var statusFullname = true;
+            var statusNameWIntial = true;
+            var statusNIC = true;
+            var statusDOB = true;
+
+            if (!isEmpty($('#full_name').val())) {
+                statusFullname = true;
+            } else {
+                statusFullname = false;
+                if (!$('#full_name').next('div').hasClass('transition visible')) {
+                    $('#full_name').next('div').transition('fly right');
+                }
+            }
+
+            if (!isEmpty($('#name_with_initial').val())) {
+                statusNameWIntial = true;
+            } else {
+                statusNameWIntial = false;
+                if (!$('#name_with_initial').next('div').hasClass('transition visible')) {
+                    $('#name_with_initial').next('div').transition('fly right');
+                }
+            }
+
+            if (!isEmpty($('#nic').val())) {
+                if (isNIC($('#nic').val())) {
+                    statusNIC = true;
+                } else {
+                    statusNIC = false;
+                    $('#nic').next('div').find('div').text('Please enter valid National Identity Number.');
+                    if ($('#nic').next('div').hasClass('transition visible')) {
+                        $('#nic').next('div').transition('fly right');
+                    }
+                }
+            } else {
+                statusNIC = false;
+                $('#nic').next('div').find('div').text('Please enter National Identity Number.');
+                if (!$('#nic').next('div').hasClass('transition visible')) {
+                    $('#nic').next('div').transition('fly right');
+                }
+            }
+
+            if (!isEmpty($('#dob').val())) {
+                if (Date.parse($('#dob').val())) {
+                    statusDOB = true;
+                } else {
+                    statusDOB = false;
+                    $('#dob').next('div').find('div').text('Please select valid Date of Birth.');
+                    if (!$('#dob').next('div').hasClass('transition visible')) {
+                        $('#dob').next('div').transition('fly right');
+                    }
+                }
+            } else {
+                statusDOB = false;
+                $('#dob').next('div').find('div').text('Please select Date of Birth.');
+                if (!$('#dob').next('div').hasClass('transition visible')) {
+                    $('#dob').next('div').transition('fly right');
+                }
+            }
+
+            if (statusFullname && $('#full_name').next('div').hasClass('transition visible')) {
+                $('#full_name').next('div').transition('fly left');
+            }
+
+            if (statusNameWIntial && $('#name_with_initial').next('div').hasClass('transition visible')) {
+                $('#name_with_initial').next('div').transition('fly left');
+            }
+            if (statusNIC && $('#nic').next('div').hasClass('transition visible')) {
+                $('#nic').next('div').transition('fly left');
+            }
+            if (statusDOB && $('#dob').next('div').hasClass('transition visible')) {
+                $('#dob').next('div').transition('fly left');
+            }
+
+            return statusFullname && statusNameWIntial && statusNIC && statusDOB;
+        }
+
+        function isValidContactDetails() {
+            var statusContact = true;
+            var statusAddress = true;
+            var statusCity = true;
+            var statusEmail = true;
+
+            if (!isEmpty($('#mobile').val())) {
+                if(isValidPhone($('#mobile').val())){
+                    statusContact = true;
+                }else{
+                    statusContact = false;
+                    $('#mobile').next('div').find('div').text('Please enter valid Mobile Number.');
+                    if (!$('#mobile').next('div').hasClass('transition visible')) {
+                        $('#mobile').next('div').transition('fly right');
+                    }
+                }
+            } else {
+                statusContact = false;
+                $('#mobile').next('div').find('div').text('Please enter Mobile Number.');
+                if (!$('#mobile').next('div').hasClass('transition visible')) {
+                    $('#mobile').next('div').transition('fly right');
+                }
+            }
+
+            if (!isEmpty($('#addressLine1').val())) {
+                statusAddress = true;
+            } else {
+                statusAddress = false;
+                if (!$('#addressLine1').next('div').hasClass('transition visible')) {
+                    $('#addressLine1').next('div').transition('fly right');
+                }
+            }
+
+            if (!isEmpty($('#city').val())) {
+                statusCity = true;
+            } else {
+                statusCity = false;
+                if (!$('#city').next('div').hasClass('transition visible')) {
+                    $('#city').next('div').transition('fly right');
+                }
+            }
+
+            if (!isEmpty($('#email').val())) {
+                if (isValidateEmail($('#email').val())) {
+                    statusEmail = true;
+                } else {
+                    statusEmail = false;
+                    $('#email').next('div').find('div').text('Please enter valid Email.');
+                    if (!$('#email').next('div').hasClass('transition visible')) {
+                        $('#email').next('div').transition('fly right');
+                    }
+                }
+            } else {
+                statusEmail = false;
+                $('#email').next('div').find('div').text('Please enter Email.');
+                if (!$('#email').next('div').hasClass('transition visible')) {
+                    $('#email').next('div').transition('fly right');
+                }
+            }
+
+            if (statusContact && $('#mobile').next('div').hasClass('transition visible')) {
+                $('#mobile').next('div').transition('fly left');
+            }
+
+            if (statusAddress && $('#addressLine1').next('div').hasClass('transition visible')) {
+                $('#addressLine1').next('div').transition('fly left');
+            }
+            if (statusCity && $('#city').next('div').hasClass('transition visible')) {
+                $('#city').next('div').transition('fly left');
+            }
+            if (statusEmail && $('#email').next('div').hasClass('transition visible')) {
+                $('#email').next('div').transition('fly left');
+            }
+
+            return statusContact && statusAddress && statusCity && statusEmail;
+        }
+
+        function isValidExtraDetails() {
+            var statusEpf = true;
+
+            if (!isEmpty($('#epf_no').val())) {
+                if($('#epf_no').val().length>=4){
+                    statusEpf = true;
+                }else{
+                    statusEpf = false;
+                    $('#epf_no').next('div').find('div').text('Please enter valid EPF Number.');
+                    if (!$('#epf_no').next('div').hasClass('transition visible')) {
+                        $('#epf_no').next('div').transition('fly right');
+                    }
+                }
+            } else {
+                statusEpf = false;
+                $('#epf_no').next('div').find('div').text('Please enter EPF Number.');
+                if (!$('#epf_no').next('div').hasClass('transition visible')) {
+                    $('#epf_no').next('div').transition('fly right');
+                }
+            }
+
+            if (statusEpf && $('#epf_no').next('div').hasClass('transition visible')) {
+                $('#epf_no').next('div').transition('fly left');
+            }
+
+            return statusEpf;
+        }
+
+        $('.next').click(function (event) {
             event.preventDefault();
-            var status = validateEmployee();
-
-            if(status){
-
+            if (CURRENT_PAGE === 0 && isValidPersonalDetails()) {
+                $('#personal-details').transition('fly left', function () {
+                    $('#contact-details').transition('fly right');
+                    CURRENT_PAGE++;
+                    paginate();
+                });
+            } else if (CURRENT_PAGE === 1 && isValidContactDetails()) {
+                $('#contact-details').transition('fly left', function () {
+                    $('#extra-details').transition('fly right');
+                    CURRENT_PAGE++;
+                    paginate();
+                });
+            } else if (CURRENT_PAGE === 2 && isValidExtraDetails()) {
                 $("#employeeform").unbind('submit').submit();
             }
         });
 
-        $("#nic").focusout(function (event) {
-
-            var nic         = $('#nic').val();
-            if(nic.length > 0){
-
-                var nicRegex = /^([0-9]{9}[V|v|x|X])|([0-9]{12})^/;
-                var valNic = nicRegex.test(nic);
-                if(!valNic) {
-                    $('#nic').after("<Span>Please enter a valid nic from jquery</Span>");
-                    status = false;
-                }
+        $('.previous').click(function () {
+            if (CURRENT_PAGE === 1) {
+                $('#contact-details').transition('fly right', function () {
+                    $('#personal-details').transition('fly left');
+                    CURRENT_PAGE--;
+                    paginate();
+                });
+            } else if (CURRENT_PAGE === 2) {
+                $('#extra-details').transition('fly right', function () {
+                    $('#contact-details').transition('fly left');
+                    CURRENT_PAGE--;
+                    paginate();
+                });
             }
-
         });
-
-        function validateEmployee(){
-
-            var firstName   = $('#first_name').val();
-            var lastName    = $('#last_name').val();
-            var epf_no         =$('#epf_no').val();
-            var nic         = $('#nic').val();
-            var mobile      = $('#mobile').val();
-            var home        = $('#home').val();
-            var email       = $('#email').val();
-
-            var dob         = $('#dob').val();
-            var joined_date = $('#joined_date').val();
-            var end_date = $('#end_date').val();
-            var addressLine1 = $('#addressLine1').val();
-            var city        = $('#city').val();
-
-            var status = true;
-
-
-            if(firstName.length < 3){
-
-                $('#first_name').after("<Span>Please enter a valid name from jquery</Span>");
-                status = false;
-            }
-
-
-            if(lastName.length < 3){
-
-                $('#last_name').after("<Span>Please enter a valid name from jquery</Span>");
-                status = false;
-            }
-
-            if(nic.length > 0){
-
-                var nicRegex = /^([0-9]{9}[V|v|x|X])|([0-9]{12})^/;
-                var valNic = nicRegex.test(nic);
-                if(!valNic) {
-                    $('#nic').after("<Span>Please enter a valid nic from jquery</Span>");
-                    status = false;
-                }
-            }
-
-            if(epf_no.length < 4){
-
-                $('#last_name').after("<Span>Please enter a valid epf  for jquery</Span>");
-                status = false;
-            }
-            if(mobile.length > 0) {
-
-                var mobileRegex = /^((07)(0|1|2|5|6|7|8|9)[0-9]{7})$/;
-                var valMobile = mobileRegex.test(mobile);
-
-                if (!valMobile) {
-                    $('#mobile').after("<Span>Please enter a valid mobile number from jquery</Span>");
-                    status = false;
-                }
-            }
-
-            if(home.length > 0) {
-
-                //var homeRegex = /^([0-9]{10})^/;
-                var homeRegex = /^\d{10}$/;
-                var valhome = homeRegex.test(home);
-
-                if (!valhome) {
-                    $('#home').after("<Span>Please enter a valid home number from jquery</Span>");
-                    status = false;
-                }
-            }
-
-           /* if(email.length > 0) {
-
-                var emailregex = /^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                var valemail = emailregex .test(email);
-
-                if (!valemail) {
-                    $('#email').after("<Span>Please enter a valid Email Name from jquery</Span>");
-                    status = false;
-                }
-            }*/
-
-            if(addressLine1.length <= 0){
-
-                $('#addressLine1').after("<Span>Please enter the address</Span>");
-                status = false;
-            }
-
-
-            if(city.length <= 0){
-
-                $('#city').after("<Span>Please enter the city</Span>");
-                status = false;
-            }
-
-
-            return status;
-        }});
-
+    });
 </script>
 
+</body>
 
 </html>

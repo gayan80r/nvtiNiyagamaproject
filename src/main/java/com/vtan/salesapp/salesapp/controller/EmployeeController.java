@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +37,8 @@ public class EmployeeController {
     private HighestVocationalQualificationService highestVocationalQualificationService;
     @Autowired
     private CivilStatusService civilStatusService;
+    @Autowired
+    private EmployeeTypeService employeeTypeService;
 
     public String InitialLoad(ModelMap model) {
 
@@ -57,30 +60,19 @@ public class EmployeeController {
 
         List<highestVocationalQualification> highestvocationalqualificationList = highestVocationalQualificationService.findAll();
         model.addAttribute("highestvocationalqualificationList", highestvocationalqualificationList);
+
+        List<EmployeeType> typeServiceAll = employeeTypeService.findAll();
+        model.addAttribute("employeeTypeList", typeServiceAll);
+
         return "EmployeeRegistration";
 
     }
 
-    //we use the same url /newemployee to save and to get add the employee form
-    //but we changed the our URL method get to get employee registration form and
-    //URL POST method use for employee save in to the data base
-    //When use request newemployee with GET METHORD it passes the LoadEmployee method
     @RequestMapping(value = {"/newemployee"}, method = RequestMethod.GET)
-    // when we calling the LoadEmployee we passed the empty ModelMap
-//controller class load UI EmployeeRegistration.jsp
-//controler to ui
-
     public String LoadEmployee(ModelMap model) {
-
-        //InitialLoad();
-        //we create the object empobj using employee entity class
         Employee empobj = new Employee();
-        //we add model propertity as the employee object property
         model.addAttribute("employee", empobj);
         InitialLoad(model);
-
-
-        //we  call  the EmployeeRegistration.jsp but we don not add jsp with surfiix of the application property
         return "modules/employee/EmployeeRegistration";
     }
 
@@ -151,19 +143,11 @@ public class EmployeeController {
         return "modules/employee/EmployeeView";
     }
 
-    //    When use request newemployee with POST METHORD it passes the saveEmployee method
-    //when we binding if there is error we need to be handle for that we used the BindingResult
     @RequestMapping(value = {"/newemployee"}, method = RequestMethod.POST)
-    //when save bind data view to controller we need the special bindingResult object
-    //to maintain the result
-    public String saveEmployee(@Valid Employee employee, BindingResult bindingResult,
-                               ModelMap model) {
-        //validating whether the NIC is exists or not
+    public String saveEmployee(@Valid Employee employee, BindingResult bindingResult,ModelMap model) {
+
         Employee valEmp = employeeService.findByNic(employee.getNic());
-        // Employee valEmail=employeeService.findByemail(employee.getEmail());
         if (valEmp != null) {
-//rejectvalue method used to print error message to the backend to frontend
-            // error.employee used the object name employee
             bindingResult.rejectValue("nic", "error.employee",
                     "This nic already exists in the system");
 
@@ -171,39 +155,24 @@ public class EmployeeController {
 
         Employee valEmail = employeeService.findByemail(employee.getEmail());
         if (valEmail != null) {
-//rejectvalue method used to print error message to the backend to frontend
-            // error.employee used the object name employee
             bindingResult.rejectValue("email", "error.employee",
                     "This Email already exists in the system");
 
         }
+
         // validation
         if (bindingResult.hasErrors()) {
+            model.addAttribute("employee", employee);
+            InitialLoad(model);
             return "modules/employee/EmployeeRegistration";
         }
-
-        //System.out.println(employee);
-        //(Employee) convert the model object
-        //Employee empobj=(Employee)model.getAttribute("employee");
         employee.setStatus(true);
 
         employeeService.save(employee);
-        // After saving the employee object into the data base we want
-        //List our employee
-        //we assign the result of the employeeService.findAll() in to the emplist
-        //it return the employee list
-        //we  create the list emplist and assign the value of employeeService.findAll() into emplist
-        //List<Employee> emplist=employeeService.findAll();
         List<Employee> empList = employeeService.findByStatus(true);
-        //we fill the the our model object with emplist
-        //we passed the data controller to view-Employee view.jsp with employeeList-data binding
-        //model map has two colums attribute name value -attributeName employeeList and value emplist object
 
         model.addAttribute("employeeList", empList);
-        // we call EmployeeView.jsp  add the jsp file by the application property file
         return "modules/employee/EmployeeView";
-        //return "EmployeeRegistration";
-
     }
 
     @RequestMapping(value = {"/employee"}, method = RequestMethod.GET)

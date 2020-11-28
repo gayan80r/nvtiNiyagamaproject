@@ -1,7 +1,6 @@
 package com.vtan.salesapp.salesapp.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -18,15 +17,10 @@ public class Employee {
     @Column(name = "id")// use to configure the bellow variable
     private Integer id;
 
-    @Column(name = "firstname")
+    @Column(name = "fullname")
     @NotEmpty(message = "")
     @Size(min = 3, message = "First Name should have minimum 3 letters!")
-    private String first_name;
-
-    @Column(name = "last_name")
-    @NotEmpty(message = "")
-    @Size(min = 3, message = "Last Name should have minimum 3 letters!")
-    private String last_name;
+    private String full_name;
 
     @Column(name = "name_with_initial")
     @NotEmpty(message = "")
@@ -53,11 +47,10 @@ public class Employee {
 
     @Column(name = "mobile")
     @NotEmpty(message = "")
-    @Pattern(regexp = "((07)(0|1|2|5|6|7|8|9)[0-9]{7})", message = "Please enter a Valid Mobile Number!")
+    @Pattern(regexp = "^(\\d{3}[- .]?){2}\\d{4}$", message = "Please enter a Valid Mobile Number!")
     private String mobile;
 
     @Column(name = "home")
-    @Pattern(regexp = "([0-9]{10})", message = "Please enter a Valid land Line Number!")
     private String home;
 
     @Column(name = "email")
@@ -67,11 +60,17 @@ public class Employee {
 
     @Column(name = "dob")
     @NotNull(message = "Please enter the Date of Birth !")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "MMMM dd, yyyy")
     private Date dob;
 
 
+    public EmployeeType getEmployeeTypeId() {
+        return employeeTypeId;
+    }
 
+    public void setEmployeeTypeId(EmployeeType employeeTypeId) {
+        this.employeeTypeId = employeeTypeId;
+    }
 
     @Column(name = "address_line1")
     private String address_line1;
@@ -91,6 +90,10 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "gender_id")
     private Gender genderId;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_type_id")
+    private EmployeeType employeeTypeId;
 
 
     @ManyToOne
@@ -181,10 +184,9 @@ public class Employee {
     }
 
 
-    public Employee(int id,String first_name, String last_name, String mobile, String home, String email, Date dob, String address_line1, String address_line2, String city, byte[] image, boolean status, Gender genderId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList) {
+    public Employee(int id,String full_name, String mobile,String nic,String epf_no, String home, String email, Date dob, String address_line1, String address_line2, String city, byte[] image, boolean status, Gender genderId,EmployeeType employeeTypeId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList) {
         this.id=id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.full_name = full_name;
         this.nic = nic;
         this.epf_no = epf_no;
         this.mobile = mobile;
@@ -197,12 +199,13 @@ public class Employee {
         this.image = image;
         this.status = status;
         this.genderId = genderId;
+        this.employeeTypeId=employeeTypeId;
         this.designationId = designationId;
         this.departmentId = departmentId;
         this.civilStatusId = civilStatusId;
         this.highset_educational_qualification_id = highset_educational_qualification_id;
         this.highset_vocational_qualification_id = highset_vocational_qualification_id;
-       // this.employeeTrainingDetailsList = employeeTrainingDetailsList;
+        // this.employeeTrainingDetailsList = employeeTrainingDetailsList;
         this.employeeTriningDetailsList=employeeTriningDetailsList;
         //this.employeeLeaveList=employeeLeaveList;
 
@@ -252,25 +255,23 @@ public class Employee {
 
     /*@OneToMany(mappedBy = "empleavetypeid")
     private List<EmployeeLeave> employeeLeaveList;
-
     public List<EmployeeLeave> getEmployeeLeaveList() {
         return employeeLeaveList;
     }
-
     public void setEmployeeLeaveList(List<EmployeeLeave> employeeLeaveList) {
         this.employeeLeaveList = employeeLeaveList;
     }*/
 
-    public Employee(Integer id, String first_name, String last_name, String nic, String mobile, String home, Date dob, String address_line1, String address_line2, String city, byte[] image, List<InstructorBatch> instructorBatchList) {
+    public Employee(Integer id, String full_name, String nic, String mobile, String home, Date dob,EmployeeType employeeTypeId, String address_line1, String address_line2, String city, byte[] image, List<InstructorBatch> instructorBatchList) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.full_name = full_name;
         this.nic = nic;
         this.mobile = mobile;
         this.home = home;
         this.dob = dob;
         this.address_line1 = address_line1;
         this.address_line2 = address_line2;
+        this.employeeTypeId=employeeTypeId;
         this.city = city;
         this.image = image;
 
@@ -284,20 +285,12 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFull_name() {
+        return full_name;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
     }
 
     public String getNic() {
@@ -366,7 +359,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return first_name + " " + last_name;
+        return full_name;
     }
 
     public String getName_with_initial() {

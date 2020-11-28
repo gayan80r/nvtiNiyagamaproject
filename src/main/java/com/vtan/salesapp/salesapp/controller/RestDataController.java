@@ -1,21 +1,14 @@
 package com.vtan.salesapp.salesapp.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vtan.salesapp.salesapp.entity.*;
 import com.vtan.salesapp.salesapp.service.BatchService;
 import com.vtan.salesapp.salesapp.service.CourseService;
 import com.vtan.salesapp.salesapp.service.RegisterStudentService;
 import com.vtan.salesapp.salesapp.service.StudentBatchService;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(value={"/api"},method = RequestMethod.GET)
@@ -55,7 +48,11 @@ public class RestDataController {
 
     @RequestMapping(value={"/retrivebcstudent/{batchid}/{courseid}"},method = RequestMethod.GET)
     public List<StudentBatchCourse> getBCStudent(@PathVariable("batchid") int batchid, @PathVariable("courseid") int courseid){
-        return studentBatchService.finByStundentBatchIdCourseId(batchService.findById(batchid), courseService.findById(courseid));
+        if(batchid!=0 && courseid!=0) {
+            return studentBatchService.finByStundentBatchIdCourseId(batchService.findById(batchid), courseService.findById(courseid));
+        }else{
+            return null;
+        }
     }
 
     @RequestMapping(value={"/retrivecourse"},method = RequestMethod.GET)
