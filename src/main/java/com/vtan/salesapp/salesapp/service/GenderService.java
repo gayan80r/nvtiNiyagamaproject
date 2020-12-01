@@ -11,4 +11,5 @@ public interface GenderService {
 
 
     public List<Gender> findAll();
+    public Gender findById(int id);
 }

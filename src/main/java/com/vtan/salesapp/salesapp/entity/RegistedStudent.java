@@ -65,8 +65,8 @@ public class RegistedStudent {
     @Column(name = "address_line2")
     private String address_line2;
 
-    @Column(name = "city")
-    private String city;
+   /* @Column(name = "city")
+    private String city;*/
 
     @Column(name = "image")
     private byte[] image;
@@ -126,6 +126,18 @@ public class RegistedStudent {
     @JoinColumn(name = "year_id")
     private Year yearId;
 
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City cityId;
+
+    public City getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(City cityId) {
+        this.cityId = cityId;
+    }
+
     public Year getYearId() {
         return yearId;
     }
@@ -145,9 +157,35 @@ public class RegistedStudent {
     @OneToMany(mappedBy = "studentid")
     private List<OjtDetails> ojtDetailsList;
 
-   /* @OneToMany(mappedBy = "studentid")
-    private List<OJTPlaceDetails> ojtPlaceDetailsList;
-*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "studentid")
+    private List<StudentOlSubject> studentOlSubjectList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "studentid")
+    private List<StudentAlsubject> studentAlsubjectList;
+
+    public List<StudentOlSubject> getStudentOlSubjectList() {
+        return studentOlSubjectList;
+    }
+
+    public void setStudentOlSubjectList(List<StudentOlSubject> studentOlSubjectList) {
+        this.studentOlSubjectList = studentOlSubjectList;
+    }
+
+    public List<StudentAlsubject> getStudentAlsubjectList() {
+        return studentAlsubjectList;
+    }
+
+    public void setStudentAlsubjectList(List<StudentAlsubject> studentAlsubjectList) {
+        this.studentAlsubjectList = studentAlsubjectList;
+    }
+
+    /* @OneToMany(mappedBy = "studentid")
+        private List<OJTPlaceDetails> ojtPlaceDetailsList;
+
+
+    */
     public List<StudentParrent> getStudentParrentList() {
         return studentParrentList;
     }
@@ -190,6 +228,8 @@ public class RegistedStudent {
     /*@ManyToOne
     @JoinColumn(name = "batch_Id")
     private Batch batch_Id;*/
+
+
 
     public Integer getId() {
         return id;
@@ -294,13 +334,13 @@ public class RegistedStudent {
         this.address_line2 = address_line2;
     }
 
-    public String getCity() {
+    /*public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
-    }
+    }*/
 
     public byte[] getImage() {
         return image;
@@ -350,7 +390,7 @@ public class RegistedStudent {
         this.batch_Id = batch_Id;
     }*/
 
-    public RegistedStudent( int id,String first_name,  String last_name, String name, String nic, String mobile,  String home,  String email,  Date dob, String address_line1, String address_line2, String city, byte[] image, Gender genderId, CivilStatus civilStatusId, GSDivition GSDevision_Id, DevitionalSecatary devisionalSecatary_Id,List<StudentParrent> studentParrentList,List<StudentBatch> studentBatchList,List<StudentSemisterMarks> studentSemisterMarksList,Year yearId,int status){
+    public RegistedStudent( int id,String first_name,  String last_name, String name, String nic, String mobile,  String home,  String email,  Date dob, String address_line1, String address_line2, City cityId, byte[] image, Gender genderId, CivilStatus civilStatusId, GSDivition GSDevision_Id, DevitionalSecatary devisionalSecatary_Id,List<StudentParrent> studentParrentList,List<StudentOlSubject> studentOlSubjectList,List<StudentAlsubject> studentAlsubjectList,List<StudentBatch> studentBatchList,List<StudentSemisterMarks> studentSemisterMarksList,Year yearId,int status){
         this.id=id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -362,7 +402,10 @@ public class RegistedStudent {
         this.dob = dob;
         this.address_line1 = address_line1;
         this.address_line2 = address_line2;
-        this.city = city;
+        this.studentOlSubjectList = studentOlSubjectList;
+        this.studentAlsubjectList = studentAlsubjectList;
+        //this.city = city;
+        this.cityId=cityId;
         this.image = image;
         this.genderId = genderId;
         this.civilStatusId = civilStatusId;

@@ -92,7 +92,7 @@ function isValidPhone(txtPhone) {
 }
 
 function isNIC(text) {
-    var nicRegex = /^([0-9]{9}[V|v|x|X])|([0-9]{12})^/;
+    var nicRegex = /^([0-9]{9}[x|X|v|V]|[0-9]{12})$/;
     var valNic = nicRegex.test(text);
     if (valNic) {
         return true;

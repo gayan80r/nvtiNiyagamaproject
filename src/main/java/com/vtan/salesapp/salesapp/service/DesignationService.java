@@ -11,4 +11,5 @@ public interface DesignationService {
 
 
     public List<Designation> findAll();
+    public Designation findById(int id);
 }

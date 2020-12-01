@@ -4,8 +4,8 @@ import com.vtan.salesapp.salesapp.entity.Gender;
 import com.vtan.salesapp.salesapp.repository.GenderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
 @Service
 public class GenderServiceimpl implements GenderService{
     @Autowired//we add the dependancy injection
@@ -28,5 +28,10 @@ public class GenderServiceimpl implements GenderService{
     @Override
     public List<Gender> findAll() {
         return genderRepository.findAll();
+    }
+
+    @Override
+    public Gender findById(int id) {
+        return genderRepository.getOne(id);
     }
 }

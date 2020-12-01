@@ -12,4 +12,5 @@ public interface EmployeeTypeService {
 
 
     public List<EmployeeType > findAll();
+    public EmployeeType findById(int id);
 }

@@ -10,4 +10,5 @@ public interface DepartmentService {
     public void delete (Department d);
 
     public List<Department> findAll();
+    public Department findById(int id);
 }

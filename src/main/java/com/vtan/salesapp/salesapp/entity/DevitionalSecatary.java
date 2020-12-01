@@ -16,9 +16,11 @@ public class DevitionalSecatary {
     @Column(name="name")
     private  String name;
 
-    public DevitionalSecatary(Integer id,String name) {
+    public DevitionalSecatary(Integer id,String name,List<GSDivition> gsDivitionList,List<RegistedStudent> studentList) {
         this.id=id;
         this.name = name;
+        this.gsDivitionList=gsDivitionList;
+        this.registedStudentList=studentList;
     }
 
     public DevitionalSecatary() {
@@ -56,4 +58,16 @@ public class DevitionalSecatary {
     @JsonIgnore
     @OneToMany(mappedBy = "DevisionalSecatary_Id")
     private List<RegistedStudent> registedStudentList;
+
+    @JsonIgnore
+    @OneToMany( mappedBy = "divitionalId")
+    private List<GSDivition> gsDivitionList;
+
+    public List<GSDivition> getGsDivitionList() {
+        return gsDivitionList;
+    }
+
+    public void setGsDivitionList(List<GSDivition> gsDivitionList) {
+        this.gsDivitionList = gsDivitionList;
+    }
 }

@@ -4,7 +4,6 @@ import com.vtan.salesapp.salesapp.entity.CivilStatus;
 import com.vtan.salesapp.salesapp.repository.CivilStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -30,4 +29,10 @@ public class CivilStatusServiceImpl implements CivilStatusService {
     public List<CivilStatus> findAll() {
         return civilStatusRepository.findAll();
     }
+
+    @Override
+    public CivilStatus findById(int id) {
+        return civilStatusRepository.getOne(id);
+    }
+
 }

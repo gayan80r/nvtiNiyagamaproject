@@ -4,8 +4,8 @@ import com.vtan.salesapp.salesapp.entity.EmployeeType;
 import com.vtan.salesapp.salesapp.repository.EmployeeTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
 @Service
 public class EmployeeTypeServiceImpl implements EmployeeTypeService {
     @Autowired
@@ -28,5 +28,10 @@ public class EmployeeTypeServiceImpl implements EmployeeTypeService {
     @Override
     public List<EmployeeType> findAll() {
         return employeeTypeRepository.findAll();
+    }
+
+    @Override
+    public EmployeeType findById(int id) {
+        return employeeTypeRepository.getOne(id);
     }
 }

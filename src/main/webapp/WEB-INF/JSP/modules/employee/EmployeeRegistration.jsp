@@ -196,16 +196,10 @@
 
                             <div class="field">
                                 <div class="two fields">
-
-                                    <div class="field required">
+                                    <div class="field">
                                         <label>City</label>
-                                        <sform:input type="text" path="city" id="city"
-                                                     class="only-letters first-capital"
-                                                     placeholder="City"></sform:input>
-                                        <div class="ui warning mini message">
-                                            <div>Please enter City.</div>
-                                        </div>
-                                        <sform:errors path="city" class="ui warning mini message transition visible"/>
+                                        <sform:select path="cityId" items="${cityList}" multiple="false"
+                                                      itemValue="id" itemLabel="name" class="ui search dropdown" id="city"/>
                                     </div>
 
                                     <div class="field required">

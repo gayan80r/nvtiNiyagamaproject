@@ -4,8 +4,8 @@ import com.vtan.salesapp.salesapp.entity.Department;
 import com.vtan.salesapp.salesapp.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
 @Service
 
 public class DepartmentServiceimpl implements DepartmentService {
@@ -29,5 +29,10 @@ public class DepartmentServiceimpl implements DepartmentService {
     @Override
     public List<Department> findAll() {
         return departmentRepository.findAll();
+    }
+
+    @Override
+    public Department findById(int id) {
+        return departmentRepository.getOne(id);
     }
 }

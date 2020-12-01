@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
+/*
 
 @Service
 public class AccessorCustomRepositoryImpl implements AccessorCustomRepository {
@@ -83,3 +84,4 @@ public class AccessorCustomRepositoryImpl implements AccessorCustomRepository {
 
     }
 }
+*/

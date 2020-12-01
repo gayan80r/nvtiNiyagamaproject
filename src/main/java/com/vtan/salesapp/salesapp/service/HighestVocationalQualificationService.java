@@ -1,6 +1,5 @@
 package com.vtan.salesapp.salesapp.service;
 
-import com.vtan.salesapp.salesapp.entity.highestEducationalQualification;
 import com.vtan.salesapp.salesapp.entity.highestVocationalQualification;
 
 import java.util.List;
@@ -12,4 +11,5 @@ public interface HighestVocationalQualificationService {
 
 
     public List<highestVocationalQualification> findAll();
+    public highestVocationalQualification findById(int id);
 }

@@ -25,20 +25,18 @@ public class EmployeeController {
     private GenderService genderService;
     @Autowired
     private DesignationService designationService;
-
-
     @Autowired
     private DepartmentService departmentService;
-
     @Autowired
     private HighestEducationalQualificationService highestEducationalQualificationService;
-
     @Autowired
     private HighestVocationalQualificationService highestVocationalQualificationService;
     @Autowired
     private CivilStatusService civilStatusService;
     @Autowired
     private EmployeeTypeService employeeTypeService;
+    @Autowired
+    private  CityService cityService;
 
     public String InitialLoad(ModelMap model) {
 
@@ -54,6 +52,9 @@ public class EmployeeController {
 
         List<Department> departmentList = departmentService.findAll();
         model.addAttribute("departmentList", departmentList);
+
+        List<City> cityList = cityService.findAll();
+        model.addAttribute("cityList", cityList);
 
         List<highestEducationalQualification> highesteducationalqualificationList = highestEducationalQualificationService.findAll();
         model.addAttribute("highesteducationalqualificationList", highesteducationalqualificationList);
@@ -92,24 +93,6 @@ public class EmployeeController {
 
     @RequestMapping(value = {"edit-employee-{id}"}, method = RequestMethod.POST)
     public String updateEmployee(@Valid Employee employee, ModelMap model, BindingResult bindingResult, @PathVariable String id) {
-      /* Employee valEmp = employeeService.findByNic(employee.getNic());
-
-        if(valEmp != null){
-//rejectvalue method used to print error message to the backend to frontend
-            // error.employee used the object name employee
-            bindingResult.rejectValue("nic","error.employee",
-                    "This nic already exists in the system");
-
-
-        }
-        Employee valEmail = employeeService.findByemail(employee.getEmail());
-        if (valEmail != null) {
-//rejectvalue method used to print error message to the backend to frontend
-            // error.employee used the object name employee
-            bindingResult.rejectValue("email", "error.employee",
-                    "This Email already exists in the system");
-
-        }*/
 
         // validation
         if (bindingResult.hasErrors()) {
@@ -133,6 +116,23 @@ public class EmployeeController {
 
         Employee empObj = employeeService.findById(empId);
         empObj.setStatus(false);
+
+        employeeService.update(empObj);
+
+        //employeeService.delete(empObj);
+        //List<Employee> empList = employeeService.findAll();
+        List<Employee> empList = employeeService.findByStatus(true);
+        model.addAttribute("employeeList", empList);
+        return "modules/employee/EmployeeView";
+    }
+    @RequestMapping(value = {"active-employee-{id}"}, method = RequestMethod.GET)
+    public String activateEmployee(Employee employee, ModelMap model, @PathVariable String id) {
+
+
+        int empId = Integer.parseInt(id);
+
+        Employee empObj = employeeService.findById(empId);
+        empObj.setStatus(true);
 
         employeeService.update(empObj);
 
@@ -182,6 +182,7 @@ public class EmployeeController {
 
 //List<Employee> emplist=employeeService.findAll();
         //we used the employeeList passed the value controller to EmployeeView.jsp
+        InitialLoad(model);
         model.addAttribute("employeeList", empList);
         return "modules/employee/EmployeeView";
     }

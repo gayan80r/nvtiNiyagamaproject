@@ -30,4 +30,9 @@ public class DesignationServiceimpl implements DesignationService  {
     public List<Designation> findAll() {
         return designationRepository.findAll();
     }
+
+    @Override
+    public Designation findById(int id) {
+        return designationRepository.getOne(id);
+    }
 }

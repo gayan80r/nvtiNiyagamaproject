@@ -40,19 +40,36 @@ public class GSDivition {
         this.registedStudentList = registedStudentList;
     }
 
-    public GSDivition(Integer id,String name) {
+    public GSDivition(Integer id,String name,List<RegistedStudent> studentList,DevitionalSecatary divitionalId ) {
         this.id=id;
         this.name = name;
+        this.divitionalId=divitionalId;
+        this.registedStudentList=studentList;
     }
     public GSDivition() {
 
+    }
+
+    public DevitionalSecatary getDivitionalId() {
+        return divitionalId;
+    }
+
+    public void setDivitionalId(DevitionalSecatary divitionalId) {
+        this.divitionalId = divitionalId;
     }
 
     @Override
     public String toString() {
         return name;
     }
+
     @JsonIgnore
     @OneToMany(mappedBy = "GSDevision_Id")
     private List<RegistedStudent> registedStudentList;
+
+    @ManyToOne
+    @JoinColumn(name = "divitional_id")
+    private DevitionalSecatary divitionalId;
+
+
 }

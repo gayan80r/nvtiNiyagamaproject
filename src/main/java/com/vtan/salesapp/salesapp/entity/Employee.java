@@ -1,5 +1,6 @@
 package com.vtan.salesapp.salesapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -77,8 +78,13 @@ public class Employee {
     @Column(name = "address_line2")
     private String address_line2;
 
-    @Column(name = "city")
-    private String city;
+   /* @Column(name = "city")
+    private String city;*/
+
+    /*@ManyToOne
+    @JoinColumn(name = "city_id")
+    private City cityId;*/
+
     @Column(name = "image")
     private byte[] image;
 
@@ -97,8 +103,13 @@ public class Employee {
 
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "desination_id")
     private Designation designationId;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City cityId;
 
     public Designation getDesignationId() {
         return designationId;
@@ -109,6 +120,7 @@ public class Employee {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "department_id")
     private Department departmentId;
 
@@ -141,10 +153,12 @@ public class Employee {
     }
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "highset_educational_qualification_id")
     private highestEducationalQualification highset_educational_qualification_id;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "highset_vocational_qualification_id")
     private highestVocationalQualification highset_vocational_qualification_id;
 
@@ -184,7 +198,7 @@ public class Employee {
     }
 
 
-    public Employee(int id,String full_name, String mobile,String nic,String epf_no, String home, String email, Date dob, String address_line1, String address_line2, String city, byte[] image, boolean status, Gender genderId,EmployeeType employeeTypeId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList) {
+    public Employee(int id,String full_name, String mobile,String nic,String epf_no, String home, String email, Date dob, String address_line1, String address_line2,City cityId, byte[] image, boolean status, Gender genderId,EmployeeType employeeTypeId, Designation designationId, Department departmentId, CivilStatus civilStatusId, highestEducationalQualification highset_educational_qualification_id, highestVocationalQualification highset_vocational_qualification_id,List<EmployeeTrainingDetails> employeeTriningDetailsList,List<InstructorBatch> instructorBatchList) {
         this.id=id;
         this.full_name = full_name;
         this.nic = nic;
@@ -195,7 +209,8 @@ public class Employee {
         this.dob = dob;
         this.address_line1 = address_line1;
         this.address_line2 = address_line2;
-        this.city = city;
+        this.cityId=cityId;
+        //this.city = city;
         this.image = image;
         this.status = status;
         this.genderId = genderId;
@@ -249,6 +264,7 @@ public class Employee {
     public Employee() {
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "employeid")
     private List<InstructorBatch> instructorBatchList;
 
@@ -262,7 +278,7 @@ public class Employee {
         this.employeeLeaveList = employeeLeaveList;
     }*/
 
-    public Employee(Integer id, String full_name, String nic, String mobile, String home, Date dob,EmployeeType employeeTypeId, String address_line1, String address_line2, String city, byte[] image, List<InstructorBatch> instructorBatchList) {
+    /*public Employee(Integer id, String full_name, String nic, String mobile, String home, Date dob,EmployeeType employeeTypeId, String address_line1, String address_line2, String city, byte[] image, List<InstructorBatch> instructorBatchList) {
         this.id = id;
         this.full_name = full_name;
         this.nic = nic;
@@ -272,10 +288,10 @@ public class Employee {
         this.address_line1 = address_line1;
         this.address_line2 = address_line2;
         this.employeeTypeId=employeeTypeId;
-        this.city = city;
+       // this.city = city;
         this.image = image;
 
-    }
+    }*/
 
     public Integer getId() {
         return id;
@@ -341,14 +357,22 @@ public class Employee {
         this.address_line2 = address_line2;
     }
 
-    public String getCity() {
-        return city;
+    public City getCityId() {
+        return cityId;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setCityId(City cityId) {
+        this.cityId = cityId;
     }
 
+    /*public String getCity() {
+            return city;
+        }
+
+        public void setCity(String city) {
+            this.city = city;
+        }
+    */
     public byte[] getImage() {
         return image;
     }

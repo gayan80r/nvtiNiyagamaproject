@@ -17,7 +17,7 @@ public interface BatchRepository extends JpaRepository<Batch,Integer>{
     //public Batch findById(int id);
     public List<Batch> findByStatusAndYearId(int status, Year year);
 
-    @Query("SELECT b from Batch b where b.yearId = :year and b.courseid = :course")
+    @Query("SELECT b from Batch b where b.courseid = :year and b.courseid = :course")
     public List<Batch> findByYearAndCourseId(Year year, Course course);
     //public List<RegistedStudent> findByStatus(int status);
 }

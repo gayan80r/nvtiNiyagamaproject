@@ -11,7 +11,7 @@ $(document).ready(function () {
     });
 
     $('.ui.dropdown').dropdown({selectOnKeydown: true});
-
+    $('.ui.dropdown').search;
     var CURRENT_PAGE = 0;
 
     function paginate() {
@@ -75,7 +75,7 @@ $(document).ready(function () {
             } else {
                 statusNIC = false;
                 $('#nic').next('div').find('div').text('Please enter valid National Identity Number.');
-                if ($('#nic').next('div').hasClass('transition visible')) {
+                if (!$('#nic').next('div').hasClass('transition visible')) {
                     $('#nic').next('div').transition('fly right');
                 }
             }
@@ -125,7 +125,6 @@ $(document).ready(function () {
     function isValidContactDetails() {
         var statusContact = true;
         var statusAddress = true;
-        var statusCity = true;
         var statusEmail = true;
 
         if (!isEmpty($('#mobile').val())) {
@@ -155,15 +154,6 @@ $(document).ready(function () {
             }
         }
 
-        if (!isEmpty($('#city').val())) {
-            statusCity = true;
-        } else {
-            statusCity = false;
-            if (!$('#city').next('div').hasClass('transition visible')) {
-                $('#city').next('div').transition('fly right');
-            }
-        }
-
         if (!isEmpty($('#email').val())) {
             if (isValidateEmail($('#email').val())) {
                 statusEmail = true;
@@ -189,14 +179,11 @@ $(document).ready(function () {
         if (statusAddress && $('#addressLine1').next('div').hasClass('transition visible')) {
             $('#addressLine1').next('div').transition('fly left');
         }
-        if (statusCity && $('#city').next('div').hasClass('transition visible')) {
-            $('#city').next('div').transition('fly left');
-        }
         if (statusEmail && $('#email').next('div').hasClass('transition visible')) {
             $('#email').next('div').transition('fly left');
         }
 
-        return statusContact && statusAddress && statusCity && statusEmail;
+        return statusContact && statusAddress && statusEmail;
     }
 
     function isValidExtraDetails() {
@@ -230,17 +217,48 @@ $(document).ready(function () {
     $('.next').click(function (event) {
         event.preventDefault();
         if (CURRENT_PAGE === 0 && isValidPersonalDetails()) {
-            $('#personal-details').transition('fly left', function () {
-                $('#contact-details').transition('fly right');
-                CURRENT_PAGE++;
-                paginate();
+            $.ajax({
+                type: 'GET',
+                url: '/api/employee-findbynic/'+$('#nic').val(),
+                data: '',
+                dataType: "json",
+                success: function (data) {
+                    if(data.hasOwnProperty('nic') && data.nic===$('#nic').val()){
+                        $('#nic').next('div').find('div').text('This nic already exists in the system.');
+                        if (!$('#nic').next('div').hasClass('transition visible')) {
+                            $('#nic').next('div').transition('fly right');
+                        }
+                    }else{
+                        $('#personal-details').transition('fly left', function () {
+                            $('#contact-details').transition('fly right');
+                            CURRENT_PAGE++;
+                            paginate();
+                        });
+                    }
+                }
             });
         } else if (CURRENT_PAGE === 1 && isValidContactDetails()) {
-            $('#contact-details').transition('fly left', function () {
-                $('#extra-details').transition('fly right');
-                CURRENT_PAGE++;
-                paginate();
+            $.ajax({
+                type: 'GET',
+                url: '/api/employee-findbyemail/'+$('#email').val(),
+                data: '',
+                dataType: "json",
+                success: function (data) {
+                    if(data.hasOwnProperty('email') && data.email===$('#email').val()){
+                        $('#email').next('div').find('div').text('This Email already exists in the system.');
+                        if (!$('#email').next('div').hasClass('transition visible')) {
+                            $('#email').next('div').transition('fly right');
+                        }
+                    }else{
+                        $('#contact-details').transition('fly left', function () {
+                            $('#extra-details').transition('fly right');
+                            CURRENT_PAGE++;
+                            paginate();
+                        });
+                    }
+                }
             });
+
         } else if (CURRENT_PAGE === 2 && isValidExtraDetails()) {
             $("#employeeform").unbind('submit').submit();
         }

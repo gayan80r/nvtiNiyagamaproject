@@ -1,11 +1,9 @@
 package com.vtan.salesapp.salesapp.controller;
 
 import com.vtan.salesapp.salesapp.entity.*;
-import com.vtan.salesapp.salesapp.service.BatchService;
-import com.vtan.salesapp.salesapp.service.CourseService;
-import com.vtan.salesapp.salesapp.service.RegisterStudentService;
-import com.vtan.salesapp.salesapp.service.StudentBatchService;
+import com.vtan.salesapp.salesapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -21,6 +19,8 @@ public class RestDataController {
     private RegisterStudentService registerStudentService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private EmployeeService employeeService;
 
     private final SimpleDateFormat SDFormat= new SimpleDateFormat("MMMM dd, yyyy");
 
@@ -62,7 +62,25 @@ public class RestDataController {
     }
 
 
+    @RequestMapping(value = {"/employee-findbynic/{nic}"}, method = RequestMethod.GET)
+    public Employee findByNIC(ModelMap model, @PathVariable String nic) {
+        Employee byNic = employeeService.findByNic(nic);
+        if(byNic!=null){
+            return byNic;
+        }else {
+            return new Employee();
+        }
+    }
 
+    @RequestMapping(value = {"/employee-findbyemail/{email}"}, method = RequestMethod.GET)
+    public Employee findByEmail(ModelMap model,@PathVariable String email) {
+        Employee byNic = employeeService.findByemail(email);
+        if(byNic!=null){
+            return byNic;
+        }else {
+            return new Employee();
+        }
+    }
 
 
 }
